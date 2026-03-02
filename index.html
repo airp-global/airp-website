@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <meta name="description" content="AIRP Global is a BSC-based utility token building payment and rewards infrastructure for the airport economy. Fixed supply, transparent tokenomics, real-world utility.">
+  <meta name="keywords" content="AIRP, airport economy, BSC token, utility token, aviation blockchain, crypto presale, airport commerce">
+  <meta name="author" content="AIRP Global">
+  <meta name="theme-color" content="#0B0F17">
+  
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://airpglobal.io">
+  <meta property="og:title" content="AIRP Global | Powering the Global Airport Economy">
+  <meta property="og:description" content="AIRP Global is a BSC-based utility token building payment and rewards infrastructure for the airport economy. Fixed supply, transparent tokenomics, real-world utility.">
+  <meta property="og:image" content="images/airp-logo.png">
+  
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://airpglobal.io">
+  <meta property="twitter:title" content="AIRP Global | Powering the Global Airport Economy">
+  <meta property="twitter:description" content="AIRP Global is a BSC-based utility token building payment and rewards infrastructure for the airport economy. Fixed supply, transparent tokenomics, real-world utility.">
+  <meta property="twitter:image" content="images/airp-logo.png">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
+  
+  <title>AIRP Global | Powering the Global Airport Economy</title>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
+    
+    :root {
+      --airp-bg: #0B0F17;
+      --airp-bg-secondary: #111827;
+      --airp-gold: #C9A03F;
+      --airp-gold-light: #D4AF37;
+      --airp-ivory: #F3F0E6;
+      --airp-gray: #A9B3C2;
+      --airp-navy: #162A45;
+      --airp-disabled: #4A5568;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--airp-bg);
+      color: var(--airp-ivory);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Space Grotesk', sans-serif;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    
+    .font-mono { font-family: 'IBM Plex Mono', monospace; }
+    
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--airp-bg); }
+    ::-webkit-scrollbar-thumb { background: rgba(201, 160, 63, 0.3); border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(201, 160, 63, 0.5); }
+    
+    ::selection { background: rgba(201, 160, 63, 0.3); color: var(--airp-ivory); }
+    
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 1rem 2rem;
+      transition: all 0.3s ease;
+    }
+    
+    .nav.scrolled {
+      background: rgba(11, 15, 23, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201, 160, 63, 0.1);
+    }
+    
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .nav-logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
+    .nav-logo img { height: 32px; width: auto; }
+    .nav-logo span { font-family: 'Space Grotesk', sans-serif; font-size: 1.25rem; font-weight: 600; color: var(--airp-ivory); }
+    
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a { color: var(--airp-gray); text-decoration: none; font-size: 0.875rem; transition: color 0.3s ease; }
+    .nav-links a:hover { color: var(--airp-gold); }
+    
+    .mobile-menu-btn { display: none; background: none; border: none; color: var(--airp-ivory); cursor: pointer; padding: 0.5rem; min-width: 44px; min-height: 44px; }
+    
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    
+    .hero-bg { position: absolute; inset: 0; background: url('images/hero-runway.jpg') center/cover no-repeat; }
+    .hero-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 15, 23, 0.75) 0%, rgba(11, 15, 23, 0.6) 50%, rgba(11, 15, 23, 0.8) 100%); }
+    
+    .hero-content { position: relative; z-index: 10; text-align: center; padding: 8rem 1.5rem 4rem; max-width: 1000px; width: 100%; }
+    .hero-logo { width: 100px; height: 100px; margin: 0 auto 1.5rem; animation: coinFloat 6s ease-in-out infinite; }
+    
+    @keyframes coinFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+    
+    .hero h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--airp-gold) 0%, var(--airp-gold-light) 50%, var(--airp-gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      word-wrap: break-word;
+    }
+    
+    .hero-subtitle { font-size: clamp(0.875rem, 2vw, 1.125rem); color: var(--airp-gray); margin-bottom: 0.5rem; }
+    .hero-description { font-size: 0.875rem; color: var(--airp-gray); opacity: 0.8; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    
+    .countdown-label { font-size: 0.75rem; color: var(--airp-gold); text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 0.75rem; }
+    .countdown { display: flex; justify-content: center; gap: 0.75rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .countdown-item { text-align: center; min-width: 60px; }
+    .countdown-value {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: clamp(1.5rem, 3.5vw, 2.5rem);
+      font-weight: 500;
+      background: linear-gradient(135deg, var(--airp-gold) 0%, var(--airp-gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .countdown-separator { font-size: clamp(1.25rem, 3vw, 2rem); color: var(--airp-gold); align-self: flex-start; padding-top: 0.25rem; }
+    .countdown-label-small { font-size: 0.625rem; color: var(--airp-gray); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.25rem; }
+    
+    .hero-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.75rem; margin-bottom: 1.5rem; max-width: 500px; margin-left: auto; margin-right: auto; }
+    @media (min-width: 480px) { .hero-cards { grid-template-columns: repeat(4, 1fr); gap: 0.5rem; } }
+    
+    .hero-card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201, 160, 63, 0.15);
+      border-radius: 10px;
+      padding: 0.75rem;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+    .hero-card:hover { border-color: rgba(201, 160, 63, 0.35); }
+    .hero-card-value { font-family: 'IBM Plex Mono', monospace; font-size: 1.125rem; font-weight: 500; color: var(--airp-gold); }
+    .hero-card-label { font-size: 0.625rem; color: var(--airp-gray); margin-top: 0.25rem; }
+    
+    .scarcity-line { font-size: 0.8125rem; color: var(--airp-gray); margin-bottom: 1.5rem; }
+    
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 10px;
+      font-weight: 500;
+      font-size: 0.875rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--airp-gold) 0%, var(--airp-gold-light) 100%);
+      color: var(--airp-bg);
+      box-shadow: 0 10px 30px rgba(201, 160, 63, 0.25);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(201, 160, 63, 0.35); }
+    
+    .btn-secondary {
+      background: transparent;
+      color: var(--airp-ivory);
+      border: 1px solid rgba(201, 160, 63, 0.3);
+    }
+    .btn-secondary:hover { border-color: rgba(201, 160, 63, 0.6); background: rgba(201, 160, 63, 0.08); }
+    
+    .btn-disabled {
+      background: var(--airp-disabled);
+      color: rgba(243, 240, 230, 0.5);
+      cursor: not-allowed;
+      position: relative;
+    }
+    
+    .tooltip {
+      position: relative;
+    }
+    
+    .tooltip::after {
+      content: attr(data-tooltip);
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-8px);
+      background: var(--airp-navy);
+      color: var(--airp-gold);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      white-space: nowrap;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      border: 1px solid rgba(201, 160, 63, 0.3);
+      font-family: 'IBM Plex Mono', monospace;
+    }
+    
+    .tooltip:hover::after {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .email-signup {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      max-width: 320px;
+      margin: 1rem auto 0;
+    }
+    
+    @media (min-width: 480px) {
+      .email-signup {
+        flex-direction: row;
+        max-width: 400px;
+      }
+    }
+    
+    .email-input {
+      flex: 1;
+      padding: 0.875rem 1rem;
+      border-radius: 10px;
+      background: rgba(17, 24, 39, 0.8);
+      border: 1px solid rgba(201, 160, 63, 0.2);
+      color: var(--airp-ivory);
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+      min-height: 44px;
+    }
+    
+    .email-input:focus {
+      outline: none;
+      border-color: rgba(201, 160, 63, 0.5);
+    }
+    
+    .email-input::placeholder {
+      color: var(--airp-gray);
+      opacity: 0.6;
+    }
+    
+    .trust-microline { font-size: 0.6875rem; color: var(--airp-gray); opacity: 0.7; margin-top: 1rem; }
+    .network-info { font-family: 'IBM Plex Mono', monospace; font-size: 0.625rem; color: var(--airp-gray); opacity: 0.6; margin-top: 1rem; }
+    
+    .section { position: relative; padding: 4rem 1rem; overflow: hidden; }
+    @media (min-width: 768px) { .section { padding: 5rem 2rem; } }
+    
+    .section-bg { position: absolute; inset: 0; background-size: cover; background-position: center; background-repeat: no-repeat; }
+    .section-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11, 15, 23, 0.85) 0%, rgba(11, 15, 23, 0.7) 50%, rgba(11, 15, 23, 0.85) 100%); }
+    
+    .section-content { position: relative; z-index: 10; max-width: 1200px; margin: 0 auto; width: 100%; }
+    
+    .section-title {
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--airp-gold) 0%, var(--airp-gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      text-align: center;
+      margin-bottom: 0.75rem;
+    }
+    
+    .section-subtitle { text-align: center; color: var(--airp-gray); max-width: 600px; margin: 0 auto 2rem; font-size: 0.875rem; line-height: 1.7; }
+    
+    .total-supply {
+      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.875rem;
+      color: var(--airp-gold);
+      margin-bottom: 1.5rem;
+    }
+    
+    .tokenomics-table-container {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -0.5rem;
+      padding: 0 0.5rem;
+    }
+    
+    .tokenomics-table {
+      width: 100%;
+      min-width: 700px;
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201, 160, 63, 0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      border-collapse: collapse;
+    }
+    
+    .tokenomics-table th {
+      background: rgba(201, 160, 63, 0.15);
+      color: var(--airp-gold);
+      font-weight: 600;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.875rem 0.75rem;
+      text-align: left;
+      border-bottom: 1px solid rgba(201, 160, 63, 0.2);
+    }
+    
+    .tokenomics-table td {
+      padding: 0.875rem 0.75rem;
+      font-size: 0.8125rem;
+      color: var(--airp-ivory);
+      border-bottom: 1px solid rgba(201, 160, 63, 0.1);
+    }
+    
+    .tokenomics-table tr:last-child td { border-bottom: none; }
+    .tokenomics-table tr:hover { background: rgba(201, 160, 63, 0.03); }
+    
+    .tokenomics-table .percentage {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--airp-gold);
+      font-weight: 500;
+    }
+    
+    .tokenomics-table .amount {
+      font-family: 'IBM Plex Mono', monospace;
+      color: var(--airp-ivory);
+    }
+    
+    .tokenomics-table .vesting {
+      font-size: 0.75rem;
+      color: var(--airp-gray);
+    }
+    
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    
+    .card {
+      background: rgba(17, 24, 39, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(201, 160, 63, 0.15);
+      border-radius: 12px;
+      padding: 1.25rem;
+      transition: all 0.3s ease;
+    }
+    .card:hover { border-color: rgba(201, 160, 63, 0.35); transform: translateY(-2px); }
+    
+    .card-icon { width: 44px; height: 44px; border-radius: 10px; background: rgba(201, 160, 63, 0.1); display: flex; align-items: center; justify-content: center; margin-bottom: 0.875rem; }
+    .card-icon svg { width: 22px; height: 22px; color: var(--airp-gold); }
+    .card-title { font-size: 1rem; font-weight: 600; color: var(--airp-ivory); margin-bottom: 0.5rem; }
+    .card-text { font-size: 0.8125rem; color: var(--airp-gray); line-height: 1.6; }
+    
+    .security-status {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .security-item {
+      background: rgba(17, 24, 39, 0.7);
+      border: 1px solid rgba(201, 160, 63, 0.15);
+      border-radius: 8px;
+      padding: 0.75rem 1rem;
+      text-align: center;
+    }
+    
+    .security-label {
+      font-size: 0.6875rem;
+      color: var(--airp-gray);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.25rem;
+    }
+    
+    .security-value {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.8125rem;
+      color: var(--airp-gold);
+    }
+    
+    .security-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: var(--airp-gray);
+      margin-top: 1.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    
+    /* Vertical Timeline Roadmap */
+    .roadmap-timeline {
+      position: relative;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-left: 1.5rem;
+    }
+    
+    .roadmap-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0.5rem;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--airp-gold) 0%, rgba(201, 160, 63, 0.3) 100%);
+    }
+    
+    .roadmap-phase {
+      position: relative;
+      margin-bottom: 1.5rem;
+      background: rgba(17, 24, 39, 0.7);
+      border: 1px solid rgba(201, 160, 63, 0.15);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+    
+    .roadmap-phase:last-child {
+      margin-bottom: 0;
+    }
+    
+    .roadmap-phase.current {
+      border-color: var(--airp-gold);
+      box-shadow: 0 0 20px rgba(201, 160, 63, 0.15);
+    }
+    
+    .roadmap-phase-marker {
+      position: absolute;
+      left: -1.25rem;
+      top: 1.25rem;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--airp-bg);
+      border: 2px solid var(--airp-gold);
+      z-index: 2;
+    }
+    
+    .roadmap-phase.current .roadmap-phase-marker {
+      background: var(--airp-gold);
+      box-shadow: 0 0 10px rgba(201, 160, 63, 0.5);
+    }
+    
+    .roadmap-phase-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      min-height: 44px;
+    }
+    
+    .roadmap-phase-header:hover {
+      background: rgba(201, 160, 63, 0.05);
+    }
+    
+    .roadmap-phase-info {
+      text-align: left;
+    }
+    
+    .roadmap-phase-label {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--airp-gold);
+      letter-spacing: 0.02em;
+      margin-bottom: 0.25rem;
+    }
+    
+    .roadmap-phase-date {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem;
+      color: var(--airp-gray);
+    }
+    
+    .roadmap-phase-toggle {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      color: var(--airp-gold);
+      flex-shrink: 0;
+    }
+    
+    .roadmap-phase.active .roadmap-phase-toggle {
+      transform: rotate(180deg);
+    }
+    
+    .roadmap-phase-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+    
+    .roadmap-phase.active .roadmap-phase-content {
+      max-height: 400px;
+    }
+    
+    .roadmap-phase-list {
+      padding: 0 1.25rem 1rem 1.25rem;
+      list-style: none;
+      text-align: left;
+    }
+    
+    .roadmap-phase-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.625rem;
+      padding: 0.5rem 0;
+      font-size: 0.8125rem;
+      color: var(--airp-gray);
+      border-bottom: 1px solid rgba(201, 160, 63, 0.08);
+      line-height: 1.5;
+    }
+    
+    .roadmap-phase-list li:last-child {
+      border-bottom: none;
+    }
+    
+    .status-icon {
+      width: 18px;
+      height: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 0.875rem;
+      margin-top: 0.125rem;
+    }
+    
+    .status-completed { color: #48BB78; }
+    .status-progress { color: var(--airp-gold); }
+    .status-upcoming { color: var(--airp-gray); }
+    
+    .team-message {
+      max-width: 600px;
+      margin: 0 auto;
+      background: rgba(17, 24, 39, 0.7);
+      border: 1px solid rgba(201, 160, 63, 0.3);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+    }
+    
+    .team-message h3 {
+      font-size: 1.125rem;
+      color: var(--airp-gold);
+      margin-bottom: 1rem;
+    }
+    
+    .team-message p {
+      font-size: 0.875rem;
+      color: var(--airp-gray);
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+    
+    .team-message .highlight {
+      color: var(--airp-ivory);
+    }
+    
+    .footer {
+      background: #070a10;
+      border-top: 1px solid rgba(201, 160, 63, 0.1);
+      padding: 2rem 1rem;
+    }
+    
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .footer-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    @media (min-width: 640px) {
+      .footer-main {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+    
+    .footer-copyright {
+      font-size: 0.75rem;
+      color: var(--airp-gray);
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .footer-links a {
+      font-size: 0.75rem;
+      color: var(--airp-gray);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    
+    .footer-links a:hover {
+      color: var(--airp-gold);
+    }
+    
+    .footer-email {
+      font-size: 0.75rem;
+      color: var(--airp-gold);
+      text-decoration: none;
+    }
+    
+    .footer-disclaimer {
+      text-align: center;
+      font-size: 0.6875rem;
+      color: var(--airp-gray);
+      opacity: 0.7;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(201, 160, 63, 0.1);
+      line-height: 1.6;
+    }
+    
+    .mobile-menu { display: none; position: fixed; top: 64px; left: 0; right: 0; background: rgba(11, 15, 23, 0.98); border-top: 1px solid rgba(201, 160, 63, 0.1); padding: 1rem; z-index: 999; }
+    .mobile-menu.active { display: block; }
+    .mobile-menu a { display: block; padding: 0.875rem 0; color: var(--airp-gray); text-decoration: none; font-size: 0.875rem; border-bottom: 1px solid rgba(201, 160, 63, 0.1); min-height: 44px; }
+    .mobile-menu a:last-child { border-bottom: none; }
+    
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: flex; align-items: center; justify-content: center; }
+      .hero-content { padding: 6rem 1rem 3rem; }
+      .section { padding: 3rem 1rem; }
+      .hero h1 { font-size: 1.75rem; }
+      .countdown { gap: 0.5rem; }
+      .countdown-item { min-width: 50px; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+      .btn { width: 100%; max-width: 280px; }
+      
+      /* Mobile roadmap timeline */
+      .roadmap-timeline {
+        padding-left: 1.25rem;
+      }
+      .roadmap-timeline::before {
+        left: 0.375rem;
+      }
+      .roadmap-phase-marker {
+        left: -1rem;
+        width: 10px;
+        height: 10px;
+      }
+      .roadmap-phase-header {
+        padding: 0.875rem 1rem;
+      }
+      .roadmap-phase-label {
+        font-size: 0.8125rem;
+      }
+      .roadmap-phase-date {
+        font-size: 0.6875rem;
+      }
+      .roadmap-phase-list {
+        padding: 0 1rem 0.875rem 1rem;
+      }
+      .roadmap-phase-list li {
+        font-size: 0.75rem;
+      }
+    }
+    
+    .fade-in { opacity: 0; transform: translateY(20px); transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .stagger-1 { transition-delay: 0.1s; }
+    .stagger-2 { transition-delay: 0.2s; }
+    .stagger-3 { transition-delay: 0.3s; }
+    .stagger-4 { transition-delay: 0.4s; }
+    .stagger-5 { transition-delay: 0.5s; }
+  </style>
+</head>
+<body>
+  <nav class="nav" id="nav">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">
+        <img src="images/airp-logo-nav.png" alt="AIRP">
+        <span>AIRP</span>
+      </a>
+      <div class="nav-links">
+        <a href="#tokenomics">Tokenomics</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+  
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#tokenomics">Tokenomics</a>
+    <a href="#roadmap">Roadmap</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <img src="images/airp-logo.png" alt="AIRP Global" class="hero-logo">
+      <h1>AIRP Global</h1>
+      <p class="hero-subtitle">Powering the Global Airport Economy</p>
+      <p class="hero-description">A BSC-based utility token building payment and rewards infrastructure for airport commerce</p>
+      
+      <p class="countdown-label">Public Presale Launching</p>
+      <div class="countdown" id="countdown">
+        <div class="countdown-item">
+          <div class="countdown-value" id="days">00</div>
+          <div class="countdown-label-small">Days</div>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="hours">00</div>
+          <div class="countdown-label-small">Hours</div>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="minutes">00</div>
+          <div class="countdown-label-small">Minutes</div>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="seconds">00</div>
+          <div class="countdown-label-small">Seconds</div>
+        </div>
+      </div>
+      
+      <div class="hero-cards">
+        <div class="hero-card">
+          <div class="hero-card-value">$0.005</div>
+          <div class="hero-card-label">Presale Price</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-value">$0.008</div>
+          <div class="hero-card-label">Listing Target</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-value">30 Days</div>
+          <div class="hero-card-label">Sale Period</div>
+        </div>
+        <div class="hero-card">
+          <div class="hero-card-value">15%</div>
+          <div class="hero-card-label">Allocation</div>
+        </div>
+      </div>
+      
+      <p class="scarcity-line">Only 15% of total supply allocated to public presale</p>
+      
+      <button class="btn btn-disabled tooltip" data-tooltip="Q2 2026" disabled>Presale Coming Soon</button>
+      
+      <form class="email-signup" id="emailForm" onsubmit="handleNotifyMe(event)">
+        <input type="email" id="notifyEmail" class="email-input" placeholder="Enter email for early access" required>
+        <a href="#" id="notifyBtn" class="btn btn-primary" onclick="return handleNotifyMe(event)">Notify Me</a>
+      </form>
+      
+      <p class="trust-microline">Smart contract will be published and verified on BscScan prior to Token Generation Event</p>
+      <p class="network-info">BSC (BEP-20) • 1,000,000,000 AIRP • Fixed Supply</p>
+    </div>
+  </section>
+
+  <section id="tokenomics" class="section" style="background: var(--airp-bg);">
+    <div class="section-content">
+      <h2 class="section-title fade-in">Tokenomics</h2>
+      <p class="total-supply fade-in stagger-1">Total Supply: 1,000,000,000 AIRP (Fixed Cap)</p>
+      
+      <div class="tokenomics-table-container fade-in stagger-2">
+        <table class="tokenomics-table">
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Percentage</th>
+              <th>Amount</th>
+              <th>Vesting Schedule</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Presale</td>
+              <td class="percentage">15%</td>
+              <td class="amount">150M AIRP</td>
+              <td class="vesting">25% TGE + 4 months</td>
+            </tr>
+            <tr>
+              <td>Liquidity</td>
+              <td class="percentage">20%</td>
+              <td class="amount">200M AIRP</td>
+              <td class="vesting">12 month lock</td>
+            </tr>
+            <tr>
+              <td>Ecosystem</td>
+              <td class="percentage">20%</td>
+              <td class="amount">200M AIRP</td>
+              <td class="vesting">24 month linear</td>
+            </tr>
+            <tr>
+              <td>Team</td>
+              <td class="percentage">15%</td>
+              <td class="amount">150M AIRP</td>
+              <td class="vesting">6 month cliff + 18 month</td>
+            </tr>
+            <tr>
+              <td>Marketing</td>
+              <td class="percentage">15%</td>
+              <td class="amount">150M AIRP</td>
+              <td class="vesting">24 month linear</td>
+            </tr>
+            <tr>
+              <td>Staking</td>
+              <td class="percentage">10%</td>
+              <td class="amount">100M AIRP</td>
+              <td class="vesting">Flexible</td>
+            </tr>
+            <tr>
+              <td>Reserve</td>
+              <td class="percentage">5%</td>
+              <td class="amount">50M AIRP</td>
+              <td class="vesting">Emergency use</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-bg" style="background-image: url('images/tarmac-aircraft.jpg')"></div>
+    <div class="section-overlay"></div>
+    <div class="section-content">
+      <h2 class="section-title fade-in">Security & Transparency</h2>
+      <p class="section-subtitle fade-in stagger-1">Built with institutional-grade security standards</p>
+      
+      <div class="cards-grid">
+        <div class="card fade-in stagger-2">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          </div>
+          <h3 class="card-title">Multi-Sig Treasury</h3>
+          <p class="card-text">All treasury funds secured by multi-signature wallets requiring multiple approvals for any transaction.</p>
+        </div>
+        <div class="card fade-in stagger-3">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+          </div>
+          <h3 class="card-title">Liquidity Lock</h3>
+          <p class="card-text">Initial liquidity locked for 12 months post-listing via reputable third-party locker.</p>
+        </div>
+        <div class="card fade-in stagger-4">
+          <div class="card-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+          </div>
+          <h3 class="card-title">Transparent Vesting</h3>
+          <p class="card-text">All token allocations have clear vesting schedules enforced by smart contracts.</p>
+        </div>
+      </div>
+      
+      <div class="security-status fade-in stagger-5">
+        <div class="security-item">
+          <div class="security-label">Audit</div>
+          <div class="security-value">Scheduled Q2 2026 (Post-Presale)</div>
+        </div>
+        <div class="security-item">
+          <div class="security-label">Contract</div>
+          <div class="security-value">Verified at TGE (BscScan)</div>
+        </div>
+      </div>
+      
+      <p class="security-note">Smart contract will be published and verified on BscScan prior to Token Generation Event. Community code review active.</p>
+    </div>
+  </section>
+
+  <section id="roadmap" class="section" style="background: var(--airp-bg);">
+    <div class="section-content">
+      <h2 class="section-title fade-in">Roadmap</h2>
+      <p class="section-subtitle fade-in stagger-1">Our journey to revolutionize airport commerce</p>
+      
+      <div class="roadmap-timeline fade-in stagger-2">
+        <!-- Phase 1: Foundation (Q2 2026) - CURRENT -->
+        <div class="roadmap-phase current">
+          <div class="roadmap-phase-header" onclick="togglePhase(this)">
+            <div class="roadmap-phase-marker"></div>
+            <div class="roadmap-phase-info">
+              <div class="roadmap-phase-label">PHASE 1: FOUNDATION</div>
+              <div class="roadmap-phase-date">Q2 2026 · Apr/Jun</div>
+            </div>
+            <div class="roadmap-phase-toggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="roadmap-phase-content">
+            <ul class="roadmap-phase-list">
+              <li><span class="status-icon status-progress">→</span> Smart contract finalization & testnet deployment</li>
+              <li><span class="status-icon status-upcoming">○</span> Security audit completion</li>
+              <li><span class="status-icon status-upcoming">○</span> Community building: 1000+ members</li>
+              <li><span class="status-icon status-upcoming">○</span> Pilot merchant LOI negotiations</li>
+              <li><span class="status-icon status-upcoming">○</span> Presale infrastructure preparation</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Phase 2: Launch (Q3 2026) -->
+        <div class="roadmap-phase">
+          <div class="roadmap-phase-header" onclick="togglePhase(this)">
+            <div class="roadmap-phase-marker"></div>
+            <div class="roadmap-phase-info">
+              <div class="roadmap-phase-label">PHASE 2: LAUNCH</div>
+              <div class="roadmap-phase-date">Q3 2026 · Jul/Sep</div>
+            </div>
+            <div class="roadmap-phase-toggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="roadmap-phase-content">
+            <ul class="roadmap-phase-list">
+              <li><span class="status-icon status-upcoming">○</span> Public presale event (30 days)</li>
+              <li><span class="status-icon status-upcoming">○</span> Token Generation Event (TGE)</li>
+              <li><span class="status-icon status-upcoming">○</span> PancakeSwap DEX listing</li>
+              <li><span class="status-icon status-upcoming">○</span> Pilot Program Phase 1 onboarding</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Phase 3: Pilot (Q4 2026) -->
+        <div class="roadmap-phase">
+          <div class="roadmap-phase-header" onclick="togglePhase(this)">
+            <div class="roadmap-phase-marker"></div>
+            <div class="roadmap-phase-info">
+              <div class="roadmap-phase-label">PHASE 3: PILOT</div>
+              <div class="roadmap-phase-date">Q4 2026 · Oct/Dec</div>
+            </div>
+            <div class="roadmap-phase-toggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="roadmap-phase-content">
+            <ul class="roadmap-phase-list">
+              <li><span class="status-icon status-upcoming">○</span> Live airport operations (100+ monthly transactions target)</li>
+              <li><span class="status-icon status-upcoming">○</span> Tier-2 CEX applications</li>
+              <li><span class="status-icon status-upcoming">○</span> Performance optimization</li>
+              <li><span class="status-icon status-upcoming">○</span> 2027 roadmap publication</li>
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Phase 4: Scale (2027 H1) -->
+        <div class="roadmap-phase">
+          <div class="roadmap-phase-header" onclick="togglePhase(this)">
+            <div class="roadmap-phase-marker"></div>
+            <div class="roadmap-phase-info">
+              <div class="roadmap-phase-label">PHASE 4: SCALE</div>
+              <div class="roadmap-phase-date">2027 H1 · Jan/Jun</div>
+            </div>
+            <div class="roadmap-phase-toggle">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            </div>
+          </div>
+          <div class="roadmap-phase-content">
+            <ul class="roadmap-phase-list">
+              <li><span class="status-icon status-upcoming">○</span> Second location pilot</li>
+              <li><span class="status-icon status-upcoming">○</span> Tier-1 CEX preparation</li>
+              <li><span class="status-icon status-upcoming">○</span> Governance decentralization</li>
+              <li><span class="status-icon status-upcoming">○</span> International expansion planning</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="background: var(--airp-bg);">
+    <div class="section-content">
+      <h2 class="section-title fade-in">Core Contributors</h2>
+      
+      <div class="team-message fade-in stagger-1">
+        <h3>Anonymous Development Phase</h3>
+        <p>Team identity will be revealed prior to Tier-1 centralized exchange listing.</p>
+        <p><span class="highlight">Background:</span> Aviation Industry + Blockchain Development + Financial Infrastructure</p>
+        <p><span class="highlight">Size:</span> 8+ contributors</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section" style="background: var(--airp-bg);">
+    <div class="section-content">
+      <h2 class="section-title fade-in">Get in Touch</h2>
+      <p class="section-subtitle fade-in stagger-1">Have questions? Reach out to our team.</p>
+      
+      <div class="card fade-in stagger-2" style="max-width: 500px; margin: 0 auto;">
+        <div style="text-align: center;">
+          <p style="font-size: 0.875rem; color: var(--airp-gray); margin-bottom: 1rem;">For partnerships, media inquiries, or general questions:</p>
+          <a href="mailto:contact@airpglobal.com" class="btn btn-primary" style="display: inline-flex;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+            contact@airpglobal.com
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-main">
+        <p class="footer-copyright">© 2026 AIRP Global. All rights reserved.</p>
+        <div class="footer-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+          <a href="#">Risk Disclaimer</a>
+        </div>
+        <a href="mailto:contact@airpglobal.com" class="footer-email">contact@airpglobal.com</a>
+      </div>
+      <p class="footer-disclaimer">AIRP is a utility token for ecosystem participation. Not financial advice. DYOR.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+    
+    // Mobile menu toggle
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu on link click
+    mobileMenu.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('active');
+      });
+    });
+    
+    // Countdown timer
+    function updateCountdown() {
+      const targetDate = new Date('2026-04-01T00:00:00').getTime();
+      const now = new Date().getTime();
+      const diff = targetDate - now;
+      
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+        
+        const pad = (n) => n.toString().padStart(2, '0');
+        
+        document.getElementById('days').textContent = pad(days);
+        document.getElementById('hours').textContent = pad(hours);
+        document.getElementById('minutes').textContent = pad(minutes);
+        document.getElementById('seconds').textContent = pad(seconds);
+      }
+    }
+    
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+    
+    // Email form - mailto handler
+    function handleNotifyMe(e) {
+      e.preventDefault();
+      const email = document.getElementById('notifyEmail').value;
+      if (email) {
+        const subject = encodeURIComponent('AIRP Early Access Request');
+        const body = encodeURIComponent('I want to get early access to AIRP Global presale.\n\nMy email: ' + email + '\n\nPlease notify me when presale is live.');
+        window.location.href = 'mailto:contact@airpglobal.com?subject=' + subject + '&body=' + body;
+      }
+      return false;
+    }
+    
+    // Roadmap phase toggle
+    function togglePhase(header) {
+      const phase = header.parentElement;
+      phase.classList.toggle('active');
+    }
+    
+    // Intersection Observer for fade-in animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -30px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.fade-in').forEach(el => {
+      observer.observe(el);
+    });
+  </script>
+</body>
+</html>
