@@ -1,30 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AIRP Global | Powering the Global Airport Economy</title>
+    <title>AIRP Global | Institutional-Grade Airport Infrastructure Token</title>
     <meta name="description" content="AIRP Global - BSC-based utility token building payment and rewards infrastructure for airport commerce">
     
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- GSAP for Premium Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Three.js for WebGL Background -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     
-    <!-- Chart.js for Tokenomics -->
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- WalletConnect Dependencies -->
+    <!-- WalletConnect -->
     <script src="https://unpkg.com/@walletconnect/ethereum-provider@2.10.0/dist/index.umd.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/web3@1.10.0/dist/web3.min.js"></script>
 
@@ -33,20 +33,44 @@
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Plus Jakarta Sans', 'sans-serif'],
+                        sans: ['DM Sans', 'sans-serif'],
+                        display: ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
-                        gold: {
-                            400: '#D4AF37',
-                            500: '#C5A028',
-                            600: '#B8941F',
+                        brand: {
+                            50: '#faf9f6',
+                            100: '#f0ebe3',
+                            200: '#e0d5c5',
+                            300: '#cbb89f',
+                            400: '#b59675',
+                            500: '#a17a52',
+                            600: '#856241',
+                            700: '#6d4e36',
+                            800: '#5a4131',
+                            900: '#4a362b',
                         },
-                        navy: {
-                            800: '#0A1628',
-                            900: '#070F1C',
-                            950: '#040810',
+                        gold: {
+                            light: '#f4e4bc',
+                            DEFAULT: '#d4af37',
+                            dark: '#b8941f',
+                        },
+                        dark: {
+                            50: '#f6f6f6',
+                            100: '#e7e7e7',
+                            200: '#d1d1d1',
+                            300: '#b0b0b0',
+                            400: '#888888',
+                            500: '#6d6d6d',
+                            600: '#5d5d5d',
+                            700: '#4f4f4f',
+                            800: '#454545',
+                            900: '#3d3d3d',
+                            950: '#0a0a0a',
                         }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
                     }
                 }
             }
@@ -54,467 +78,529 @@
     </script>
 
     <style>
+        * {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
         body {
-            background-color: #070F1C;
-            color: #ffffff;
+            background-color: #0a0a0a;
+            color: #faf9f6;
+            font-family: 'DM Sans', sans-serif;
             overflow-x: hidden;
-            font-family: 'Inter', sans-serif;
+            cursor: none;
         }
         
-        .gold-text {
-            background: linear-gradient(135deg, #D4AF37 0%, #F4E5C2 50%, #D4AF37 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .glass {
-            background: rgba(10, 22, 40, 0.7);
-            backdrop-filter: blur(20px);
-            border: 1px solid rgba(212, 175, 55, 0.08);
-        }
-        
-        /* Yumuşak butonlar - kesik oval */
-        .btn-primary {
-            background: linear-gradient(135deg, #D4AF37 0%, #B8941F 100%);
-            color: #070F1C;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            border-radius: 12px; /* Yumuşak köşeler */
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.25);
-        }
-        
-        .btn-outline {
-            border: 1px solid rgba(212, 175, 55, 0.4);
-            color: #D4AF37;
-            transition: all 0.3s ease;
-            border-radius: 12px;
-        }
-        
-        .btn-outline:hover {
-            background: rgba(212, 175, 55, 0.08);
-            border-color: #D4AF37;
-        }
-        
-        .card-hover {
-            transition: all 0.3s ease;
-            border: 1px solid rgba(212, 175, 55, 0.06);
-            border-radius: 16px;
-        }
-        
-        .card-hover:hover {
-            border-color: rgba(212, 175, 55, 0.2);
-            transform: translateY(-4px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-        }
-        
-        .grid-pattern {
-            background-image: 
-                radial-gradient(circle at 1px 1px, rgba(212, 175, 55, 0.08) 1px, transparent 0);
-            background-size: 40px 40px;
-        }
-        
-        .line-gold {
-            background: linear-gradient(to bottom, #D4AF37, rgba(212, 175, 55, 0.05));
-        }
-        
-        .faq-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .faq-content.active {
-            max-height: 500px;
-        }
-        
-        /* Scrollbar */
-        ::-webkit-scrollbar {
-            width: 6px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #070F1C;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #D4AF37;
-            border-radius: 3px;
-        }
-        
-        .tokenomics-legend-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 14px;
-            margin-bottom: 6px;
-            background: rgba(10, 22, 40, 0.4);
-            border-left: 2px solid;
-            border-radius: 0 10px 10px 0;
-            transition: all 0.3s ease;
-        }
-        
-        .tokenomics-legend-item:hover {
-            background: rgba(212, 175, 55, 0.06);
-            transform: translateX(3px);
-        }
-        
-        .legend-color {
-            width: 12px;
-            height: 12px;
+        /* Custom Cursor */
+        .cursor-dot,
+        .cursor-outline {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translate(-50%, -50%);
             border-radius: 50%;
-            margin-right: 10px;
-            flex-shrink: 0;
+            z-index: 9999;
+            pointer-events: none;
         }
         
-        .legend-info {
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background-color: #d4af37;
         }
         
-        .legend-name {
-            font-weight: 500;
-            font-size: 13px;
-            color: #fff;
+        .cursor-outline {
+            width: 30px;
+            height: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.5);
+            transition: width 0.2s, height 0.2s, background-color 0.2s;
         }
         
-        .legend-vesting {
-            font-size: 10px;
-            color: #6B7280;
-            margin-top: 1px;
+        .cursor-outline.hover {
+            width: 60px;
+            height: 60px;
+            background-color: rgba(212, 175, 55, 0.1);
+            border-color: #d4af37;
         }
         
-        .legend-percentage {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            font-size: 16px;
-            font-weight: 700;
-            color: #D4AF37;
-        }
-        
-        .legend-amount {
-            font-size: 10px;
-            color: #4B5563;
-            text-align: right;
-        }
-        
-        /* Wallet Modal Styles */
-        .wallet-modal {
-            display: none;
+        /* Noise Texture */
+        .noise {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px);
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
         }
         
-        .wallet-modal.active {
-            display: flex;
+        /* Glass Morphism */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
         
-        .wallet-option {
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border-radius: 12px;
+        /* Premium Button */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            background: transparent;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: #d4af37;
+            padding: 14px 32px;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            clip-path: polygon(0 0, 100% 0, 100% 70%, 95% 100%, 0 100%);
         }
         
-        .wallet-option:hover {
-            background: rgba(212, 175, 55, 0.08);
-            border-color: rgba(212, 175, 55, 0.3);
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-premium:hover::before {
+            left: 100%;
+        }
+        
+        .btn-premium:hover {
+            border-color: #d4af37;
+            background: rgba(212, 175, 55, 0.05);
             transform: translateY(-2px);
+            box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.3);
         }
         
-        .connected-badge {
-            background: rgba(34, 197, 94, 0.15);
-            border: 1px solid rgba(34, 197, 94, 0.4);
-            color: #22c55e;
-            border-radius: 12px;
+        .btn-premium-primary {
+            background: #d4af37;
+            color: #0a0a0a;
+            border: none;
         }
         
-        /* Yumuşak inputlar */
-        .soft-input {
-            border-radius: 10px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
-            background: rgba(10, 22, 40, 0.5);
+        .btn-premium-primary:hover {
+            background: #f4e4bc;
+            box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.5);
         }
         
-        @media (max-width: 640px) {
-            .wallet-modal-content {
-                width: 92%;
-                margin: 16px;
-                border-radius: 16px;
+        /* Text Reveal Animation */
+        .reveal-text {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+        
+        .char {
+            display: inline-block;
+            transform: translateY(100%);
+            opacity: 0;
+        }
+        
+        /* Section Divider */
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+        }
+        
+        /* Magnetic Effect */
+        .magnetic {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #333;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+        
+        /* Tokenomics Card */
+        .token-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .token-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(212, 175, 55, 0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .token-card:hover::before {
+            opacity: 1;
+        }
+        
+        .token-card:hover {
+            border-color: rgba(212, 175, 55, 0.2);
+            transform: translateY(-5px);
+        }
+        
+        /* WebGL Canvas */
+        #webgl-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        /* Progress Bar */
+        .progress-line {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #d4af37, #f4e4bc);
+            z-index: 10000;
+            transform-origin: left;
+            transform: scaleX(0);
+        }
+        
+        /* FAQ Accordion */
+        .faq-item {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        
+        .faq-item.active .faq-content {
+            max-height: 300px;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        /* Marquee */
+        .marquee-container {
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+        }
+        
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        
+        /* Glow Effect */
+        .glow-text {
+            text-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+        }
+        
+        /* Hide default cursor on desktop */
+        @media (min-width: 1024px) {
+            * {
+                cursor: none !important;
+            }
+        }
+        
+        /* Mobile optimizations */
+        @media (max-width: 1023px) {
+            .cursor-dot, .cursor-outline {
+                display: none;
+            }
+            body {
+                cursor: auto;
             }
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
+
+    <!-- Custom Cursor -->
+    <div class="cursor-dot"></div>
+    <div class="cursor-outline"></div>
+    
+    <!-- Noise Texture -->
+    <div class="noise"></div>
+    
+    <!-- Progress Line -->
+    <div class="progress-line" id="progressLine"></div>
+    
+    <!-- WebGL Background -->
+    <canvas id="webgl-canvas"></canvas>
 
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 glass border-b border-gold-500/10">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <div class="flex items-center space-x-3" data-aos="fade-right">
-                    <img src="logo.png" alt="AIRP Global" class="w-9 h-9 object-contain rounded-lg">
-                    <span class="font-display text-xl font-semibold tracking-tight">AIRP<span class="gold-text">Global</span></span>
-                </div>
+    <nav class="fixed w-full z-50 top-0 left-0 mix-blend-difference">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center gap-3 magnetic" data-cursor="hover">
+                    <img src="logo.png" alt="AIRP" class="w-8 h-8 object-contain opacity-90">
+                    <span class="font-display text-lg tracking-wider text-white">
+                        AIRP<span class="text-gold">Global</span>
+                    </span>
+                </a>
                 
-                <div class="hidden md:flex items-center space-x-6" data-aos="fade-down">
-                    <a href="#about" class="text-gray-400 hover:text-gold-400 transition-colors text-xs font-medium tracking-wide uppercase">About</a>
-                    <a href="#tokenomics" class="text-gray-400 hover:text-gold-400 transition-colors text-xs font-medium tracking-wide uppercase">Tokenomics</a>
-                    <a href="#roadmap" class="text-gray-400 hover:text-gold-400 transition-colors text-xs font-medium tracking-wide uppercase">Roadmap</a>
-                    <a href="#team" class="text-gray-400 hover:text-gold-400 transition-colors text-xs font-medium tracking-wide uppercase">Team</a>
-                    <a href="#faq" class="text-gray-400 hover:text-gold-400 transition-colors text-xs font-medium tracking-wide uppercase">FAQ</a>
+                <div class="hidden lg:flex items-center gap-8">
+                    <a href="#about" class="text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors duration-300 magnetic" data-cursor="hover">About</a>
+                    <a href="#tokenomics" class="text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors duration-300 magnetic" data-cursor="hover">Tokenomics</a>
+                    <a href="#roadmap" class="text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors duration-300 magnetic" data-cursor="hover">Roadmap</a>
+                    <a href="#faq" class="text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors duration-300 magnetic" data-cursor="hover">FAQ</a>
                 </div>
 
-                <div class="flex items-center space-x-3" data-aos="fade-left">
-                    <a href="whitepaper.pdf" target="_blank" class="btn-outline px-4 py-2 text-xs font-medium hidden sm:block">
+                <div class="flex items-center gap-4">
+                    <a href="whitepaper.pdf" target="_blank" class="text-[11px] uppercase tracking-[0.2em] text-white/60 hover:text-gold transition-colors duration-300 hidden sm:block magnetic" data-cursor="hover">
                         Whitepaper
                     </a>
-                    <button id="connectWalletBtn" onclick="openWalletModal()" class="btn-primary px-4 py-2 text-xs font-medium flex items-center gap-2">
-                        <i class="fas fa-wallet text-xs"></i>
-                        <span id="walletBtnText">Connect</span>
+                    <button onclick="openWalletModal()" class="btn-premium btn-premium-primary magnetic" data-cursor="hover">
+                        Connect
                     </button>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Wallet Connection Modal -->
-    <div id="walletModal" class="wallet-modal">
-        <div class="wallet-modal-content glass rounded-2xl border border-gold-500/20 p-6 max-w-sm w-full mx-4 relative">
-            <button onclick="closeWalletModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white transition-colors">
-                <i class="fas fa-times"></i>
+    <!-- Wallet Modal -->
+    <div id="walletModal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="glass-panel p-8 max-w-md w-full mx-4 relative transform scale-95 opacity-0 transition-all duration-500" id="walletModalContent">
+            <button onclick="closeWalletModal()" class="absolute top-4 right-4 text-white/40 hover:text-white transition-colors">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <path d="M18 6L6 18M6 6l12 12"/>
+                </svg>
             </button>
             
-            <h3 class="text-lg font-display font-semibold mb-1 text-center">Connect Wallet</h3>
-            <p class="text-gray-500 text-center mb-6 text-xs">Choose your preferred wallet</p>
+            <h3 class="font-display text-xl mb-1 tracking-wide">Select Wallet</h3>
+            <p class="text-white/40 text-xs mb-6">Choose your preferred connection method</p>
             
             <div class="space-y-3">
-                <div onclick="connectMetaMask()" class="wallet-option glass p-3 border border-gold-500/10 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-orange-500/10 flex items-center justify-center">
+                <button onclick="connectMetaMask()" class="w-full glass-panel p-4 flex items-center gap-4 hover:border-gold/30 transition-all duration-300 group" data-cursor="hover">
+                    <div class="w-10 h-10 rounded-full bg-orange-500/10 flex items-center justify-center">
                         <img src="https://raw.githubusercontent.com/MetaMask/brand-resources/master/SVG/metamask-fox.svg" alt="MetaMask" class="w-6 h-6">
                     </div>
-                    <div class="flex-grow">
-                        <div class="text-sm font-medium">MetaMask</div>
-                        <div class="text-[10px] text-gray-500">Browser extension</div>
+                    <div class="text-left">
+                        <div class="text-sm font-medium group-hover:text-gold transition-colors">MetaMask</div>
+                        <div class="text-[10px] text-white/40">Browser Extension</div>
                     </div>
-                    <i class="fas fa-chevron-right text-gold-400 text-xs"></i>
-                </div>
+                    <svg class="ml-auto w-4 h-4 text-white/20 group-hover:text-gold transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
                 
-                <div onclick="connectTrustWallet()" class="wallet-option glass p-3 border border-gold-500/10 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 flex items-center justify-center">
-                        <i class="fas fa-shield-alt text-lg text-blue-400"></i>
+                <button onclick="connectWalletConnect()" class="w-full glass-panel p-4 flex items-center gap-4 hover:border-gold/30 transition-all duration-300 group" data-cursor="hover">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center">
+                        <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+                        </svg>
                     </div>
-                    <div class="flex-grow">
-                        <div class="text-sm font-medium">Trust Wallet</div>
-                        <div class="text-[10px] text-gray-500">Mobile wallet</div>
+                    <div class="text-left">
+                        <div class="text-sm font-medium group-hover:text-gold transition-colors">WalletConnect</div>
+                        <div class="text-[10px] text-white/40">Mobile & Desktop</div>
                     </div>
-                    <i class="fas fa-chevron-right text-gold-400 text-xs"></i>
-                </div>
-                
-                <div onclick="connectWalletConnect()" class="wallet-option glass p-3 border border-gold-500/10 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-blue-600/10 flex items-center justify-center">
-                        <i class="fas fa-qrcode text-lg text-blue-400"></i>
-                    </div>
-                    <div class="flex-grow">
-                        <div class="text-sm font-medium">WalletConnect</div>
-                        <div class="text-[10px] text-gray-500">Scan QR code</div>
-                    </div>
-                    <i class="fas fa-chevron-right text-gold-400 text-xs"></i>
-                </div>
-                
-                <div onclick="connectBinanceWallet()" class="wallet-option glass p-3 border border-gold-500/10 flex items-center gap-3">
-                    <div class="w-10 h-10 rounded-xl bg-yellow-500/10 flex items-center justify-center">
-                        <i class="fab fa-bitcoin text-lg text-yellow-400"></i>
-                    </div>
-                    <div class="flex-grow">
-                        <div class="text-sm font-medium">Binance Wallet</div>
-                        <div class="text-[10px] text-gray-500">BSC native</div>
-                    </div>
-                    <i class="fas fa-chevron-right text-gold-400 text-xs"></i>
-                </div>
+                    <svg class="ml-auto w-4 h-4 text-white/20 group-hover:text-gold transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 5l7 7-7 7"/>
+                    </svg>
+                </button>
             </div>
-            
-            <div class="mt-4 text-center">
-                <p class="text-[10px] text-gray-600">
-                    By connecting, you agree to our <a href="#" class="text-gold-400 hover:underline">Terms</a>
-                </p>
-            </div>
-        </div>
-    </div>
-
-    <!-- QR Code Modal -->
-    <div id="qrModal" class="wallet-modal">
-        <div class="wallet-modal-content glass rounded-2xl border border-gold-500/20 p-6 max-w-xs w-full mx-4 relative text-center">
-            <button onclick="closeQrModal()" class="absolute top-4 right-4 text-gray-500 hover:text-white">
-                <i class="fas fa-times"></i>
-            </button>
-            
-            <h3 class="text-base font-display font-semibold mb-3">Scan with Wallet</h3>
-            <div id="qrCodeContainer" class="bg-white p-3 rounded-xl mb-3 inline-block">
-                <div class="w-40 h-40 bg-gray-100 flex items-center justify-center text-gray-400 rounded-lg">
-                    <i class="fas fa-spinner fa-spin text-xl"></i>
-                </div>
-            </div>
-            <p class="text-xs text-gray-500 mb-3">Scan QR code with your wallet app</p>
-            <button onclick="closeQrModal()" class="btn-outline px-4 py-2 text-xs w-full">
-                Cancel
-            </button>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <section class="relative min-h-[85vh] flex items-center justify-center pt-16 grid-pattern">
-        <div class="absolute inset-0 bg-gradient-to-b from-navy-950/50 via-transparent to-navy-900/50"></div>
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-dark-950/50 to-dark-950"></div>
+        </div>
         
-        <div class="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <div data-aos="fade-up" data-aos-delay="100">
-                <div class="inline-flex items-center px-3 py-1.5 rounded-full border border-gold-500/20 bg-gold-500/5 mb-6">
-                    <span class="w-1.5 h-1.5 rounded-full bg-gold-400 mr-2 animate-pulse"></span>
-                    <span class="text-xs text-gold-400 tracking-wider font-medium">BSC (BEP-20)</span>
+        <div class="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 text-center">
+            <div class="space-y-8">
+                <div class="inline-flex items-center gap-2 px-4 py-2 glass-panel rounded-full">
+                    <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse"></span>
+                    <span class="text-[10px] uppercase tracking-[0.3em] text-white/60">BSC Network</span>
                 </div>
                 
-                <h1 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight tracking-tight">
-                    Powering the <span class="gold-text">Global Airport</span> Economy
+                <h1 class="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.1] tracking-tight">
+                    <span class="block overflow-hidden">
+                        <span class="reveal-text inline-block">Powering the</span>
+                    </span>
+                    <span class="block overflow-hidden">
+                        <span class="reveal-text inline-block text-gold glow-text">Global Airport</span>
+                    </span>
+                    <span class="block overflow-hidden">
+                        <span class="reveal-text inline-block">Economy</span>
+                    </span>
                 </h1>
                 
-                <p class="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto mb-8 leading-relaxed font-light">
-                    A utility token building payment and rewards infrastructure for airport commerce. 
-                    Bridging institutional finance with blockchain technology.
+                <p class="max-w-xl mx-auto text-sm text-white/40 font-light leading-relaxed">
+                    Institutional-grade blockchain infrastructure for airport commerce. 
+                    Seamless payments, unified loyalty, and on-chain settlement.
                 </p>
-
-                <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-12">
-                    <button onclick="scrollToPresale()" class="btn-primary px-6 py-2.5 text-sm flex items-center gap-2">
-                        <i class="fas fa-rocket text-xs"></i>
-                        Join Presale
+                
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
+                    <button onclick="scrollToPresale()" class="btn-premium btn-premium-primary magnetic" data-cursor="hover">
+                        Enter Presale
                     </button>
-                    <a href="whitepaper.pdf" target="_blank" class="btn-outline px-6 py-2.5 text-sm flex items-center gap-2">
-                        <i class="fas fa-file-pdf text-xs"></i>
-                        Whitepaper
+                    <a href="whitepaper.pdf" target="_blank" class="btn-premium magnetic" data-cursor="hover">
+                        Documentation
                     </a>
                 </div>
-
-                <!-- Stats -->
-                <div class="grid grid-cols-4 gap-3 max-w-2xl mx-auto">
-                    <div class="glass rounded-xl p-4 border border-gold-500/10" data-aos="fade-up" data-aos-delay="200">
-                        <div class="text-xl font-display font-bold gold-text mb-0.5">1B</div>
-                        <div class="text-[10px] text-gray-500 tracking-wider uppercase">Supply</div>
+                
+                <div class="grid grid-cols-3 gap-8 max-w-lg mx-auto pt-16">
+                    <div class="text-center">
+                        <div class="font-display text-2xl text-gold mb-1">1B</div>
+                        <div class="text-[10px] uppercase tracking-[0.2em] text-white/30">Total Supply</div>
                     </div>
-                    <div class="glass rounded-xl p-4 border border-gold-500/10" data-aos="fade-up" data-aos-delay="300">
-                        <div class="text-xl font-display font-bold gold-text mb-0.5">15%</div>
-                        <div class="text-[10px] text-gray-500 tracking-wider uppercase">Presale</div>
+                    <div class="text-center">
+                        <div class="font-display text-2xl text-gold mb-1">15%</div>
+                        <div class="text-[10px] uppercase tracking-[0.2em] text-white/30">Presale</div>
                     </div>
-                    <div class="glass rounded-xl p-4 border border-gold-500/10" data-aos="fade-up" data-aos-delay="400">
-                        <div class="text-xl font-display font-bold gold-text mb-0.5">BSC</div>
-                        <div class="text-[10px] text-gray-500 tracking-wider uppercase">Chain</div>
-                    </div>
-                    <div class="glass rounded-xl p-4 border border-gold-500/10" data-aos="fade-up" data-aos-delay="500">
-                        <div class="text-xl font-display font-bold gold-text mb-0.5">Q2</div>
-                        <div class="text-[10px] text-gray-500 tracking-wider uppercase">Launch</div>
+                    <div class="text-center">
+                        <div class="font-display text-2xl text-gold mb-1">Q2</div>
+                        <div class="text-[10px] uppercase tracking-[0.2em] text-white/30">Launch</div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+            <div class="w-px h-16 bg-gradient-to-b from-gold/50 to-transparent"></div>
+        </div>
     </section>
+
+    <!-- Marquee -->
+    <div class="section-divider"></div>
+    <div class="py-6 overflow-hidden border-y border-white/5">
+        <div class="marquee-container">
+            <div class="marquee-content text-[11px] uppercase tracking-[0.3em] text-white/20">
+                <span class="mx-8">BSC Network</span>
+                <span class="mx-8 text-gold">•</span>
+                <span class="mx-8">Fixed Supply</span>
+                <span class="mx-8 text-gold">•</span>
+                <span class="mx-8">Multi-Sig Treasury</span>
+                <span class="mx-8 text-gold">•</span>
+                <span class="mx-8">12-Month Lock</span>
+                <span class="mx-8 text-gold">•</span>
+                <span class="mx-8">Audited</span>
+                <span class="mx-8 text-gold">•</span>
+                <span class="mx-8">BSC Network</span>
+                <span class="mx-8 text-gold">•</span>
+                <span class="mx-8">Fixed Supply</span>
+                <span class="mx-8 text-gold">•</span>
+                <span class="mx-8">Multi-Sig Treasury</span>
+                <span class="mx-8 text-gold">•</span>
+                <span class="mx-8">12-Month Lock</span>
+                <span class="mx-8 text-gold">•</span>
+                <span class="mx-8">Audited</span>
+                <span class="mx-8 text-gold">•</span>
+            </div>
+        </div>
+    </div>
 
     <!-- Presale Section -->
-    <section id="presale" class="py-20 relative bg-navy-900/50">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid lg:grid-cols-2 gap-10 items-center">
-                <div data-aos="fade-right">
-                    <h2 class="font-display text-2xl sm:text-3xl font-bold mb-4 tracking-tight">
-                        Public Presale <span class="gold-text">Launching Soon</span>
+    <section id="presale" class="py-32 relative">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div>
+                    <div class="text-[10px] uppercase tracking-[0.3em] text-gold mb-4">Public Sale</div>
+                    <h2 class="font-display text-3xl sm:text-4xl font-light mb-6 leading-tight">
+                        Presale <span class="text-gold">Launching</span>
                     </h2>
-                    <p class="text-gray-400 text-sm mb-6 leading-relaxed font-light">
-                        Only 15% of total supply allocated to public presale. Smart contract 
-                        will be published and verified on BscScan prior to TGE.
+                    <p class="text-sm text-white/40 font-light leading-relaxed mb-8">
+                        Limited allocation of 15% total supply. Smart contract audited and verified 
+                        on BscScan prior to Token Generation Event.
                     </p>
                     
-                    <div class="space-y-3 mb-6">
-                        <div class="flex items-center gap-3 p-3 glass rounded-lg border-l-2 border-gold-400/50">
-                            <i class="fas fa-shield-alt text-gold-400 text-sm"></i>
-                            <span class="text-gray-300 text-sm">Multi-signature treasury security</span>
+                    <div class="space-y-4 mb-8">
+                        <div class="flex items-center gap-4 p-4 glass-panel rounded-lg border-l-2 border-gold/50">
+                            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+                            </svg>
+                            <span class="text-sm text-white/60">Multi-signature treasury security</span>
                         </div>
-                        <div class="flex items-center gap-3 p-3 glass rounded-lg border-l-2 border-gold-400/50">
-                            <i class="fas fa-lock text-gold-400 text-sm"></i>
-                            <span class="text-gray-300 text-sm">12-month liquidity lock</span>
-                        </div>
-                        <div class="flex items-center gap-3 p-3 glass rounded-lg border-l-2 border-gold-400/50">
-                            <i class="fas fa-chart-line text-gold-400 text-sm"></i>
-                            <span class="text-gray-300 text-sm">Transparent vesting schedules</span>
+                        <div class="flex items-center gap-4 p-4 glass-panel rounded-lg border-l-2 border-gold/50">
+                            <svg class="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                            </svg>
+                            <span class="text-sm text-white/60">12-month liquidity lock</span>
                         </div>
                     </div>
-
-                    <div class="glass rounded-xl p-4 border border-gold-500/10">
-                        <div class="text-[10px] text-gray-500 mb-2 tracking-wider uppercase">Contract Address</div>
-                        <div class="flex items-center gap-2 bg-navy-950/50 rounded-lg p-3 border border-gold-500/10">
-                            <code class="text-gold-400 text-xs break-all font-mono">YOUR_CONTRACT_ADDRESS</code>
-                            <button onclick="copyContract()" class="ml-auto text-gold-400 hover:text-white transition-colors">
-                                <i class="fas fa-copy text-sm"></i>
+                    
+                    <div class="glass-panel p-4 rounded-lg">
+                        <div class="text-[10px] uppercase tracking-[0.2em] text-white/30 mb-2">Contract</div>
+                        <div class="flex items-center gap-3">
+                            <code class="text-xs text-gold font-mono">0x...</code>
+                            <button onclick="copyContract()" class="text-white/30 hover:text-gold transition-colors" data-cursor="hover">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                                </svg>
                             </button>
                         </div>
                     </div>
                 </div>
 
-                <div data-aos="fade-left">
-                    <div class="glass rounded-2xl p-6 border border-gold-500/10">
-                        <h3 class="text-lg font-display font-semibold mb-6 text-center">Presale Starts In</h3>
+                <div class="glass-panel p-8 rounded-2xl relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-gold/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
+                    
+                    <h3 class="font-display text-lg mb-8 tracking-wide">Sale Starts In</h3>
+                    
+                    <div class="grid grid-cols-4 gap-3 mb-8">
+                        <div class="text-center p-4 glass-panel rounded-lg">
+                            <div class="font-display text-2xl text-gold" id="days">00</div>
+                            <div class="text-[10px] uppercase tracking-[0.2em] text-white/30 mt-1">Days</div>
+                        </div>
+                        <div class="text-center p-4 glass-panel rounded-lg">
+                            <div class="font-display text-2xl text-gold" id="hours">00</div>
+                            <div class="text-[10px] uppercase tracking-[0.2em] text-white/30 mt-1">Hrs</div>
+                        </div>
+                        <div class="text-center p-4 glass-panel rounded-lg">
+                            <div class="font-display text-2xl text-gold" id="minutes">00</div>
+                            <div class="text-[10px] uppercase tracking-[0.2em] text-white/30 mt-1">Min</div>
+                        </div>
+                        <div class="text-center p-4 glass-panel rounded-lg">
+                            <div class="font-display text-2xl text-gold" id="seconds">00</div>
+                            <div class="text-[10px] uppercase tracking-[0.2em] text-white/30 mt-1">Sec</div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <div class="flex justify-between text-xs text-white/30 mb-2">
+                            <span>Progress</span>
+                            <span class="text-gold">0%</span>
+                        </div>
+                        <div class="h-px bg-white/10 relative overflow-hidden">
+                            <div class="absolute inset-y-0 left-0 w-0 bg-gold transition-all duration-1000"></div>
+                        </div>
                         
-                        <div class="grid grid-cols-4 gap-2 mb-6">
-                            <div class="glass rounded-xl p-3 text-center border border-gold-500/10">
-                                <div class="text-xl font-display font-bold gold-text" id="days">00</div>
-                                <div class="text-[10px] text-gray-500 mt-1">Days</div>
-                            </div>
-                            <div class="glass rounded-xl p-3 text-center border border-gold-500/10">
-                                <div class="text-xl font-display font-bold gold-text" id="hours">00</div>
-                                <div class="text-[10px] text-gray-500 mt-1">Hours</div>
-                            </div>
-                            <div class="glass rounded-xl p-3 text-center border border-gold-500/10">
-                                <div class="text-xl font-display font-bold gold-text" id="minutes">00</div>
-                                <div class="text-[10px] text-gray-500 mt-1">Mins</div>
-                            </div>
-                            <div class="glass rounded-xl p-3 text-center border border-gold-500/10">
-                                <div class="text-xl font-display font-bold gold-text" id="seconds">00</div>
-                                <div class="text-[10px] text-gray-500 mt-1">Secs</div>
-                            </div>
-                        </div>
-
-                        <div class="space-y-3">
-                            <div class="flex justify-between text-xs mb-1">
-                                <span class="text-gray-500">Progress</span>
-                                <span class="gold-text font-semibold">0%</span>
-                            </div>
-                            <div class="w-full bg-navy-800 rounded-full h-1.5">
-                                <div class="bg-gradient-to-r from-gold-600 to-gold-400 h-1.5 rounded-full" style="width: 0%"></div>
-                            </div>
-                            
-                            <div id="walletInfo" class="hidden p-3 bg-green-500/10 border border-green-500/20 rounded-xl">
-                                <div class="flex items-center justify-between">
-                                    <div>
-                                        <div class="text-[10px] text-gray-500 mb-0.5">Connected</div>
-                                        <div id="walletAddress" class="text-gold-400 font-mono text-xs"></div>
-                                    </div>
-                                    <button onclick="disconnectWallet()" class="text-[10px] text-red-400 hover:text-red-300">
-                                        Disconnect
-                                    </button>
+                        <button id="walletConnectBtn" onclick="openWalletModal()" class="w-full btn-premium btn-premium-primary mt-4" data-cursor="hover">
+                            Connect Wallet
+                        </button>
+                        
+                        <div id="connectedState" class="hidden p-4 glass-panel rounded-lg border border-gold/20">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <div class="text-[10px] text-white/30 mb-1">Connected</div>
+                                    <div id="walletDisplay" class="text-sm text-gold font-mono"></div>
                                 </div>
+                                <button onclick="disconnectWallet()" class="text-[10px] text-red-400 hover:text-red-300 uppercase tracking-wider">Disconnect</button>
                             </div>
-                            
-                            <button id="presaleConnectBtn" onclick="openWalletModal()" class="w-full btn-primary py-3 text-sm font-semibold flex items-center justify-center gap-2">
-                                <i class="fas fa-wallet text-xs"></i>
-                                Connect Wallet
-                            </button>
-                            
-                            <p class="text-[10px] text-center text-gray-600">
-                                MetaMask, Trust Wallet, WalletConnect supported
-                            </p>
                         </div>
                     </div>
                 </div>
@@ -522,203 +608,119 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 relative">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <h2 class="font-display text-2xl sm:text-3xl font-bold mb-3 tracking-tight">
-                    Revolutionizing <span class="gold-text">Airport Commerce</span>
-                </h2>
-                <p class="text-gray-400 text-sm max-w-xl mx-auto font-light">
-                    Three-layer infrastructure stack unifying airport operations through blockchain.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-4 mb-12">
-                <div class="glass rounded-2xl p-6 card-hover" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center mb-4 border border-gold-500/10">
-                        <i class="fas fa-wallet text-lg text-gold-400"></i>
-                    </div>
-                    <h3 class="text-base font-semibold mb-2">User Wallet</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed font-light">Unified wallet experience for travelers with integrated loyalty.</p>
-                </div>
-
-                <div class="glass rounded-2xl p-6 card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center mb-4 border border-gold-500/10">
-                        <i class="fas fa-exchange-alt text-lg text-gold-400"></i>
-                    </div>
-                    <h3 class="text-base font-semibold mb-2">Payment Rail</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed font-light">On-chain transactions across merchants with reduced fees.</p>
-                </div>
-
-                <div class="glass rounded-2xl p-6 card-hover" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-12 h-12 rounded-xl bg-gold-400/10 flex items-center justify-center mb-4 border border-gold-500/10">
-                        <i class="fas fa-gift text-lg text-gold-400"></i>
-                    </div>
-                    <h3 class="text-base font-semibold mb-2">Rewards Layer</h3>
-                    <p class="text-gray-400 text-xs leading-relaxed font-light">Programmable rewards and staking for ecosystem participants.</p>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-4">
-                <div class="glass rounded-2xl p-6 border border-gold-500/5" data-aos="fade-right">
-                    <h3 class="text-base font-semibold mb-3 flex items-center gap-2">
-                        <i class="fas fa-plane text-gold-400 text-sm"></i>
-                        For Travelers
-                    </h3>
-                    <ul class="space-y-2 text-gray-300 text-xs font-light">
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-check text-gold-400 mt-0.5 text-[10px]"></i>
-                            <span>Unified wallet for all airport transactions</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-check text-gold-400 mt-0.5 text-[10px]"></i>
-                            <span>Integrated loyalty across merchants</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-check text-gold-400 mt-0.5 text-[10px]"></i>
-                            <span>Frictionless cross-border payments</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="glass rounded-2xl p-6 border border-gold-500/5" data-aos="fade-left">
-                    <h3 class="text-base font-semibold mb-3 flex items-center gap-2">
-                        <i class="fas fa-store text-gold-400 text-sm"></i>
-                        For Merchants
-                    </h3>
-                    <ul class="space-y-2 text-gray-300 text-xs font-light">
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-check text-gold-400 mt-0.5 text-[10px]"></i>
-                            <span>On-chain settlement with lower fees</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-check text-gold-400 mt-0.5 text-[10px]"></i>
-                            <span>Simplified payment infrastructure</span>
-                        </li>
-                        <li class="flex items-start gap-2">
-                            <i class="fas fa-check text-gold-400 mt-0.5 text-[10px]"></i>
-                            <span>Cross-merchant liquidity access</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="section-divider"></div>
 
     <!-- Tokenomics Section -->
-    <section id="tokenomics" class="py-20 bg-navy-900/30">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10" data-aos="fade-up">
-                <h2 class="font-display text-2xl sm:text-3xl font-bold mb-2 tracking-tight">
-                    Token <span class="gold-text">Economics</span>
-                </h2>
-                <p class="text-gray-400 text-xs">Fixed supply: 1,000,000,000 AIRP</p>
+    <section id="tokenomics" class="py-32 relative">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="text-[10px] uppercase tracking-[0.3em] text-gold mb-4">Allocation</div>
+                <h2 class="font-display text-3xl sm:text-4xl font-light">Token <span class="text-gold">Economics</span></h2>
             </div>
 
-            <div class="grid lg:grid-cols-5 gap-6 items-start">
-                <div class="lg:col-span-2" data-aos="fade-right">
-                    <div class="glass rounded-2xl p-5 border border-gold-500/10">
-                        <canvas id="tokenomicsChart" style="max-height: 280px;"></canvas>
+            <div class="grid lg:grid-cols-5 gap-8 items-start">
+                <div class="lg:col-span-2">
+                    <div class="glass-panel p-6 rounded-2xl">
+                        <canvas id="tokenomicsChart" height="280"></canvas>
                     </div>
                 </div>
 
-                <div class="lg:col-span-3" data-aos="fade-left">
-                    <div class="tokenomics-legend-item" style="border-left-color: #D4AF37;">
-                        <div class="flex items-center">
-                            <div class="legend-color" style="background: #D4AF37;"></div>
-                            <div class="legend-info">
-                                <span class="legend-name">Presale</span>
-                                <span class="legend-vesting">25% TGE + 4 months vesting</span>
+                <div class="lg:col-span-3 space-y-2" id="tokenomicsGrid">
+                    <div class="token-card p-4 rounded-lg flex items-center justify-between group" data-cursor="hover">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-8 bg-[#d4af37] rounded-full"></div>
+                            <div>
+                                <div class="text-sm font-medium">Presale</div>
+                                <div class="text-[10px] text-white/30">25% TGE + 4 months</div>
                             </div>
                         </div>
-                        <div>
-                            <div class="legend-percentage">15%</div>
-                            <div class="legend-amount">150M AIRP</div>
+                        <div class="text-right">
+                            <div class="font-display text-lg text-gold">15%</div>
+                            <div class="text-[10px] text-white/20">150M AIRP</div>
                         </div>
                     </div>
 
-                    <div class="tokenomics-legend-item" style="border-left-color: #B8941F;">
-                        <div class="flex items-center">
-                            <div class="legend-color" style="background: #B8941F;"></div>
-                            <div class="legend-info">
-                                <span class="legend-name">Liquidity</span>
-                                <span class="legend-vesting">12 month lock</span>
+                    <div class="token-card p-4 rounded-lg flex items-center justify-between group" data-cursor="hover">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-8 bg-[#b8941f] rounded-full"></div>
+                            <div>
+                                <div class="text-sm font-medium">Liquidity</div>
+                                <div class="text-[10px] text-white/30">12 month lock</div>
                             </div>
                         </div>
-                        <div>
-                            <div class="legend-percentage" style="color: #B8941F;">20%</div>
-                            <div class="legend-amount">200M AIRP</div>
+                        <div class="text-right">
+                            <div class="font-display text-lg text-[#b8941f]">20%</div>
+                            <div class="text-[10px] text-white/20">200M AIRP</div>
                         </div>
                     </div>
 
-                    <div class="tokenomics-legend-item" style="border-left-color: #C5A028;">
-                        <div class="flex items-center">
-                            <div class="legend-color" style="background: #C5A028;"></div>
-                            <div class="legend-info">
-                                <span class="legend-name">Ecosystem</span>
-                                <span class="legend-vesting">24 month linear vesting</span>
+                    <div class="token-card p-4 rounded-lg flex items-center justify-between group" data-cursor="hover">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-8 bg-[#c5a028] rounded-full"></div>
+                            <div>
+                                <div class="text-sm font-medium">Ecosystem</div>
+                                <div class="text-[10px] text-white/30">24 month linear</div>
                             </div>
                         </div>
-                        <div>
-                            <div class="legend-percentage" style="color: #C5A028;">20%</div>
-                            <div class="legend-amount">200M AIRP</div>
+                        <div class="text-right">
+                            <div class="font-display text-lg text-[#c5a028]">20%</div>
+                            <div class="text-[10px] text-white/20">200M AIRP</div>
                         </div>
                     </div>
 
-                    <div class="tokenomics-legend-item" style="border-left-color: #A68B3C;">
-                        <div class="flex items-center">
-                            <div class="legend-color" style="background: #A68B3C;"></div>
-                            <div class="legend-info">
-                                <span class="legend-name">Team</span>
-                                <span class="legend-vesting">6 month cliff + 18 month</span>
+                    <div class="token-card p-4 rounded-lg flex items-center justify-between group" data-cursor="hover">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-8 bg-[#a68b3c] rounded-full"></div>
+                            <div>
+                                <div class="text-sm font-medium">Team</div>
+                                <div class="text-[10px] text-white/30">6 month cliff + 18 month</div>
                             </div>
                         </div>
-                        <div>
-                            <div class="legend-percentage" style="color: #A68B3C;">15%</div>
-                            <div class="legend-amount">150M AIRP</div>
+                        <div class="text-right">
+                            <div class="font-display text-lg text-[#a68b3c]">15%</div>
+                            <div class="text-[10px] text-white/20">150M AIRP</div>
                         </div>
                     </div>
 
-                    <div class="tokenomics-legend-item" style="border-left-color: #8B7355;">
-                        <div class="flex items-center">
-                            <div class="legend-color" style="background: #8B7355;"></div>
-                            <div class="legend-info">
-                                <span class="legend-name">Marketing</span>
-                                <span class="legend-vesting">24 month linear vesting</span>
+                    <div class="token-card p-4 rounded-lg flex items-center justify-between group" data-cursor="hover">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-8 bg-[#8b7355] rounded-full"></div>
+                            <div>
+                                <div class="text-sm font-medium">Marketing</div>
+                                <div class="text-[10px] text-white/30">24 month linear</div>
                             </div>
                         </div>
-                        <div>
-                            <div class="legend-percentage" style="color: #8B7355;">15%</div>
-                            <div class="legend-amount">150M AIRP</div>
+                        <div class="text-right">
+                            <div class="font-display text-lg text-[#8b7355]">15%</div>
+                            <div class="text-[10px] text-white/20">150M AIRP</div>
                         </div>
                     </div>
 
-                    <div class="tokenomics-legend-item" style="border-left-color: #6B5B45;">
-                        <div class="flex items-center">
-                            <div class="legend-color" style="background: #6B5B45;"></div>
-                            <div class="legend-info">
-                                <span class="legend-name">Staking</span>
-                                <span class="legend-vesting">Flexible rewards</span>
+                    <div class="token-card p-4 rounded-lg flex items-center justify-between group" data-cursor="hover">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-8 bg-[#6b5b45] rounded-full"></div>
+                            <div>
+                                <div class="text-sm font-medium">Staking</div>
+                                <div class="text-[10px] text-white/30">Flexible rewards</div>
                             </div>
                         </div>
-                        <div>
-                            <div class="legend-percentage" style="color: #6B5B45;">10%</div>
-                            <div class="legend-amount">100M AIRP</div>
+                        <div class="text-right">
+                            <div class="font-display text-lg text-[#6b5b45]">10%</div>
+                            <div class="text-[10px] text-white/20">100M AIRP</div>
                         </div>
                     </div>
 
-                    <div class="tokenomics-legend-item" style="border-left-color: #4B4035;">
-                        <div class="flex items-center">
-                            <div class="legend-color" style="background: #4B4035;"></div>
-                            <div class="legend-info">
-                                <span class="legend-name">Reserve</span>
-                                <span class="legend-vesting">Emergency use</span>
+                    <div class="token-card p-4 rounded-lg flex items-center justify-between group" data-cursor="hover">
+                        <div class="flex items-center gap-3">
+                            <div class="w-2 h-8 bg-[#4b4035] rounded-full"></div>
+                            <div>
+                                <div class="text-sm font-medium">Reserve</div>
+                                <div class="text-[10px] text-white/30">Emergency use</div>
                             </div>
                         </div>
-                        <div>
-                            <div class="legend-percentage" style="color: #4B4035;">5%</div>
-                            <div class="legend-amount">50M AIRP</div>
+                        <div class="text-right">
+                            <div class="font-display text-lg text-[#4b4035]">5%</div>
+                            <div class="text-[10px] text-white/20">50M AIRP</div>
                         </div>
                     </div>
                 </div>
@@ -726,291 +728,179 @@
         </div>
     </section>
 
+    <div class="section-divider"></div>
+
     <!-- Roadmap Section -->
-    <section id="roadmap" class="py-20 relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10" data-aos="fade-up">
-                <h2 class="font-display text-2xl sm:text-3xl font-bold mb-2 tracking-tight">
-                    Development <span class="gold-text">Roadmap</span>
-                </h2>
-                <p class="text-gray-400 text-xs">Our journey to revolutionize airport commerce</p>
+    <section id="roadmap" class="py-32 relative overflow-hidden">
+        <div class="max-w-5xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-20">
+                <div class="text-[10px] uppercase tracking-[0.3em] text-gold mb-4">Timeline</div>
+                <h2 class="font-display text-3xl sm:text-4xl font-light">Development <span class="text-gold">Roadmap</span></h2>
             </div>
 
             <div class="relative">
-                <div class="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 h-full w-0.5 line-gold"></div>
-
-                <!-- Phase 1 -->
-                <div class="relative mb-8 pl-12 md:pl-0" data-aos="fade-up">
-                    <div class="absolute left-2 md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 rounded-full bg-gold-400 border-2 border-navy-900 z-10"></div>
-                    <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
-                        <div class="md:text-right mb-2 md:mb-0">
-                            <div class="glass rounded-xl p-5 border border-gold-500/10 inline-block text-left md:text-right">
-                                <div class="text-gold-400 text-[10px] font-semibold mb-1 tracking-wider">Q2 2026</div>
-                                <h3 class="text-sm font-semibold mb-2">Phase 1: Foundation</h3>
-                                <ul class="space-y-1 text-gray-400 text-[11px] font-light">
-                                    <li>Smart contract finalization</li>
-                                    <li>Security audit completion</li>
-                                    <li>Community building</li>
-                                    <li>Presale preparation</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hidden md:block"></div>
-                    </div>
-                </div>
-
-                <!-- Phase 2 -->
-                <div class="relative mb-8 pl-12 md:pl-0" data-aos="fade-up">
-                    <div class="absolute left-2 md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 rounded-full bg-gold-400 border-2 border-navy-900 z-10"></div>
-                    <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
-                        <div class="hidden md:block"></div>
-                        <div>
-                            <div class="glass rounded-xl p-5 border border-gold-500/10">
-                                <div class="text-gold-400 text-[10px] font-semibold mb-1 tracking-wider">Q3 2026</div>
-                                <h3 class="text-sm font-semibold mb-2">Phase 2: Launch</h3>
-                                <ul class="space-y-1 text-gray-400 text-[11px] font-light">
-                                    <li>Public presale event</li>
-                                    <li>Token Generation Event</li>
-                                    <li>PancakeSwap listing</li>
-                                    <li>Pilot program onboarding</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Phase 3 -->
-                <div class="relative mb-8 pl-12 md:pl-0" data-aos="fade-up">
-                    <div class="absolute left-2 md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 rounded-full bg-gold-400 border-2 border-navy-900 z-10"></div>
-                    <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
-                        <div class="md:text-right mb-2 md:mb-0">
-                            <div class="glass rounded-xl p-5 border border-gold-500/10 inline-block text-left md:text-right">
-                                <div class="text-gold-400 text-[10px] font-semibold mb-1 tracking-wider">Q4 2026</div>
-                                <h3 class="text-sm font-semibold mb-2">Phase 3: Pilot</h3>
-                                <ul class="space-y-1 text-gray-400 text-[11px] font-light">
-                                    <li>Live airport operations</li>
-                                    <li>Tier-2 CEX applications</li>
-                                    <li>Performance optimization</li>
-                                    <li>2027 roadmap</li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="hidden md:block"></div>
-                    </div>
-                </div>
-
-                <!-- Phase 4 -->
-                <div class="relative pl-12 md:pl-0" data-aos="fade-up">
-                    <div class="absolute left-2 md:left-1/2 transform md:-translate-x-1/2 w-3 h-3 rounded-full bg-gold-400 border-2 border-navy-900 z-10"></div>
-                    <div class="md:grid md:grid-cols-2 md:gap-8 items-center">
-                        <div class="hidden md:block"></div>
-                        <div>
-                            <div class="glass rounded-xl p-5 border border-gold-500/10">
-                                <div class="text-gold-400 text-[10px] font-semibold mb-1 tracking-wider">2027 H1</div>
-                                <h3 class="text-sm font-semibold mb-2">Phase 4: Scale</h3>
-                                <ul class="space-y-1 text-gray-400 text-[11px] font-light">
-                                    <li>Second location pilot</li>
-                                    <li>Tier-1 CEX preparation</li>
-                                    <li>Governance decentralization</li>
-                                    <li>International expansion</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Security Section -->
-    <section class="py-20 bg-navy-900/30">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-10" data-aos="fade-up">
-                <h2 class="font-display text-2xl sm:text-3xl font-bold mb-2 tracking-tight">
-                    Security & <span class="gold-text">Transparency</span>
-                </h2>
-                <p class="text-gray-400 text-xs">Institutional-grade security standards</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-4 mb-8">
-                <div class="glass rounded-2xl p-6 text-center border border-gold-500/5 card-hover" data-aos="fade-up" data-aos-delay="100">
-                    <div class="w-14 h-14 mx-auto rounded-xl bg-gold-400/10 flex items-center justify-center mb-4 border border-gold-500/10">
-                        <i class="fas fa-shield-alt text-xl text-gold-400"></i>
-                    </div>
-                    <h3 class="text-sm font-semibold mb-2">Multi-Sig Treasury</h3>
-                    <p class="text-gray-400 text-xs font-light">3/5 multi-signature wallets requiring multiple approvals.</p>
-                </div>
-
-                <div class="glass rounded-2xl p-6 text-center border border-gold-500/5 card-hover" data-aos="fade-up" data-aos-delay="200">
-                    <div class="w-14 h-14 mx-auto rounded-xl bg-gold-400/10 flex items-center justify-center mb-4 border border-gold-500/10">
-                        <i class="fas fa-lock text-xl text-gold-400"></i>
-                    </div>
-                    <h3 class="text-sm font-semibold mb-2">Liquidity Lock</h3>
-                    <p class="text-gray-400 text-xs font-light">12 months lock via reputable third-party locker.</p>
-                </div>
-
-                <div class="glass rounded-2xl p-6 text-center border border-gold-500/5 card-hover" data-aos="fade-up" data-aos-delay="300">
-                    <div class="w-14 h-14 mx-auto rounded-xl bg-gold-400/10 flex items-center justify-center mb-4 border border-gold-500/10">
-                        <i class="fas fa-file-contract text-xl text-gold-400"></i>
-                    </div>
-                    <h3 class="text-sm font-semibold mb-2">Transparent Vesting</h3>
-                    <p class="text-gray-400 text-xs font-light">Smart contract enforced vesting schedules.</p>
-                </div>
-            </div>
-
-            <div class="glass rounded-2xl p-6 border border-gold-500/10" data-aos="fade-up">
-                <div class="grid md:grid-cols-2 gap-6 items-center">
-                    <div>
-                        <h3 class="text-base font-semibold mb-4">Audit Status</h3>
-                        <div class="space-y-3">
-                            <div class="flex items-center justify-between p-3 bg-navy-800/30 rounded-lg border-l-2 border-yellow-500/50">
-                                <span class="text-gray-300 text-xs">Security Audit</span>
-                                <span class="px-2 py-1 rounded bg-yellow-500/10 text-yellow-400 text-[10px]">Q2 2026</span>
-                            </div>
-                            <div class="flex items-center justify-between p-3 bg-navy-800/30 rounded-lg border-l-2 border-green-500/50">
-                                <span class="text-gray-300 text-xs">Contract Verification</span>
-                                <span class="px-2 py-1 rounded bg-green-500/10 text-green-400 text-[10px]">At TGE</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="text-center md:text-right">
-                        <p class="text-gray-400 text-xs mb-4 font-light">Smart contract will be published and verified on BscScan.</p>
-                        <a href="#" class="btn-outline px-5 py-2 text-xs inline-flex items-center gap-2">
-                            <i class="fas fa-external-link-alt text-xs"></i>
-                            View on BscScan
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Team Section -->
-    <section id="team" class="py-20 relative">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8" data-aos="fade-up">
-                <h2 class="font-display text-2xl sm:text-3xl font-bold mb-2 tracking-tight">
-                    Core <span class="gold-text">Contributors</span>
-                </h2>
-                <p class="text-gray-400 text-xs">Anonymous Development Phase</p>
-            </div>
-
-            <div class="glass rounded-2xl p-8 text-center border border-gold-500/10" data-aos="fade-up">
-                <div class="w-16 h-16 mx-auto rounded-full bg-gold-400/10 flex items-center justify-center mb-6 border border-gold-500/20">
-                    <i class="fas fa-user-secret text-2xl text-gold-400"></i>
-                </div>
+                <div class="absolute left-0 top-0 bottom-0 w-px bg-gradient-to-b from-gold/50 via-gold/20 to-transparent"></div>
                 
-                <h3 class="text-lg font-semibold mb-3">Anonymous Development Phase</h3>
-                
-                <p class="text-gray-400 text-sm mb-6 font-light leading-relaxed">
-                    Team identity will be revealed prior to Tier-1 CEX listing. 
-                    Expertise from Aviation, Blockchain, and Financial sectors.
-                </p>
+                <div class="space-y-12">
+                    <div class="pl-8 relative group">
+                        <div class="absolute left-0 top-2 w-2 h-2 bg-gold rounded-full -translate-x-[3px] group-hover:scale-150 transition-transform"></div>
+                        <div class="glass-panel p-6 rounded-xl border-l-2 border-gold/30 hover:border-gold transition-colors">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                                <h3 class="font-display text-lg">Phase 1: Foundation</h3>
+                                <span class="text-[10px] uppercase tracking-[0.2em] text-gold mt-1 sm:mt-0">Q2 2026</span>
+                            </div>
+                            <ul class="space-y-2 text-sm text-white/40 font-light">
+                                <li>Smart contract finalization & testnet deployment</li>
+                                <li>Security audit completion</li>
+                                <li>Community building & pilot merchant negotiations</li>
+                            </ul>
+                        </div>
+                    </div>
 
-                <div class="grid grid-cols-3 gap-3 mb-6">
-                    <div class="text-center p-3 bg-navy-800/20 rounded-xl">
-                        <div class="text-lg font-display font-bold gold-text mb-1">8+</div>
-                        <div class="text-[10px] text-gray-500 uppercase">Contributors</div>
+                    <div class="pl-8 relative group">
+                        <div class="absolute left-0 top-2 w-2 h-2 bg-gold/60 rounded-full -translate-x-[3px] group-hover:scale-150 transition-transform"></div>
+                        <div class="glass-panel p-6 rounded-xl border-l-2 border-gold/20 hover:border-gold/60 transition-colors">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                                <h3 class="font-display text-lg">Phase 2: Launch</h3>
+                                <span class="text-[10px] uppercase tracking-[0.2em] text-gold/60 mt-1 sm:mt-0">Q3 2026</span>
+                            </div>
+                            <ul class="space-y-2 text-sm text-white/40 font-light">
+                                <li>Public presale event (30 days)</li>
+                                <li>Token Generation Event & PancakeSwap listing</li>
+                                <li>Pilot Program Phase 1 onboarding</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="text-center p-3 bg-navy-800/20 rounded-xl">
-                        <div class="text-lg font-display font-bold gold-text mb-1">10+</div>
-                        <div class="text-[10px] text-gray-500 uppercase">Years Exp.</div>
-                    </div>
-                    <div class="text-center p-3 bg-navy-800/20 rounded-xl">
-                        <div class="text-lg font-display font-bold gold-text mb-1">3</div>
-                        <div class="text-[10px] text-gray-500 uppercase">Sectors</div>
-                    </div>
-                </div>
 
-                <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-3 py-1.5 rounded-lg bg-navy-800/30 border border-gold-500/10 text-xs text-gray-300">Aviation</span>
-                    <span class="px-3 py-1.5 rounded-lg bg-navy-800/30 border border-gold-500/10 text-xs text-gray-300">Blockchain</span>
-                    <span class="px-3 py-1.5 rounded-lg bg-navy-800/30 border border-gold-500/10 text-xs text-gray-300">Finance</span>
+                    <div class="pl-8 relative group">
+                        <div class="absolute left-0 top-2 w-2 h-2 bg-gold/40 rounded-full -translate-x-[3px] group-hover:scale-150 transition-transform"></div>
+                        <div class="glass-panel p-6 rounded-xl border-l-2 border-gold/10 hover:border-gold/40 transition-colors">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                                <h3 class="font-display text-lg">Phase 3: Pilot</h3>
+                                <span class="text-[10px] uppercase tracking-[0.2em] text-gold/40 mt-1 sm:mt-0">Q4 2026</span>
+                            </div>
+                            <ul class="space-y-2 text-sm text-white/40 font-light">
+                                <li>Live airport operations (100+ monthly transactions)</li>
+                                <li>Tier-2 CEX applications</li>
+                                <li>Performance optimization & expansion</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pl-8 relative group">
+                        <div class="absolute left-0 top-2 w-2 h-2 bg-gold/20 rounded-full -translate-x-[3px] group-hover:scale-150 transition-transform"></div>
+                        <div class="glass-panel p-6 rounded-xl border-l-2 border-gold/5 hover:border-gold/20 transition-colors">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-3">
+                                <h3 class="font-display text-lg">Phase 4: Scale</h3>
+                                <span class="text-[10px] uppercase tracking-[0.2em] text-gold/20 mt-1 sm:mt-0">2027 H1</span>
+                            </div>
+                            <ul class="space-y-2 text-sm text-white/40 font-light">
+                                <li>Second location pilot & ecosystem grants</li>
+                                <li>Tier-1 CEX preparation</li>
+                                <li>Governance decentralization</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <div class="section-divider"></div>
 
     <!-- FAQ Section -->
-    <section id="faq" class="py-20 bg-navy-900/30">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-8" data-aos="fade-up">
-                <h2 class="font-display text-2xl sm:text-3xl font-bold mb-2 tracking-tight">
-                    Frequently Asked <span class="gold-text">Questions</span>
-                </h2>
-                <p class="text-gray-400 text-xs">Everything you need to know</p>
+    <section id="faq" class="py-32 relative">
+        <div class="max-w-3xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <div class="text-[10px] uppercase tracking-[0.3em] text-gold mb-4">Support</div>
+                <h2 class="font-display text-3xl sm:text-4xl font-light">Frequently Asked <span class="text-gold">Questions</span></h2>
             </div>
 
-            <div class="space-y-2" data-aos="fade-up">
-                <div class="glass rounded-xl border border-gold-500/5 overflow-hidden">
-                    <button class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-navy-800/20 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-medium text-sm">What is AIRP Global?</span>
-                        <i class="fas fa-chevron-down text-gold-400 text-xs transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content px-5">
-                        <div class="pb-4 text-gray-400 text-xs font-light leading-relaxed">
-                            AIRP Global is a BSC-based utility token building payment and rewards infrastructure for airport commerce, unifying fragmented payment systems through blockchain technology.
+            <div class="space-y-0">
+                <div class="faq-item py-6 cursor-pointer" onclick="toggleFaq(this)" data-cursor="hover">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-medium pr-8">What is AIRP Global?</h3>
+                        <div class="faq-icon transition-transform duration-300">
+                            <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+                            </svg>
                         </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-sm text-white/40 font-light pt-4 leading-relaxed">
+                            AIRP Global is a BSC-based utility token building payment and rewards infrastructure 
+                            for airport commerce. We unify fragmented airport payment systems through blockchain 
+                            technology, enabling seamless transactions and integrated loyalty programs.
+                        </p>
                     </div>
                 </div>
 
-                <div class="glass rounded-xl border border-gold-500/5 overflow-hidden">
-                    <button class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-navy-800/20 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-medium text-sm">How does the presale work?</span>
-                        <i class="fas fa-chevron-down text-gold-400 text-xs transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content px-5">
-                        <div class="pb-4 text-gray-400 text-xs font-light leading-relaxed">
-                            15% of total supply (150M AIRP) allocated to early supporters. 25% at TGE, remaining 75% linear vesting over 4 months. Requires BSC wallet and identity verification.
+                <div class="faq-item py-6 cursor-pointer" onclick="toggleFaq(this)" data-cursor="hover">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-medium pr-8">How does the presale work?</h3>
+                        <div class="faq-icon transition-transform duration-300">
+                            <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+                            </svg>
                         </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-sm text-white/40 font-light pt-4 leading-relaxed">
+                            The public presale allocates 15% of total supply (150M AIRP) to early supporters. 
+                            Vesting schedule: 25% at TGE, remaining 75% linear vesting over 4 months. 
+                            Requires BSC wallet and identity verification.
+                        </p>
                     </div>
                 </div>
 
-                <div class="glass rounded-xl border border-gold-500/5 overflow-hidden">
-                    <button class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-navy-800/20 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-medium text-sm">What makes AIRP different?</span>
-                        <i class="fas fa-chevron-down text-gold-400 text-xs transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content px-5">
-                        <div class="pb-4 text-gray-400 text-xs font-light leading-relaxed">
-                            Three-layer infrastructure targeting airport commerce vertical: User Wallet, Payment Rail, and Rewards Layer. Focus on high-traffic airport environments.
+                <div class="faq-item py-6 cursor-pointer" onclick="toggleFaq(this)" data-cursor="hover">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-medium pr-8">What wallets are supported?</h3>
+                        <div class="faq-icon transition-transform duration-300">
+                            <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+                            </svg>
                         </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-sm text-white/40 font-light pt-4 leading-relaxed">
+                            We support MetaMask, Trust Wallet, WalletConnect-compatible wallets, and Binance Chain Wallet. 
+                            All connections are secured through WalletConnect v2 protocol with your Project ID.
+                        </p>
                     </div>
                 </div>
 
-                <div class="glass rounded-xl border border-gold-500/5 overflow-hidden">
-                    <button class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-navy-800/20 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-medium text-sm">How is the team secured?</span>
-                        <i class="fas fa-chevron-down text-gold-400 text-xs transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content px-5">
-                        <div class="pb-4 text-gray-400 text-xs font-light leading-relaxed">
-                            3/5 multi-signature treasury, 12-month liquidity lock, and immutable smart contract enforced vesting schedules. No manual intervention possible.
+                <div class="faq-item py-6 cursor-pointer" onclick="toggleFaq(this)" data-cursor="hover">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-medium pr-8">How is the project secured?</h3>
+                        <div class="faq-icon transition-transform duration-300">
+                            <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+                            </svg>
                         </div>
+                    </div>
+                    <div class="faq-content">
+                        <p class="text-sm text-white/40 font-light pt-4 leading-relaxed">
+                            3/5 multi-signature treasury wallets, 12-month liquidity lock via reputable third-party 
+                            locker, and immutable smart contract enforced vesting schedules. External audit scheduled Q2 2026.
+                        </p>
                     </div>
                 </div>
 
-                <div class="glass rounded-xl border border-gold-500/5 overflow-hidden">
-                    <button class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-navy-800/20 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-medium text-sm">When will the token be listed?</span>
-                        <i class="fas fa-chevron-down text-gold-400 text-xs transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content px-5">
-                        <div class="pb-4 text-gray-400 text-xs font-light leading-relaxed">
-                            PancakeSwap DEX immediately after TGE. Tier-2 CEX applications Q4 2026, Tier-1 preparation 2027 H1. Team identity revealed prior to Tier-1 listings.
+                <div class="faq-item py-6 cursor-pointer" onclick="toggleFaq(this)" data-cursor="hover">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-sm font-medium pr-8">When will tokens be listed?</h3>
+                        <div class="faq-icon transition-transform duration-300">
+                            <svg class="w-4 h-4 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4"/>
+                            </svg>
                         </div>
                     </div>
-                </div>
-
-                <div class="glass rounded-xl border border-gold-500/5 overflow-hidden">
-                    <button class="w-full px-5 py-4 flex items-center justify-between text-left hover:bg-navy-800/20 transition-colors" onclick="toggleFaq(this)">
-                        <span class="font-medium text-sm">What are the risks?</span>
-                        <i class="fas fa-chevron-down text-gold-400 text-xs transition-transform duration-300"></i>
-                    </button>
-                    <div class="faq-content px-5">
-                        <div class="pb-4 text-gray-400 text-xs font-light leading-relaxed">
-                            Cryptocurrency investments carry substantial risk including market volatility, smart contract vulnerabilities, regulatory changes, and liquidity limitations. Assume possibility of total loss.
-                        </div>
+                    <div class="faq-content">
+                        <p class="text-sm text-white/40 font-light pt-4 leading-relaxed">
+                            PancakeSwap DEX immediately after TGE. Tier-2 CEX applications Q4 2026, 
+                            Tier-1 preparation 2027 H1. Team identity revealed prior to Tier-1 listings.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -1018,85 +908,63 @@
     </section>
 
     <!-- CTA Section -->
-    <section class="py-20 relative bg-navy-900/50 border-t border-gold-500/10">
-        <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center" data-aos="fade-up">
-            <h2 class="font-display text-2xl sm:text-3xl font-bold mb-3 tracking-tight">
-                Ready to Join the <span class="gold-text">Revolution?</span>
+    <section class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-t from-gold/5 to-transparent"></div>
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 text-center relative z-10">
+            <h2 class="font-display text-3xl sm:text-4xl md:text-5xl font-light mb-6 leading-tight">
+                Ready to <span class="text-gold">Participate</span>?
             </h2>
-            <p class="text-gray-400 text-sm mb-8 font-light">
-                Be part of the future of airport commerce.
+            <p class="text-white/40 text-sm font-light mb-10 max-w-lg mx-auto">
+                Join the future of airport commerce infrastructure. Limited presale allocation available.
             </p>
             
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-3 mb-8">
-                <button onclick="scrollToPresale()" class="btn-primary px-6 py-2.5 text-sm flex items-center gap-2">
-                    <i class="fas fa-rocket text-xs"></i>
-                    Join Presale
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <button onclick="scrollToPresale()" class="btn-premium btn-premium-primary magnetic" data-cursor="hover">
+                    Enter Presale
                 </button>
-                <a href="https://t.me/airpglobal" target="_blank" class="btn-outline px-6 py-2.5 text-sm flex items-center gap-2">
-                    <i class="fab fa-telegram text-xs"></i>
+                <a href="https://t.me/airpglobal" target="_blank" class="btn-premium magnetic" data-cursor="hover">
                     Join Community
                 </a>
             </div>
 
-            <div class="flex justify-center gap-3">
-                <a href="https://x.com/airpglobal" target="_blank" class="w-10 h-10 rounded-xl glass flex items-center justify-center hover:bg-gold-400/10 transition-colors border border-gold-500/10">
-                    <i class="fab fa-twitter text-gold-400"></i>
+            <div class="flex justify-center gap-6 mt-12">
+                <a href="https://x.com/airpglobal" target="_blank" class="text-white/20 hover:text-gold transition-colors magnetic" data-cursor="hover">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 </a>
-                <a href="https://t.me/airpglobal" target="_blank" class="w-10 h-10 rounded-xl glass flex items-center justify-center hover:bg-gold-400/10 transition-colors border border-gold-500/10">
-                    <i class="fab fa-telegram text-gold-400"></i>
+                <a href="https://t.me/airpglobal" target="_blank" class="text-white/20 hover:text-gold transition-colors magnetic" data-cursor="hover">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
                 </a>
-                <a href="https://www.instagram.com/airpglobal" target="_blank" class="w-10 h-10 rounded-xl glass flex items-center justify-center hover:bg-gold-400/10 transition-colors border border-gold-500/10">
-                    <i class="fab fa-instagram text-gold-400"></i>
+                <a href="https://www.instagram.com/airpglobal" target="_blank" class="text-white/20 hover:text-gold transition-colors magnetic" data-cursor="hover">
+                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
                 </a>
-                <a href="mailto:contact@airpglobal.com" class="w-10 h-10 rounded-xl glass flex items-center justify-center hover:bg-gold-400/10 transition-colors border border-gold-500/10">
-                    <i class="fas fa-envelope text-gold-400"></i>
+                <a href="mailto:contact@airpglobal.com" class="text-white/20 hover:text-gold transition-colors magnetic" data-cursor="hover">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                    </svg>
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="border-t border-gold-500/10 py-10 bg-navy-950">
-        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-6 mb-6">
-                <div class="col-span-2">
-                    <div class="flex items-center gap-2 mb-3">
-                        <img src="logo.png" alt="AIRP Global" class="w-8 h-8 object-contain rounded-lg">
-                        <span class="font-display text-lg font-semibold tracking-tight">AIRP<span class="gold-text">Global</span></span>
-                    </div>
-                    <p class="text-gray-400 text-xs leading-relaxed max-w-sm font-light">
-                        Powering the Global Airport Economy through institutional-grade blockchain technology.
-                    </p>
+    <footer class="border-t border-white/5 py-12">
+        <div class="max-w-6xl mx-auto px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center gap-3">
+                    <img src="logo.png" alt="AIRP" class="w-6 h-6 object-contain opacity-60">
+                    <span class="font-display text-sm tracking-wider text-white/40">
+                        AIRP<span class="text-gold/60">Global</span>
+                    </span>
                 </div>
                 
-                <div>
-                    <h4 class="font-medium mb-3 text-xs tracking-wider text-gold-400 uppercase">Quick Links</h4>
-                    <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="#about" class="hover:text-gold-400 transition-colors">About</a></li>
-                        <li><a href="#tokenomics" class="hover:text-gold-400 transition-colors">Tokenomics</a></li>
-                        <li><a href="#roadmap" class="hover:text-gold-400 transition-colors">Roadmap</a></li>
-                        <li><a href="#faq" class="hover:text-gold-400 transition-colors">FAQ</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="font-medium mb-3 text-xs tracking-wider text-gold-400 uppercase">Resources</h4>
-                    <ul class="space-y-2 text-xs text-gray-400">
-                        <li><a href="whitepaper.pdf" target="_blank" class="hover:text-gold-400 transition-colors">Whitepaper</a></li>
-                        <li><a href="#" class="hover:text-gold-400 transition-colors">Smart Contract</a></li>
-                        <li><a href="mailto:contact@airpglobal.com" class="hover:text-gold-400 transition-colors">contact@airpglobal.com</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="border-t border-gold-500/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-3">
-                <div class="text-xs text-gray-600">
+                <div class="text-[10px] text-white/20 uppercase tracking-[0.2em]">
                     © 2026 AIRP Global. All rights reserved.
                 </div>
-                <div class="flex gap-4 text-xs text-gray-600">
-                    <a href="#" class="hover:text-gold-400 transition-colors">Privacy</a>
-                    <a href="#" class="hover:text-gold-400 transition-colors">Terms</a>
-                    <a href="#" class="hover:text-gold-400 transition-colors">Risk</a>
+                
+                <div class="flex gap-6 text-[10px] text-white/20 uppercase tracking-[0.15em]">
+                    <a href="#" class="hover:text-gold transition-colors">Privacy</a>
+                    <a href="#" class="hover:text-gold transition-colors">Terms</a>
+                    <a href="#" class="hover:text-gold transition-colors">Risk</a>
                 </div>
             </div>
         </div>
@@ -1104,44 +972,168 @@
 
     <!-- Scripts -->
     <script>
-        // Initialize AOS
-        AOS.init({
-            duration: 800,
-            once: true,
-            offset: 50
+        // Register GSAP
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Custom Cursor
+        const cursorDot = document.querySelector('.cursor-dot');
+        const cursorOutline = document.querySelector('.cursor-outline');
+        
+        window.addEventListener('mousemove', (e) => {
+            const posX = e.clientX;
+            const posY = e.clientY;
+            
+            cursorDot.style.left = `${posX}px`;
+            cursorDot.style.top = `${posY}px`;
+            
+            cursorOutline.animate({
+                left: `${posX}px`,
+                top: `${posY}px`
+            }, { duration: 500, fill: "forwards" });
         });
 
-        // Wallet State
+        // Cursor hover effect
+        document.querySelectorAll('[data-cursor="hover"]').forEach(el => {
+            el.addEventListener('mouseenter', () => cursorOutline.classList.add('hover'));
+            el.addEventListener('mouseleave', () => cursorOutline.classList.remove('hover'));
+        });
+
+        // Magnetic effect
+        document.querySelectorAll('.magnetic').forEach(el => {
+            el.addEventListener('mousemove', (e) => {
+                const rect = el.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'translate(0, 0)';
+            });
+        });
+
+        // Text reveal animation
+        gsap.to('.reveal-text', {
+            y: 0,
+            opacity: 1,
+            duration: 1,
+            stagger: 0.1,
+            ease: "power4.out",
+            delay: 0.5
+        });
+
+        // Progress line
+        gsap.to('#progressLine', {
+            scaleX: 1,
+            ease: "none",
+            scrollTrigger: {
+                trigger: document.body,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 0.3
+            }
+        });
+
+        // Token cards mouse effect
+        document.getElementById('tokenomicsGrid').onmousemove = e => {
+            for(const card of document.getElementsByClassName('token-card')) {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                card.style.setProperty('--mouse-x', `${x}px`);
+                card.style.setProperty('--mouse-y', `${y}px`);
+            }
+        };
+
+        // WebGL Background
+        const canvas = document.getElementById('webgl-canvas');
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        camera.position.z = 30;
+
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 700;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 100;
+        }
+
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.05,
+            color: 0xd4af37,
+            transparent: true,
+            opacity: 0.6,
+            blending: THREE.AdditiveBlending
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Mouse interaction
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            particlesMesh.rotation.x += 0.0003;
+            particlesMesh.rotation.y += 0.0005;
+
+            particlesMesh.rotation.x += mouseY * 0.0005;
+            particlesMesh.rotation.y += mouseX * 0.0005;
+
+            renderer.render(scene, camera);
+        }
+        animate();
+
+        // Resize handler
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Wallet Functions
         let provider = null;
         let web3 = null;
         let currentAccount = null;
         const PROJECT_ID = '52d70c47cbe614989d9704e6811bb446';
-        const BSC_CHAIN_ID = 56;
 
-        // Modal Functions
         function openWalletModal() {
-            document.getElementById('walletModal').classList.add('active');
+            const modal = document.getElementById('walletModal');
+            const content = document.getElementById('walletModalContent');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                content.classList.remove('scale-95', 'opacity-0');
+                content.classList.add('scale-100', 'opacity-100');
+            }, 10);
         }
 
         function closeWalletModal() {
-            document.getElementById('walletModal').classList.remove('active');
+            const modal = document.getElementById('walletModal');
+            const content = document.getElementById('walletModalContent');
+            content.classList.remove('scale-100', 'opacity-100');
+            content.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
         }
 
-        function openQrModal() {
-            document.getElementById('qrModal').classList.add('active');
-        }
-
-        function closeQrModal() {
-            document.getElementById('qrModal').classList.remove('active');
-        }
-
-        window.onclick = function(event) {
-            if (event.target.classList.contains('wallet-modal')) {
-                event.target.classList.remove('active');
-            }
-        }
-
-        // Connect MetaMask
         async function connectMetaMask() {
             closeWalletModal();
             if (typeof window.ethereum !== 'undefined') {
@@ -1150,231 +1142,130 @@
                     currentAccount = accounts[0];
                     provider = window.ethereum;
                     web3 = new Web3(provider);
-                    await switchToBSC();
-                    updateUIAfterConnection();
+                    updateUI();
                 } catch (error) {
-                    alert('Failed to connect: ' + error.message);
+                    alert('Connection failed: ' + error.message);
                 }
             } else {
-                alert('MetaMask not detected. Please install MetaMask.');
                 window.open('https://metamask.io/download/', '_blank');
             }
         }
 
-        // Connect Trust Wallet
-        async function connectTrustWallet() {
-            closeWalletModal();
-            await connectWalletConnect();
-        }
-
-        // Connect WalletConnect v2
         async function connectWalletConnect() {
             closeWalletModal();
             try {
                 const WalletConnectProvider = window.EthereumProvider;
                 provider = await WalletConnectProvider.init({
                     projectId: PROJECT_ID,
-                    chains: [BSC_CHAIN_ID],
+                    chains: [56],
                     showQrModal: true
                 });
                 await provider.enable();
                 web3 = new Web3(provider);
                 const accounts = await web3.eth.getAccounts();
                 currentAccount = accounts[0];
-                
-                provider.on('accountsChanged', (accounts) => {
-                    if (accounts.length === 0) disconnectWallet();
-                    else {
-                        currentAccount = accounts[0];
-                        updateUIAfterConnection();
-                    }
-                });
-                
-                provider.on('disconnect', () => disconnectWallet());
-                updateUIAfterConnection();
+                updateUI();
             } catch (error) {
-                alert('Failed to connect: ' + error.message);
+                alert('Connection failed: ' + error.message);
             }
         }
 
-        // Connect Binance Wallet
-        async function connectBinanceWallet() {
-            closeWalletModal();
-            if (typeof window.BinanceChain !== 'undefined') {
-                try {
-                    const accounts = await window.BinanceChain.request({ method: 'eth_accounts' });
-                    currentAccount = accounts[0];
-                    provider = window.BinanceChain;
-                    web3 = new Web3(provider);
-                    updateUIAfterConnection();
-                } catch (error) {
-                    alert('Failed to connect: ' + error.message);
-                }
-            } else {
-                alert('Binance Wallet not detected.');
-                window.open('https://www.binance.org/en/wallet', '_blank');
-            }
+        function updateUI() {
+            const shortAddress = currentAccount.substring(0, 6) + '...' + currentAccount.substring(38);
+            document.getElementById('walletConnectBtn').classList.add('hidden');
+            document.getElementById('connectedState').classList.remove('hidden');
+            document.getElementById('walletDisplay').textContent = shortAddress;
         }
 
-        // Switch to BSC
-        async function switchToBSC() {
-            try {
-                await window.ethereum.request({
-                    method: 'wallet_switchEthereumChain',
-                    params: [{ chainId: '0x' + BSC_CHAIN_ID.toString(16) }],
-                });
-            } catch (switchError) {
-                if (switchError.code === 4902) {
-                    await window.ethereum.request({
-                        method: 'wallet_addEthereumChain',
-                        params: [{
-                            chainId: '0x' + BSC_CHAIN_ID.toString(16),
-                            chainName: 'Binance Smart Chain',
-                            nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 },
-                            rpcUrls: ['https://bsc-dataseed.binance.org/'],
-                            blockExplorerUrls: ['https://bscscan.com/']
-                        }]
-                    });
-                }
-            }
-        }
-
-        // Update UI
-        function updateUIAfterConnection() {
-            const shortAddress = currentAccount.substring(0, 4) + '...' + currentAccount.substring(38);
-            const btn = document.getElementById('connectWalletBtn');
-            btn.innerHTML = `<i class="fas fa-check-circle text-xs"></i> <span>${shortAddress}</span>`;
-            btn.classList.remove('btn-primary');
-            btn.classList.add('connected-badge');
-            btn.onclick = disconnectWallet;
-            
-            document.getElementById('walletInfo').classList.remove('hidden');
-            document.getElementById('walletAddress').textContent = currentAccount;
-            document.getElementById('presaleConnectBtn').innerHTML = '<i class="fas fa-check text-xs"></i> Connected';
-            document.getElementById('presaleConnectBtn').disabled = true;
-            document.getElementById('presaleConnectBtn').classList.add('opacity-50', 'cursor-not-allowed');
-        }
-
-        // Disconnect
-        async function disconnectWallet() {
-            if (provider && provider.disconnect) await provider.disconnect();
+        function disconnectWallet() {
             provider = null;
             web3 = null;
             currentAccount = null;
-            
-            const btn = document.getElementById('connectWalletBtn');
-            btn.innerHTML = '<i class="fas fa-wallet text-xs"></i> <span id="walletBtnText">Connect</span>';
-            btn.classList.remove('connected-badge');
-            btn.classList.add('btn-primary');
-            btn.onclick = openWalletModal;
-            
-            document.getElementById('walletInfo').classList.add('hidden');
-            document.getElementById('presaleConnectBtn').innerHTML = '<i class="fas fa-wallet text-xs"></i> Connect Wallet';
-            document.getElementById('presaleConnectBtn').disabled = false;
-            document.getElementById('presaleConnectBtn').classList.remove('opacity-50', 'cursor-not-allowed');
+            document.getElementById('walletConnectBtn').classList.remove('hidden');
+            document.getElementById('connectedState').classList.add('hidden');
         }
-
-        // Check existing connection
-        window.addEventListener('load', async () => {
-            if (typeof window.ethereum !== 'undefined') {
-                try {
-                    const accounts = await window.ethereum.request({ method: 'eth_accounts', params: [] });
-                    if (accounts.length > 0) {
-                        currentAccount = accounts[0];
-                        provider = window.ethereum;
-                        web3 = new Web3(provider);
-                        updateUIAfterConnection();
-                    }
-                } catch (error) {
-                    console.log('No previous connection');
-                }
-            }
-        });
 
         // Countdown
         function updateCountdown() {
-            const presaleDate = new Date(2026, 3, 15);
+            const target = new Date(2026, 3, 15);
             const now = new Date();
-            const diff = presaleDate - now;
+            const diff = target - now;
             
             if (diff > 0) {
-                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const s = Math.floor((diff % (1000 * 60)) / 1000);
                 
-                document.getElementById('days').textContent = String(days).padStart(2, '0');
-                document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-                document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-                document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+                document.getElementById('days').textContent = String(d).padStart(2, '0');
+                document.getElementById('hours').textContent = String(h).padStart(2, '0');
+                document.getElementById('minutes').textContent = String(m).padStart(2, '0');
+                document.getElementById('seconds').textContent = String(s).padStart(2, '0');
             }
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
         // FAQ Toggle
-        function toggleFaq(button) {
-            const content = button.nextElementSibling;
-            const icon = button.querySelector('i');
-            content.classList.toggle('active');
-            icon.style.transform = content.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+        function toggleFaq(item) {
+            const isActive = item.classList.contains('active');
+            document.querySelectorAll('.faq-item').forEach(faq => faq.classList.remove('active'));
+            if (!isActive) item.classList.add('active');
         }
 
-        // Smooth Scroll
+        // Smooth scroll
         function scrollToPresale() {
             document.getElementById('presale').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Copy Contract
         function copyContract() {
-            const address = 'YOUR_CONTRACT_ADDRESS';
-            navigator.clipboard.writeText(address).then(() => {
-                alert('Contract address copied!');
-            });
+            navigator.clipboard.writeText('YOUR_CONTRACT_ADDRESS');
         }
 
         // Tokenomics Chart
-        const ctx = document.getElementById('tokenomicsChart').getContext('2d');
-        new Chart(ctx, {
+        new Chart(document.getElementById('tokenomicsChart'), {
             type: 'doughnut',
             data: {
-                labels: ['Presale 15%', 'Liquidity 20%', 'Ecosystem 20%', 'Team 15%', 'Marketing 15%', 'Staking 10%', 'Reserve 5%'],
+                labels: ['Presale', 'Liquidity', 'Ecosystem', 'Team', 'Marketing', 'Staking', 'Reserve'],
                 datasets: [{
                     data: [15, 20, 20, 15, 15, 10, 5],
-                    backgroundColor: ['#D4AF37', '#B8941F', '#C5A028', '#A68B3C', '#8B7355', '#6B5B45', '#4B4035'],
+                    backgroundColor: ['#d4af37', '#b8941f', '#c5a028', '#a68b3c', '#8b7355', '#6b5b45', '#4b4035'],
                     borderWidth: 0,
                     hoverOffset: 8
                 }]
             },
             options: {
                 responsive: true,
-                maintainAspectRatio: true,
-                cutout: '65%',
+                cutout: '70%',
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: 'rgba(7, 15, 28, 0.95)',
-                        titleColor: '#D4AF37',
+                        backgroundColor: 'rgba(10, 10, 10, 0.9)',
+                        titleColor: '#d4af37',
                         bodyColor: '#fff',
-                        bodyFont: { size: 12 },
                         borderColor: 'rgba(212, 175, 55, 0.2)',
                         borderWidth: 1,
                         padding: 12,
                         callbacks: {
-                            label: function(context) {
-                                const labels = [
-                                    'Presale: 150M AIRP',
-                                    'Liquidity: 200M AIRP',
-                                    'Ecosystem: 200M AIRP',
-                                    'Team: 150M AIRP',
-                                    'Marketing: 150M AIRP',
-                                    'Staking: 100M AIRP',
-                                    'Reserve: 50M AIRP'
-                                ];
-                                return labels[context.dataIndex];
+                            label: (ctx) => {
+                                const amounts = ['150M', '200M', '200M', '150M', '150M', '100M', '50M'];
+                                return `${ctx.label}: ${amounts[ctx.dataIndex]} AIRP`;
                             }
                         }
                     }
+                }
+            }
+        });
+
+        // Check existing connection
+        window.addEventListener('load', async () => {
+            if (window.ethereum) {
+                const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                if (accounts.length > 0) {
+                    currentAccount = accounts[0];
+                    provider = window.ethereum;
+                    web3 = new Web3(provider);
+                    updateUI();
                 }
             }
         });
