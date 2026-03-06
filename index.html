@@ -968,150 +968,219 @@
 </section>
 <!-- ==================== END PARTNERS SECTION ==================== -->
 
-<!-- ==================== POPUP MODAL ==================== -->
-<div id="whitelist-popup" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(8px); font-family: inherit;">
-    <div style="background: linear-gradient(180deg, #111827 0%, #0a0c10 100%); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 24px; padding: 40px; max-width: 440px; width: 90%; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.8), 0 0 0 1px rgba(245, 158, 11, 0.1); max-height: 90vh; overflow-y: auto;">
+<!-- ==================== POPUP MODAL - FORMSPREE ==================== -->
+<div id="whitelist-popup" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.9); z-index: 99999; align-items: center; justify-content: center; backdrop-filter: blur(10px); font-family: system-ui, -apple-system, sans-serif;">
+    
+    <div style="background: linear-gradient(180deg, #111827 0%, #0a0c10 100%); border: 1px solid rgba(245, 158, 11, 0.25); border-radius: 24px; padding: 40px; max-width: 460px; width: 92%; position: relative; box-shadow: 0 25px 80px rgba(0,0,0,0.9), 0 0 0 1px rgba(245, 158, 11, 0.1); max-height: 90vh; overflow-y: auto; animation: slideUp 0.3s ease;">
         
         <!-- Close Button -->
         <button type="button" onclick="closeWhitelistPopup()" 
-                style="position: absolute; top: 20px; right: 20px; background: rgba(75, 85, 99, 0.2); border: 1px solid rgba(75, 85, 99, 0.3); color: #9ca3af; font-size: 20px; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; line-height: 1; padding: 0;"
-                onmouseover="this.style.background='rgba(245,158,11,0.2)'; this.style.color='#f59e0b'; this.style.borderColor='rgba(245,158,11,0.4)'"
+                style="position: absolute; top: 16px; right: 16px; background: rgba(75, 85, 99, 0.2); border: 1px solid rgba(75, 85, 99, 0.3); color: #9ca3af; font-size: 24px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s; line-height: 1; padding: 0;"
+                onmouseover="this.style.background='rgba(245,158,11,0.15)'; this.style.color='#f59e0b'; this.style.borderColor='rgba(245,158,11,0.4)'"
                 onmouseout="this.style.background='rgba(75, 85, 99, 0.2)'; this.style.color='#9ca3af'; this.style.borderColor='rgba(75, 85, 99, 0.3)'">×</button>
         
-        <div style="text-align: center; margin-bottom: 30px;">
-            <div style="width: 64px; height: 64px; background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05)); border: 1px solid rgba(245,158,11,0.3); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 32px; box-shadow: 0 8px 32px rgba(245,158,11,0.15);">✉️</div>
-            <h3 style="color: #ffffff; font-size: 26px; margin-bottom: 8px; font-weight: 700; letter-spacing: -0.5px;">Join Whitelist</h3>
-            <p style="color: #9ca3af; font-size: 14px; line-height: 1.5;">Get early access to $AIRP presale and exclusive updates</p>
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 32px;">
+            <div style="width: 72px; height: 72px; background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.05)); border: 1px solid rgba(245,158,11,0.25); border-radius: 20px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 36px; box-shadow: 0 12px 40px rgba(245,158,11,0.15);">✉️</div>
+            <h3 style="color: #ffffff; font-size: 28px; margin-bottom: 10px; font-weight: 700; letter-spacing: -0.5px;">Join Whitelist</h3>
+            <p style="color: #9ca3af; font-size: 15px; line-height: 1.6; margin: 0;">Get early access to $AIRP presale and exclusive listing updates</p>
         </div>
 
-        <form id="whitelist-form" action="https://formsubmit.co/info@airpglobal.com" method="POST" style="display: flex; flex-direction: column; gap: 18px;">
-            <!-- FormSubmit Configuration -->
-            <input type="hidden" name="_subject" value="🚀 New Whitelist Application - AIRP Global">
-            <input type="hidden" name="_captcha" value="false">
-            <input type="hidden" name="_template" value="table">
-            <input type="hidden" name="_next" value="https://airpglobal.com?whitelist=success">
-            <input type="hidden" name="_autoresponse" value="Thank you for joining the AIRP whitelist! We'll contact you soon with early access details.">
+        <!-- FORMSPREE FORM -->
+        <form id="whitelist-form" action="https://formspree.io/f/xyknyegq" method="POST" style="display: flex; flex-direction: column; gap: 20px;">
             
             <!-- Email Field -->
             <div>
-                <label style="display: block; color: #d1d5db; font-size: 13px; margin-bottom: 8px; font-weight: 600;">
+                <label style="display: block; color: #e5e7eb; font-size: 14px; margin-bottom: 8px; font-weight: 600;">
                     Email Address <span style="color: #f59e0b;">*</span>
                 </label>
                 <input type="email" name="email" required 
-                       style="width: 100%; padding: 14px 16px; background: rgba(17,24,39,0.6); border: 1px solid rgba(75,85,99,0.4); border-radius: 10px; color: #ffffff; font-size: 15px; outline: none; transition: all 0.3s; box-sizing: border-box;"
-                       onfocus="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 0 0 3px rgba(245,158,11,0.1)'"
+                       style="width: 100%; padding: 16px; background: rgba(17,24,39,0.7); border: 1px solid rgba(75,85,99,0.4); border-radius: 12px; color: #ffffff; font-size: 16px; outline: none; transition: all 0.3s; box-sizing: border-box;"
+                       onfocus="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 0 0 4px rgba(245,158,11,0.1)'"
                        onblur="this.style.borderColor='rgba(75,85,99,0.4)'; this.style.boxShadow='none'"
-                       placeholder="contact@airpglobal.com">
+                       placeholder="your@email.com">
             </div>
 
-            <!-- Wallet Field -->
+            <!-- BSC Wallet Field -->
             <div>
-                <label style="display: block; color: #d1d5db; font-size: 13px; margin-bottom: 8px; font-weight: 600;">
-                    BSC Wallet Address <span style="color: #6b7280; font-weight: 400;">(Optional)</span>
+                <label style="display: block; color: #e5e7eb; font-size: 14px; margin-bottom: 8px; font-weight: 600;">
+                    BSC Wallet Address <span style="color: #6b7280; font-weight: 400; font-size: 13px;">(Optional)</span>
                 </label>
-                <input type="text" name="wallet_address" 
-                       style="width: 100%; padding: 14px 16px; background: rgba(17,24,39,0.6); border: 1px solid rgba(75,85,99,0.4); border-radius: 10px; color: #ffffff; font-size: 15px; outline: none; transition: all 0.3s; box-sizing: border-box; font-family: monospace;"
-                       onfocus="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 0 0 3px rgba(245,158,11,0.1)'"
+                <input type="text" name="wallet" 
+                       style="width: 100%; padding: 16px; background: rgba(17,24,39,0.7); border: 1px solid rgba(75,85,99,0.4); border-radius: 12px; color: #ffffff; font-size: 15px; outline: none; transition: all 0.3s; box-sizing: border-box; font-family: 'Courier New', monospace;"
+                       onfocus="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 0 0 4px rgba(245,158,11,0.1)'"
                        onblur="this.style.borderColor='rgba(75,85,99,0.4)'; this.style.boxShadow='none'"
                        placeholder="0x...">
+                <p style="color: #6b7280; font-size: 12px; margin: 6px 0 0 0;">For future airdrops and rewards</p>
             </div>
 
             <!-- Telegram Field -->
             <div>
-                <label style="display: block; color: #d1d5db; font-size: 13px; margin-bottom: 8px; font-weight: 600;">
-                    Telegram Username <span style="color: #6b7280; font-weight: 400;">(Optional)</span>
+                <label style="display: block; color: #e5e7eb; font-size: 14px; margin-bottom: 8px; font-weight: 600;">
+                    Telegram Username <span style="color: #6b7280; font-weight: 400; font-size: 13px;">(Optional)</span>
                 </label>
                 <input type="text" name="telegram" 
-                       style="width: 100%; padding: 14px 16px; background: rgba(17,24,39,0.6); border: 1px solid rgba(75,85,99,0.4); border-radius: 10px; color: #ffffff; font-size: 15px; outline: none; transition: all 0.3s; box-sizing: border-box;"
-                       onfocus="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 0 0 3px rgba(245,158,11,0.1)'"
+                       style="width: 100%; padding: 16px; background: rgba(17,24,39,0.7); border: 1px solid rgba(75,85,99,0.4); border-radius: 12px; color: #ffffff; font-size: 16px; outline: none; transition: all 0.3s; box-sizing: border-box;"
+                       onfocus="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 0 0 4px rgba(245,158,11,0.1)'"
                        onblur="this.style.borderColor='rgba(75,85,99,0.4)'; this.style.boxShadow='none'"
                        placeholder="@username">
             </div>
 
+            <!-- Hidden Subject -->
+            <input type="hidden" name="_subject" value="🚀 New AiRP Whitelist Application">
+
             <!-- Submit Button -->
-            <button type="submit" 
-                    style="margin-top: 10px; padding: 16px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 10px; color: #0a0c10; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 15px rgba(245,158,11,0.3);"
-                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(245,158,11,0.4)'"
-                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 15px rgba(245,158,11,0.3)'">
-                Submit Application
+            <button type="submit" id="submit-btn"
+                    style="margin-top: 8px; padding: 18px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 12px; color: #0a0c10; font-weight: 700; font-size: 17px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 20px rgba(245,158,11,0.25); position: relative; overflow: hidden;"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 30px rgba(245,158,11,0.4)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(245,158,11,0.25)'">
+                <span style="position: relative; z-index: 1;">Submit Application</span>
             </button>
 
-            <p style="color: #6b7280; font-size: 12px; text-align: center; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 6px;">
-                <span style="font-size: 14px;">🔒</span> Your information is secure and will not be shared
+            <p style="color: #6b7280; font-size: 12px; text-align: center; margin: 4px 0 0 0; display: flex; align-items: center; justify-content: center; gap: 6px;">
+                <span style="color: #22c55e; font-size: 14px;">🔒</span> Your data is encrypted and secure
             </p>
         </form>
 
-        <!-- Success Message (Hidden by default) -->
-        <div id="whitelist-success" style="display: none; text-align: center; padding: 20px 0;">
-            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, rgba(34,197,94,0.2), rgba(34,197,94,0.05)); border: 2px solid rgba(34,197,94,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 40px; animation: scaleIn 0.5s ease;">✓</div>
-            <h3 style="color: #ffffff; font-size: 24px; margin-bottom: 12px; font-weight: 700;">Application Submitted!</h3>
-            <p style="color: #9ca3af; font-size: 15px; line-height: 1.6; margin-bottom: 24px;">
-                Thank you for joining the AiRP whitelist. We'll contact you soon with early access details.
+        <!-- Loading State -->
+        <div id="form-loading" style="display: none; text-align: center; padding: 40px 0;">
+            <div style="width: 50px; height: 50px; border: 3px solid rgba(245,158,11,0.2); border-top-color: #f59e0b; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px;"></div>
+            <p style="color: #d1d5db; font-size: 16px; font-weight: 500;">Sending your application...</p>
+        </div>
+
+        <!-- Success Message -->
+        <div id="form-success" style="display: none; text-align: center; padding: 20px 0;">
+            <div style="width: 90px; height: 90px; background: linear-gradient(135deg, rgba(34,197,94,0.15), rgba(34,197,94,0.05)); border: 2px solid rgba(34,197,94,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; font-size: 48px; animation: scaleIn 0.5s ease; box-shadow: 0 12px 40px rgba(34,197,94,0.2);">✓</div>
+            <h3 style="color: #ffffff; font-size: 26px; margin-bottom: 12px; font-weight: 700;">You're on the List! 🎉</h3>
+            <p style="color: #9ca3af; font-size: 15px; line-height: 1.7; margin-bottom: 28px;">
+                Thank you for joining the AIRP whitelist. You'll receive early access details via email before the public announcement.
             </p>
             <button type="button" onclick="closeWhitelistPopup()" 
-                    style="padding: 14px 32px; background: rgba(75,85,99,0.3); border: 1px solid rgba(75,85,99,0.4); border-radius: 10px; color: #ffffff; font-weight: 600; cursor: pointer; transition: all 0.3s;"
-                    onmouseover="this.style.background='rgba(245,158,11,0.2)'; this.style.borderColor='rgba(245,158,11,0.4)'"
-                    onmouseout="this.style.background='rgba(75,85,99,0.3)'; this.style.borderColor='rgba(75,85,99,0.4)'">
-                Close
+                    style="padding: 16px 40px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 12px; color: #0a0c10; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s; box-shadow: 0 4px 20px rgba(245,158,11,0.25);"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 30px rgba(245,158,11,0.35)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 4px 20px rgba(245,158,11,0.25)'">
+                Awesome, Thanks!
+            </button>
+        </div>
+
+        <!-- Error Message -->
+        <div id="form-error" style="display: none; text-align: center; padding: 20px 0;">
+            <div style="width: 70px; height: 70px; background: linear-gradient(135deg, rgba(239,68,68,0.15), rgba(239,68,68,0.05)); border: 2px solid rgba(239,68,68,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 36px;">⚠️</div>
+            <h3 style="color: #ffffff; font-size: 22px; margin-bottom: 10px; font-weight: 700;">Oops! Something went wrong</h3>
+            <p style="color: #9ca3af; font-size: 14px; margin-bottom: 24px;">Please try again or contact us directly.</p>
+            <button type="button" onclick="resetForm()" 
+                    style="padding: 14px 32px; background: rgba(75,85,99,0.3); border: 1px solid rgba(75,85,99,0.4); border-radius: 10px; color: #ffffff; font-weight: 600; cursor: pointer; transition: all 0.3s; margin-right: 12px;"
+                    onmouseover="this.style.background='rgba(75,85,99,0.5)'">
+                Try Again
             </button>
         </div>
     </div>
 </div>
 
-<!-- JavaScript for Popup -->
-<script>
-    // Open popup
-    function openWhitelistPopup() {
-        const popup = document.getElementById('whitelist-popup');
-        popup.style.display = 'flex';
-        document.body.style.overflow = 'hidden'; // Prevent background scrolling
-    }
-
-    // Close popup
-    function closeWhitelistPopup() {
-        const popup = document.getElementById('whitelist-popup');
-        popup.style.display = 'none';
-        document.body.style.overflow = ''; // Restore scrolling
-        
-        // Reset form after closing
-        setTimeout(() => {
-            document.getElementById('whitelist-form').reset();
-            document.getElementById('whitelist-form').style.display = 'flex';
-            document.getElementById('whitelist-success').style.display = 'none';
-        }, 300);
-    }
-
-    // Close on background click
-    document.getElementById('whitelist-popup').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeWhitelistPopup();
-        }
-    });
-
-    // Close on Escape key
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeWhitelistPopup();
-        }
-    });
-
-    // Handle form submission success
-    document.getElementById('whitelist-form').addEventListener('submit', function(e) {
-        // Show success message after short delay (FormSubmit yönlendirmeden önce)
-        setTimeout(() => {
-            this.style.display = 'none';
-            document.getElementById('whitelist-success').style.display = 'block';
-        }, 500);
-    });
-</script>
-
+<!-- Animations -->
 <style>
+    @keyframes slideUp {
+        from { transform: translateY(30px); opacity: 0; }
+        to { transform: translateY(0); opacity: 1; }
+    }
     @keyframes scaleIn {
         0% { transform: scale(0); opacity: 0; }
         50% { transform: scale(1.1); }
         100% { transform: scale(1); opacity: 1; }
     }
+    @keyframes spin {
+        to { transform: rotate(360deg); }
+    }
 </style>
+
+<!-- JavaScript -->
+<script>
+    // Popup Controls
+    function openWhitelistPopup() {
+        const popup = document.getElementById('whitelist-popup');
+        popup.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        
+        // Focus email input
+        setTimeout(() => {
+            popup.querySelector('input[type="email"]').focus();
+        }, 100);
+    }
+
+    function closeWhitelistPopup() {
+        const popup = document.getElementById('whitelist-popup');
+        popup.style.display = 'none';
+        document.body.style.overflow = '';
+        
+        // Reset after animation
+        setTimeout(resetForm, 300);
+    }
+
+    function resetForm() {
+        document.getElementById('whitelist-form').reset();
+        document.getElementById('whitelist-form').style.display = 'flex';
+        document.getElementById('form-loading').style.display = 'none';
+        document.getElementById('form-success').style.display = 'none';
+        document.getElementById('form-error').style.display = 'none';
+        document.getElementById('submit-btn').disabled = false;
+        document.getElementById('submit-btn').innerHTML = '<span style="position: relative; z-index: 1;">Submit Application</span>';
+    }
+
+    // Close on background click
+    document.getElementById('whitelist-popup').addEventListener('click', function(e) {
+        if (e.target === this) closeWhitelistPopup();
+    });
+
+    // Close on Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeWhitelistPopup();
+    });
+
+    // Form Submission Handler
+    document.getElementById('whitelist-form').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const form = this;
+        const submitBtn = document.getElementById('submit-btn');
+        const loading = document.getElementById('form-loading');
+        const success = document.getElementById('form-success');
+        const error = document.getElementById('form-error');
+        
+        // Show loading
+        form.style.display = 'none';
+        loading.style.display = 'block';
+        submitBtn.disabled = true;
+        
+        try {
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+            
+            loading.style.display = 'none';
+            
+            if (response.ok) {
+                success.style.display = 'block';
+                // Formspree success tracking
+                if (window.gtag) {
+                    gtag('event', 'whitelist_signup', {
+                        'event_category': 'engagement',
+                        'event_label': 'Formspree Form'
+                    });
+                }
+            } else {
+                throw new Error('Form submission failed');
+            }
+        } catch (err) {
+            loading.style.display = 'none';
+            error.style.display = 'block';
+            console.error('Form error:', err);
+        }
+    });
+</script>
 <!-- ==================== END POPUP MODAL ==================== -->
     <!-- Roadmap Section -->
     <section id="roadmap" class="py-32 relative overflow-hidden">
