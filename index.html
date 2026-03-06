@@ -923,50 +923,86 @@
             </div>
         </div>
 
-        <!-- CTA Section -->
-        <div style="text-align: center; margin-top: 70px; padding: 40px; background: rgba(17, 24, 39, 0.4); border: 1px solid rgba(75, 85, 99, 0.2); border-radius: 24px; backdrop-filter: blur(10px);">
-            <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px;">
-                <span style="width: 40px; height: 2px; background: linear-gradient(90deg, transparent, #f59e0b);"></span>
-                <span style="color: #f59e0b; font-size: 24px;">📢</span>
-                <span style="width: 40px; height: 2px; background: linear-gradient(90deg, #f59e0b, transparent);"></span>
-            </div>
-            <p style="color: #d1d5db; font-size: 18px; margin-bottom: 28px; font-weight: 500;">
-                Be the first to know when listings go live
-            </p>
-            <button onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})" 
-                    style="padding: 18px 48px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 12px; color: #0a0c10; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.25); text-transform: uppercase; letter-spacing: 1px;"
-                    onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 40px rgba(245, 158, 11, 0.35)'"
-                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(245, 158, 11, 0.25)'">
-                Join Whitelist →
-            </button>
-        </div>
+        <!-- CTA Section - Popup Form Version -->
+<div style="text-align: center; margin-top: 70px; padding: 40px; background: rgba(17, 24, 39, 0.4); border: 1px solid rgba(75, 85, 99, 0.2); border-radius: 24px; backdrop-filter: blur(10px);">
+    <div style="display: inline-flex; align-items: center; gap: 12px; margin-bottom: 20px;">
+        <span style="width: 40px; height: 2px; background: linear-gradient(90deg, transparent, #f59e0b);"></span>
+        <span style="color: #f59e0b; font-size: 24px;">📢</span>
+        <span style="width: 40px; height: 2px; background: linear-gradient(90deg, #f59e0b, transparent);"></span>
     </div>
+    <p style="color: #d1d5db; font-size: 18px; margin-bottom: 28px; font-weight: 500;">
+        Be the first to know when listings go live
+    </p>
+    <button onclick="document.getElementById('whitelist-popup').style.display='flex'" 
+            style="padding: 18px 48px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 12px; color: #0a0c10; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(245, 158, 11, 0.25); text-transform: uppercase; letter-spacing: 1px;"
+            onmouseover="this.style.transform='translateY(-3px)'; this.style.boxShadow='0 15px 40px rgba(245, 158, 11, 0.35)'"
+            onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 30px rgba(245, 158, 11, 0.25)'">
+        Join Whitelist →
+    </button>
+</div>
 
-    <!-- CSS Animations -->
-    <style>
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.6; transform: scale(1.1); }
-        }
-        .partners-track-1 {
-            animation: scroll 40s linear infinite;
-        }
-        .partners-track-1:hover {
-            animation-play-state: paused;
-        }
-        .partner-card:hover {
-            background: rgba(245, 158, 11, 0.08) !important;
-            border-color: rgba(245, 158, 11, 0.4) !important;
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(245, 158, 11, 0.15), 0 0 0 1px rgba(245, 158, 11, 0.2);
-        }
-    </style>
-</section>
-<!-- ==================== END PARTNERS SECTION ==================== -->
+<!-- Popup Modal -->
+<div id="whitelist-popup" style="display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.8); z-index: 9999; align-items: center; justify-content: center; backdrop-filter: blur(5px);">
+    <div style="background: linear-gradient(180deg, #111827 0%, #0a0c10 100%); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 24px; padding: 40px; max-width: 420px; width: 90%; position: relative; box-shadow: 0 25px 50px rgba(0,0,0,0.5);">
+        
+        <!-- Close Button -->
+        <button onclick="document.getElementById('whitelist-popup').style.display='none'" 
+                style="position: absolute; top: 20px; right: 20px; background: none; border: none; color: #6b7280; font-size: 24px; cursor: pointer; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 50%; transition: all 0.3s;"
+                onmouseover="this.style.background='rgba(245,158,11,0.1)'; this.style.color='#f59e0b'"
+                onmouseout="this.style.background='none'; this.style.color='#6b7280'">×</button>
+        
+        <div style="text-align: center; margin-bottom: 30px;">
+            <div style="width: 60px; height: 60px; background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.05)); border: 1px solid rgba(245,158,11,0.3); border-radius: 16px; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 28px;">✉️</div>
+            <h3 style="color: #ffffff; font-size: 24px; margin-bottom: 8px; font-weight: 700;">Join Whitelist</h3>
+            <p style="color: #9ca3af; font-size: 14px;">Get early access to $AIRP presale</p>
+        </div>
+
+        <form action="https://formsubmit.co/contact@airpglobal.com" method="POST" style="display: flex; flex-direction: column; gap: 16px;">
+            <!-- FormSubmit ayarları -->
+            <input type="hidden" name="_subject" value="New Whitelist Application - AiRP">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="_template" value="table">
+            
+            <div>
+                <label style="display: block; color: #d1d5db; font-size: 13px; margin-bottom: 6px; font-weight: 500;">Email Address *</label>
+                <input type="email" name="email" required 
+                       style="width: 100%; padding: 14px 16px; background: rgba(17,24,39,0.6); border: 1px solid rgba(75,85,99,0.4); border-radius: 10px; color: #ffffff; font-size: 15px; outline: none; transition: all 0.3s; box-sizing: border-box;"
+                       onfocus="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 0 0 3px rgba(245,158,11,0.1)'"
+                       onblur="this.style.borderColor='rgba(75,85,99,0.4)'; this.style.boxShadow='none'"
+                       placeholder="contact@airpglobal.com">
+            </div>
+
+            <div>
+                <label style="display: block; color: #d1d5db; font-size: 13px; margin-bottom: 6px; font-weight: 500;">BSC Wallet Address</label>
+                <input type="text" name="wallet" 
+                       style="width: 100%; padding: 14px 16px; background: rgba(17,24,39,0.6); border: 1px solid rgba(75,85,99,0.4); border-radius: 10px; color: #ffffff; font-size: 15px; outline: none; transition: all 0.3s; box-sizing: border-box;"
+                       onfocus="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 0 0 3px rgba(245,158,11,0.1)'"
+                       onblur="this.style.borderColor='rgba(75,85,99,0.4)'; this.style.boxShadow='none'"
+                       placeholder="0x...">
+            </div>
+
+            <div>
+                <label style="display: block; color: #d1d5db; font-size: 13px; margin-bottom: 6px; font-weight: 500;">Telegram Username (Optional)</label>
+                <input type="text" name="telegram" 
+                       style="width: 100%; padding: 14px 16px; background: rgba(17,24,39,0.6); border: 1px solid rgba(75,85,99,0.4); border-radius: 10px; color: #ffffff; font-size: 15px; outline: none; transition: all 0.3s; box-sizing: border-box;"
+                       onfocus="this.style.borderColor='#f59e0b'; this.style.boxShadow='0 0 0 3px rgba(245,158,11,0.1)'"
+                       onblur="this.style.borderColor='rgba(75,85,99,0.4)'; this.style.boxShadow='none'"
+                       placeholder="@username">
+            </div>
+
+            <button type="submit" 
+                    style="margin-top: 10px; padding: 16px; background: linear-gradient(135deg, #f59e0b, #d97706); border: none; border-radius: 10px; color: #0a0c10; font-weight: 700; font-size: 16px; cursor: pointer; transition: all 0.3s; text-transform: uppercase; letter-spacing: 0.5px;"
+                    onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 10px 25px rgba(245,158,11,0.3)'"
+                    onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='none'">
+                Submit Application
+            </button>
+
+            <p style="color: #6b7280; font-size: 12px; text-align: center; margin-top: 10px;">
+                🔒 Your information is secure and will not be shared
+            </p>
+        </form>
+    </div>
+</div>
 
     <div class="section-divider"></div>
 
