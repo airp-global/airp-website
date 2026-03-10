@@ -1,0 +1,1752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AIRP Global | Institutional-Grade Airport Infrastructure Token</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://unpkg.com/@wagmi/core@1.4.13/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/viem@1.21.4/dist/index.umd.js"></script>
+    <script src="https://unpkg.com/@web3modal/html@3.5.7/dist/index.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                    },
+                    colors: {
+                        amber: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        },
+                        electric: {
+                            blue: '#00d4ff',
+                            purple: '#7c3aed',
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 6s ease-in-out 3s infinite',
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'shimmer': 'shimmer 2s linear infinite',
+                        'typing': 'typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        },
+                        shimmer: {
+                            '0%': { backgroundPosition: '-200% 0' },
+                            '100%': { backgroundPosition: '200% 0' },
+                        },
+                        typing: {
+                            'from': { width: '0' },
+                            'to': { width: '100%' }
+                        },
+                        'blink-caret': {
+                            'from, to': { borderColor: 'transparent' },
+                            '50%': { borderColor': '#f59e0b' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #0f172a;
+            overflow-x: hidden;
+        }
+        
+        /* Particle Background */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        /* Gradient Text */
+        .gradient-text {
+            background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #00d4ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .gradient-text-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #b45309 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Glassmorphism */
+        .glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+        
+        /* Gold Shimmer Effect */
+        .gold-shimmer {
+            background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 25%, #fff 50%, #fbbf24 75%, #f59e0b 100%);
+            background-size: 200% auto;
+            animation: shimmer 3s linear infinite;
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #f59e0b;
+            border-radius: 5px;
+        }
+        
+        /* 3D Airplane Animation */
+        .airplane-container {
+            perspective: 1000px;
+        }
+        
+        .airplane-3d {
+            transform-style: preserve-3d;
+            animation: fly 20s ease-in-out infinite;
+        }
+        
+        @keyframes fly {
+            0%, 100% { transform: translateX(-100px) translateY(0) rotateY(0deg); }
+            25% { transform: translateX(0) translateY(-30px) rotateY(5deg); }
+            50% { transform: translateX(100px) translateY(0) rotateY(0deg); }
+            75% { transform: translateX(0) translateY(30px) rotateY(-5deg); }
+        }
+        
+        /* Typing Effect Container */
+        .typing-container {
+            overflow: hidden;
+            border-right: 3px solid #f59e0b;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+        
+        /* Reveal on Scroll */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Gradient Border */
+        .gradient-border {
+            position: relative;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            border-radius: 16px;
+        }
+        
+        .gradient-border::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: linear-gradient(135deg, #f59e0b, #00d4ff, #f59e0b);
+            border-radius: 16px;
+            z-index: -1;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .gradient-border:hover::before {
+            opacity: 1;
+        }
+        
+        /* Countdown Timer */
+        .countdown-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(0, 212, 255, 0.2) 100%);
+            border: 1px solid rgba(245, 158, 11, 0.5);
+        }
+        
+        /* Chart Container */
+        .chart-container {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+        
+        /* Social Icons Hover */
+        .social-icon {
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            transform: translateY(-5px);
+            color: #f59e0b;
+            filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.5));
+        }
+        
+        /* Button Glow */
+        .btn-glow {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn-glow::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+        
+        .btn-glow:hover::before {
+            left: 100%;
+        }
+        
+        /* Floating Elements */
+        .floating-card {
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .floating-card-delayed {
+            animation: float 6s ease-in-out 3s infinite;
+        }
+        
+        /* Presale Panel Styles */
+        .animate-shimmer {
+            animation: shimmer 2s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+        
+        .countdown-box {
+            transition: all 0.3s ease;
+        }
+        
+        .countdown-box:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(245, 158, 11, 0.2);
+        }
+        
+        #progressBar {
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.5);
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; transform: translateY(0); }
+            to { opacity: 0; transform: translateY(10px); }
+        }
+    </style>
+</head>
+<body class="text-white relative">
+
+    <!-- Particle Background -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center">
+                    <img src="https://raw.githubusercontent.com/airp-global/airp-website/main/logo.png" alt="AIRP Logo" class="w-10 h-10 mr-3 rounded-full">
+                    <div class="text-3xl font-bold gradient-text">AIRP</div>
+                    <span class="ml-2 text-sm text-gray-400">Global</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="hover:text-amber-400 transition">About</a>
+                    <a href="#tokenomics" class="hover:text-amber-400 transition">Tokenomics</a>
+                    <a href="#roadmap" class="hover:text-amber-400 transition">Roadmap</a>
+                    <a href="#presale" class="hover:text-amber-400 transition">Presale</a>
+                    <a href="#whitepaper" class="hover:text-amber-400 transition">Whitepaper</a>
+                </div>
+
+                <div class="flex items-center space-x-4">
+                    <!-- Social Icons -->
+                    <a href="https://twitter.com/airpglobal" target="_blank" class="social-icon text-xl">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="https://t.me/airpglobal" target="_blank" class="social-icon text-xl">
+                        <i class="fab fa-telegram"></i>
+                    </a>
+                    <a href="https://www.instagram.com/airpglobal" target="_blank" class="social-icon text-xl">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    
+                    <button onclick="openWhitelistModal()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                        Join Whitelist
+                    </button>
+                    
+                    <button onclick="connectWallet()" class="glass text-white font-semibold py-2 px-6 rounded-full hover:bg-white/10 transition border border-white/20">
+                        <i class="fas fa-wallet mr-2"></i>Connect
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-amber-500/10 via-transparent to-blue-500/10 pointer-events-none"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Content -->
+                <div class="space-y-8">
+                    <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full border border-amber-500/30">
+                        <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                        <span class="text-sm text-amber-400">BSC Network</span>
+                    </div>
+                    
+                    <h1 class="text-5xl md:text-7xl font-bold leading-tight">
+                        <span class="gradient-text typing-container">Powering the</span><br>
+                        <span class="text-white">Global Airport</span><br>
+                        <span class="gradient-text-gold">Economy</span>
+                    </h1>
+                    
+                    <p class="text-xl text-gray-300 max-w-lg leading-relaxed">
+                        Institutional-grade blockchain infrastructure for airport commerce.
+                        Seamless payments, unified loyalty, and on-chain settlement.
+                    </p>
+                    
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="openWhitelistModal()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-4 px-8 rounded-full transition transform hover:scale-105 shadow-lg shadow-amber-500/50 text-lg">
+                            <i class="fas fa-rocket mr-2"></i>Join Whitelist
+                        </button>
+                        
+                        <button onclick="openBuyModal()" class="glass text-white font-bold py-4 px-8 rounded-full hover:bg-white/10 transition border border-white/30 text-lg flex items-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>Buy Token
+                        </button>
+                        
+                        <a href="#whitepaper" class="glass text-white font-bold py-4 px-8 rounded-full hover:bg-white/10 transition border border-white/30 text-lg flex items-center">
+                            <i class="fas fa-file-alt mr-2"></i>Whitepaper
+                        </a>
+                    </div>
+                    
+                    <!-- Social Proof -->
+                    <div class="flex items-center space-x-6 pt-4">
+                        <div class="flex items-center space-x-2">
+                            <i class="fab fa-twitter text-amber-400"></i>
+                            <span class="text-sm"><span class="font-bold text-white">Coming Soon</span> Followers</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fab fa-telegram text-amber-400"></i>
+                            <span class="text-sm"><span class="font-bold text-white">Coming Soon</span> Members</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-users text-amber-400"></i>
+                            <span class="text-sm"><span class="font-bold text-white">Coming Soon</span> Community</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Right Content - 3D Visual -->
+                <div class="relative airplane-container hidden lg:block">
+                    <!-- Floating Cards -->
+                    <div class="absolute -top-10 -left-10 glass-card p-4 rounded-2xl floating-card z-20">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-plane text-black"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400">Transactions</div>
+                                <div class="text-lg font-bold gradient-text">100K+</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="absolute -bottom-5 -right-5 glass-card p-4 rounded-2xl floating-card-delayed z-20">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <div>
+                                <div class="text-xs text-gray-400">Security</div>
+                                <div class="text-lg font-bold text-blue-400">Audited</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 3D Airplane SVG -->
+                    <div class="airplane-3d relative">
+                        <svg viewBox="0 0 400 300" class="w-full h-auto drop-shadow-2xl">
+                            <defs>
+                                <linearGradient id="planeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#fbbf24;stop-opacity:1" />
+                                    <stop offset="50%" style="stop-color:#f59e0b;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00d4ff;stop-opacity:1" />
+                                </linearGradient>
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+                            
+                            <!-- Airplane Body -->
+                            <path d="M50 150 Q100 120 200 130 T350 150 L340 160 Q200 150 100 160 Z" fill="url(#planeGradient)" filter="url(#glow)" opacity="0.9"/>
+                            <!-- Wings -->
+                            <path d="M150 140 L180 80 L220 85 L200 145 Z" fill="#f59e0b" opacity="0.8"/>
+                            <path d="M160 160 L140 220 L180 225 L200 165 Z" fill="#f59e0b" opacity="0.8"/>
+                            <!-- Tail -->
+                            <path d="M60 140 L40 100 L80 105 L90 145 Z" fill="#00d4ff" opacity="0.8"/>
+                            <!-- Windows -->
+                            <circle cx="120" cy="145" r="3" fill="white" opacity="0.8"/>
+                            <circle cx="140" cy="145" r="3" fill="white" opacity="0.8"/>
+                            <circle cx="160" cy="145" r="3" fill="white" opacity="0.8"/>
+                            <circle cx="180" cy="145" r="3" fill="white" opacity="0.8"/>
+                            <!-- Motion Lines -->
+                            <path d="M20 150 L5 150" stroke="#f59e0b" stroke-width="2" opacity="0.6"/>
+                            <path d="M30 140 L10 135" stroke="#f59e0b" stroke-width="2" opacity="0.6"/>
+                            <path d="M30 160 L10 165" stroke="#f59e0b" stroke-width="2" opacity="0.6"/>
+                        </svg>
+                    </div>
+                    
+                    <!-- Decorative Elements -->
+                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/20 rounded-full blur-3xl -z-10 animate-pulse-slow"></div>
+                    <div class="absolute top-1/3 right-0 w-64 h-64 bg-blue-500/20 rounded-full blur-3xl -z-10 animate-pulse-slow" style="animation-delay: 2s;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-amber-400 text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 md:p-12 text-center reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Presale Launching Soon</h2>
+                <p class="text-gray-400 mb-8">Limited allocation of 15% total supply. Don't miss out!</p>
+                
+                <div class="grid grid-cols-4 gap-4 max-w-2xl mx-auto mb-8">
+                    <div class="countdown-box rounded-xl p-4">
+                        <div id="days" class="text-3xl md:text-5xl font-bold text-white">00</div>
+                        <div class="text-xs text-gray-400 mt-1">Days</div>
+                    </div>
+                    <div class="countdown-box rounded-xl p-4">
+                        <div id="hours" class="text-3xl md:text-5xl font-bold text-white">00</div>
+                        <div class="text-xs text-gray-400 mt-1">Hours</div>
+                    </div>
+                    <div class="countdown-box rounded-xl p-4">
+                        <div id="minutes" class="text-3xl md:text-5xl font-bold text-white">00</div>
+                        <div class="text-xs text-gray-400 mt-1">Minutes</div>
+                    </div>
+                    <div class="countdown-box rounded-xl p-4">
+                        <div id="seconds" class="text-3xl md:text-5xl font-bold text-amber-400">00</div>
+                        <div class="text-xs text-gray-400 mt-1">Seconds</div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-center space-x-4">
+                    <button onclick="openWhitelistModal()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
+                        Get Early Access
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Presale Dashboard Section -->
+    <section id="presale" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-8 items-stretch">
+                <!-- Left Content - Presale Info -->
+                <div class="reveal">
+                    <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full border border-blue-500/30 mb-6">
+                        <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+                        <span class="text-sm text-blue-400 font-semibold">Coming Soon</span>
+                    </div>
+                    
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">$AIRP Presale</h2>
+                    <p class="text-gray-300 mb-8 text-lg">
+                        Join the future of airport commerce infrastructure. 
+                        Limited allocation available at exclusive presale price.
+                    </p>
+                    
+                    <!-- Price Cards -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="glass-card p-5 rounded-xl border border-amber-500/20">
+                            <div class="text-sm text-gray-400 mb-1">Presale Price</div>
+                            <div class="text-3xl font-bold text-white">$0.005</div>
+                            <div class="text-xs text-green-400 mt-1">60% Discount</div>
+                        </div>
+                        <div class="glass-card p-5 rounded-xl border border-blue-500/20">
+                            <div class="text-sm text-gray-400 mb-1">Listing Price</div>
+                            <div class="text-3xl font-bold text-white">$0.008</div>
+                            <div class="text-xs text-blue-400 mt-1">Launch Price</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Min/Max Buy -->
+                    <div class="glass-card rounded-xl p-4 mb-6">
+                        <div class="flex justify-between items-center">
+                            <div class="text-center flex-1 border-r border-white/10">
+                                <div class="text-xs text-gray-400">Minimum Buy</div>
+                                <div class="text-lg font-bold text-amber-400">$50</div>
+                            </div>
+                            <div class="text-center flex-1">
+                                <div class="text-xs text-gray-400">Maximum Buy</div>
+                                <div class="text-lg font-bold text-amber-400">$5,000</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Buttons -->
+                    <div class="flex flex-wrap gap-4">
+                        <button onclick="openWhitelistModal()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-4 px-8 rounded-full transition transform hover:scale-105 shadow-lg shadow-amber-500/50 text-lg flex items-center">
+                            <i class="fas fa-rocket mr-2"></i>Join Whitelist
+                        </button>
+                        <button onclick="openBuyModal()" class="glass text-white font-bold py-4 px-8 rounded-full hover:bg-white/10 transition border border-white/30 text-lg flex items-center">
+                            <i class="fas fa-shopping-cart mr-2"></i>Buy $AIRP
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Right Content - Presale Dashboard -->
+                <div class="glass-card rounded-3xl p-6 md:p-8 reveal border border-blue-500/20 relative overflow-hidden">
+                    <!-- Background Glow -->
+                    <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+                    <div class="absolute bottom-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -z-10"></div>
+                    
+                    <!-- Countdown Timer - Presale Starts In -->
+                    <div class="text-center mb-8">
+                        <h3 class="text-xl font-bold mb-4 text-gray-300">Presale Starts In</h3>
+                        <div class="grid grid-cols-4 gap-3">
+                            <div class="countdown-box rounded-xl p-3 bg-gradient-to-b from-blue-500/20 to-blue-600/10 border border-blue-500/30">
+                                <div id="presaleDays" class="text-2xl md:text-3xl font-bold text-white">00</div>
+                                <div class="text-xs text-gray-400 mt-1">Days</div>
+                            </div>
+                            <div class="countdown-box rounded-xl p-3 bg-gradient-to-b from-blue-500/20 to-blue-600/10 border border-blue-500/30">
+                                <div id="presaleHours" class="text-2xl md:text-3xl font-bold text-white">00</div>
+                                <div class="text-xs text-gray-400 mt-1">Hours</div>
+                            </div>
+                            <div class="countdown-box rounded-xl p-3 bg-gradient-to-b from-blue-500/20 to-blue-600/10 border border-blue-500/30">
+                                <div id="presaleMinutes" class="text-2xl md:text-3xl font-bold text-white">00</div>
+                                <div class="text-xs text-gray-400 mt-1">Minutes</div>
+                            </div>
+                            <div class="countdown-box rounded-xl p-3 bg-gradient-to-b from-blue-500/20 to-blue-600/10 border border-blue-500/30">
+                                <div id="presaleSeconds" class="text-2xl md:text-3xl font-bold text-blue-400">00</div>
+                                <div class="text-xs text-gray-400 mt-1">Seconds</div>
+                            </div>
+                        </div>
+                        <div class="mt-4 text-sm text-blue-400">
+                            <i class="far fa-calendar-alt mr-2"></i>Starting April 15, 2026
+                        </div>
+                    </div>
+                    
+                    <!-- Progress Section -->
+                    <div class="mb-6">
+                        <div class="flex justify-between items-end mb-3">
+                            <div>
+                                <div class="text-sm text-gray-400">Total Allocation</div>
+                                <div class="text-2xl font-bold gradient-text">150,000,000 <span class="text-lg">AIRP</span></div>
+                            </div>
+                            <div class="text-right">
+                                <div class="text-sm text-gray-400">Target Raise</div>
+                                <div class="text-xl font-bold text-white">$750,000</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Progress Bar -->
+                        <div class="relative h-4 bg-white/10 rounded-full overflow-hidden">
+                            <div id="progressBar" class="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500 rounded-full transition-all duration-1000 ease-out" style="width: 0%;">
+                                <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between mt-2">
+                            <span class="text-sm text-blue-400 font-semibold"><span id="progressPercent">0</span>% Sold</span>
+                            <span class="text-sm text-gray-400"><span id="remainingAmount">150,000,000</span> AIRP available</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Token Stats Grid -->
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="glass rounded-xl p-4 border border-white/10">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i class="fas fa-coins text-blue-400 text-sm"></i>
+                                <span class="text-xs text-gray-400">Tokens Sold</span>
+                            </div>
+                            <div class="text-xl font-bold text-white"><span id="tokensSold">0</span></div>
+                            <div class="text-xs text-gray-500">AIRP</div>
+                        </div>
+                        <div class="glass rounded-xl p-4 border border-white/10">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i class="fas fa-wallet text-blue-400 text-sm"></i>
+                                <span class="text-xs text-gray-400">Available</span>
+                            </div>
+                            <div class="text-xl font-bold text-white"><span id="tokensLeft">150,000,000</span></div>
+                            <div class="text-xs text-gray-500">AIRP</div>
+                        </div>
+                        <div class="glass rounded-xl p-4 border border-white/10">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i class="fas fa-users text-blue-400 text-sm"></i>
+                                <span class="text-xs text-gray-400">Participants</span>
+                            </div>
+                            <div class="text-xl font-bold text-white" id="participants">0</div>
+                            <div class="text-xs text-gray-500">waiting</div>
+                        </div>
+                        <div class="glass rounded-xl p-4 border border-white/10">
+                            <div class="flex items-center space-x-2 mb-2">
+                                <i class="fas fa-chart-line text-blue-400 text-sm"></i>
+                                <span class="text-xs text-gray-400">Status</span>
+                            </div>
+                            <div class="text-xl font-bold text-blue-400">Upcoming</div>
+                            <div class="text-xs text-gray-500">presale</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Contract Address -->
+                    <div class="glass rounded-xl p-3 border border-amber-500/20">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-file-contract text-amber-400"></i>
+                                <span class="text-xs text-gray-400">Contract:</span>
+                                <span class="font-mono text-xs text-amber-400 truncate max-w-[120px]">TGE Soon</span>
+                            </div>
+                            <button onclick="copyContract()" class="text-xs text-gray-400 hover:text-amber-400 transition">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!-- Tokenomics Section -->
+<section id="tokenomics" class="py-20 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Token Economics</h2>
+            <p class="text-gray-400 max-w-2xl mx-auto">
+                Fixed Supply Cap — No additional tokens will ever be minted. Smart contract enforced.
+            </p>
+            <div class="mt-6 inline-block glass-card px-8 py-4 rounded-2xl">
+                <div class="text-sm text-gray-400 uppercase tracking-wider mb-1">Total Supply</div>
+                <div class="text-4xl md:text-5xl font-bold gradient-text">1,000,000,000 AIRP</div>
+            </div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div class="gradient-border p-6 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="text-amber-400 text-4xl mb-4"><i class="fas fa-coins"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Presale</h3>
+                    <div class="text-3xl font-bold gradient-text mb-2">15%</div>
+                    <div class="text-sm text-gray-500 mb-2">150,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400">Early investor allocation</p>
+                </div>
+            </div>
+            
+            <div class="gradient-border p-6 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="text-blue-400 text-4xl mb-4"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Ecosystem</h3>
+                    <div class="text-3xl font-bold gradient-text mb-2">20%</div>
+                    <div class="text-sm text-gray-500 mb-2">200,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400">Platform development & growth</p>
+                </div>
+            </div>
+            
+            <div class="gradient-border p-6 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="text-green-400 text-4xl mb-4"><i class="fas fa-water"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Liquidity</h3>
+                    <div class="text-3xl font-bold gradient-text mb-2">20%</div>
+                    <div class="text-sm text-gray-500 mb-2">200,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400">DEX/CEX liquidity pools</p>
+                </div>
+            </div>
+            
+            <div class="gradient-border p-6 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="text-pink-400 text-4xl mb-4"><i class="fas fa-bullhorn"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Marketing</h3>
+                    <div class="text-3xl font-bold gradient-text mb-2">15%</div>
+                    <div class="text-sm text-gray-500 mb-2">150,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400">Brand awareness & partnerships</p>
+                </div>
+            </div>
+            
+            <div class="gradient-border p-6 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="text-purple-400 text-4xl mb-4"><i class="fas fa-users"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Team</h3>
+                    <div class="text-3xl font-bold gradient-text mb-2">15%</div>
+                    <div class="text-sm text-gray-500 mb-2">150,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400">Core team & advisors</p>
+                </div>
+            </div>
+            
+            <div class="gradient-border p-6 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="text-indigo-400 text-4xl mb-4"><i class="fas fa-lock"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Staking</h3>
+                    <div class="text-3xl font-bold gradient-text mb-2">10%</div>
+                    <div class="text-sm text-gray-500 mb-2">100,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400">Staking rewards & incentives</p>
+                </div>
+            </div>
+            
+            <div class="gradient-border p-6 rounded-2xl reveal md:col-span-2 lg:col-span-3 max-w-md mx-auto">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="text-yellow-400 text-4xl mb-4"><i class="fas fa-shield-alt"></i></div>
+                    <h3 class="text-xl font-bold mb-2">Reserve</h3>
+                    <div class="text-3xl font-bold gradient-text mb-2">5%</div>
+                    <div class="text-sm text-gray-500 mb-2">50,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400">Emergency fund & future developments</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+            
+            <!-- Contract Address -->
+            <div class="mt-12 glass-card rounded-2xl p-6 max-w-3xl mx-auto reveal">
+                <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <div>
+                        <div class="text-sm text-gray-400 mb-1">Smart Contract Address</div>
+                        <div class="font-mono text-amber-400 text-sm md:text-base break-all">
+                            TGE Soon <span class="text-gray-500">(TGE Soon)</span>
+                        </div>
+                    </div>
+                    <div class="flex space-x-2">
+                        <button onclick="copyAddress()" class="glass px-4 py-2 rounded-lg hover:bg-white/10 transition text-sm">
+                            <i class="fas fa-copy mr-2"></i>Copy
+                        </button>
+                        <a href="https://bscscan.com" target="_blank" class="glass px-4 py-2 rounded-lg hover:bg-white/10 transition text-sm text-amber-400 border-amber-500/30">
+                            <i class="fas fa-external-link-alt mr-2"></i>BscScan
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners & Integrations -->
+    <section class="py-20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Strategic Integrations</h2>
+                <p class="text-gray-400">Partnering with industry leaders</p>
+            </div>
+            
+            <div class="glass-card rounded-2xl p-8 reveal">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center opacity-60">
+                    <div class="flex flex-col items-center space-y-2">
+                        <i class="fas fa-plane-departure text-4xl text-gray-400"></i>
+                        <span class="text-sm font-semibold">Airport Authority</span>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2">
+                        <i class="fab fa-cc-visa text-4xl text-gray-400"></i>
+                        <span class="text-sm font-semibold">Payment Gateway</span>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2">
+                        <i class="fas fa-shield-alt text-4xl text-gray-400"></i>
+                        <span class="text-sm font-semibold">Security Audit</span>
+                    </div>
+                    <div class="flex flex-col items-center space-y-2">
+                        <i class="fas fa-handshake text-4xl text-gray-400"></i>
+                        <span class="text-sm font-semibold">More Soon</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- As Seen On -->
+            <div class="mt-12 text-center reveal">
+                <p class="text-sm text-gray-500 mb-6 uppercase tracking-wider">As Seen On</p>
+                <div class="flex flex-wrap justify-center gap-8 items-center opacity-40">
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-chart-line text-2xl"></i>
+                        <span class="font-bold">CoinMarketCap</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-coins text-2xl"></i>
+                        <span class="font-bold">CoinGecko</span>
+                    </div>
+                    <div class="flex items-center space-x-2">
+                        <i class="fas fa-newspaper text-2xl"></i>
+                        <span class="font-bold">CryptoNews</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap Section -->
+    <section id="roadmap" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">Development Roadmap</h2>
+                <p class="text-gray-400">Our journey to revolutionize airport commerce</p>
+            </div>
+            
+            <div class="relative">
+                <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-amber-500 to-blue-500 hidden md:block"></div>
+                
+                <div class="space-y-12">
+                    <!-- Phase 1 -->
+                    <div class="relative reveal">
+                        <div class="md:flex items-center justify-between">
+                            <div class="md:w-5/12 md:text-right mb-4 md:mb-0">
+                                <div class="glass-card p-6 rounded-2xl inline-block text-left md:text-right">
+                                    <div class="text-amber-400 font-bold mb-2">Q2 2026</div>
+                                    <h3 class="text-xl font-bold mb-2">Phase 1: Foundation</h3>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Smart contract finalization</li>
+                                        <li>Security audit completion</li>
+                                        <li>Community building</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-amber-500 rounded-full border-4 border-slate-900 hidden md:block"></div>
+                            <div class="md:w-5/12"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 2 -->
+                    <div class="relative reveal">
+                        <div class="md:flex items-center justify-between">
+                            <div class="md:w-5/12"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-amber-500 rounded-full border-4 border-slate-900 hidden md:block"></div>
+                            <div class="md:w-5/12 md:text-left mb-4 md:mb-0">
+                                <div class="glass-card p-6 rounded-2xl inline-block">
+                                    <div class="text-amber-400 font-bold mb-2">Q3 2026</div>
+                                    <h3 class="text-xl font-bold mb-2">Phase 2: Launch</h3>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Public presale event</li>
+                                        <li>Token Generation Event</li>
+                                        <li>PancakeSwap listing</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 3 -->
+                    <div class="relative reveal">
+                        <div class="md:flex items-center justify-between">
+                            <div class="md:w-5/12 md:text-right mb-4 md:mb-0">
+                                <div class="glass-card p-6 rounded-2xl inline-block text-left md:text-right">
+                                    <div class="text-amber-400 font-bold mb-2">Q4 2026</div>
+                                    <h3 class="text-xl font-bold mb-2">Phase 3: Expansion</h3>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Live airport operations</li>
+                                        <li>Tier-2 CEX applications</li>
+                                        <li>Performance optimization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-slate-900 hidden md:block"></div>
+                            <div class="md:w-5/12"></div>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 4 -->
+                    <div class="relative reveal">
+                        <div class="md:flex items-center justify-between">
+                            <div class="md:w-5/12"></div>
+                            <div class="absolute left-1/2 transform -translate-x-1/2 w-4 h-4 bg-blue-500 rounded-full border-4 border-slate-900 hidden md:block"></div>
+                            <div class="md:w-5/12 md:text-left mb-4 md:mb-0">
+                                <div class="glass-card p-6 rounded-2xl inline-block">
+                                    <div class="text-blue-400 font-bold mb-2">2027 H1</div>
+                                    <h3 class="text-xl font-bold mb-2">Phase 4: Global</h3>
+                                    <ul class="text-sm text-gray-400 space-y-1">
+                                        <li>Second location pilot</li>
+                                        <li>Tier-1 CEX preparation</li>
+                                        <li>Governance decentralization</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Whitepaper Section -->
+    <section id="whitepaper" class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 md:p-16 text-center reveal relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-blue-500/10"></div>
+                <div class="relative z-10">
+                    <i class="fas fa-file-alt text-6xl text-amber-400 mb-6"></i>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">Read Our Whitepaper</h2>
+                    <p class="text-gray-300 max-w-2xl mx-auto mb-8 text-lg">
+                        Comprehensive documentation of our vision, technology, and tokenomics.
+                        Available in multiple languages.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <a href="/whitepaper.pdf" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-4 px-8 rounded-full transition transform hover:scale-105 inline-flex items-center">
+                            <i class="fas fa-download mr-2"></i>Download PDF
+                        </a>
+                        <button onclick="openWhitepaperModal()" class="glass text-white font-bold py-4 px-8 rounded-full hover:bg-white/10 transition border border-white/30 inline-flex items-center">
+                            <i class="fas fa-eye mr-2"></i>View Online
+                        </button>
+                    </div>
+                    <div class="mt-8 flex justify-center space-x-6 text-sm text-gray-400">
+                        <span><i class="fas fa-check-circle text-green-400 mr-2"></i>Audited</span>
+                        <span><i class="fas fa-check-circle text-green-400 mr-2"></i>Verified</span>
+                        <span><i class="fas fa-check-circle text-green-400 mr-2"></i>Updated Q1 2026</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 relative">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 reveal">
+                <h2 class="text-4xl font-bold mb-4 gradient-text">Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="glass-card rounded-xl overflow-hidden reveal">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">What is AIRP Global?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden px-6 pb-4 text-gray-400">
+                        AIRP Global is a BSC-based utility token building payment and rewards infrastructure for airport commerce. We unify fragmented airport payment systems through blockchain technology.
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-xl overflow-hidden reveal">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">How does the presale work?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden px-6 pb-4 text-gray-400">
+                        The public presale allocates 15% of total supply (150M AIRP) to early supporters. Vesting schedule: 25% at TGE, remaining 75% linear vesting over 4 months.
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-xl overflow-hidden reveal">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">What wallets are supported?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden px-6 pb-4 text-gray-400">
+                        We support MetaMask, Trust Wallet, WalletConnect-compatible wallets, and Binance Chain Wallet. All connections are secured through WalletConnect v2 protocol.
+                    </div>
+                </div>
+                
+                <div class="glass-card rounded-xl overflow-hidden reveal">
+                    <button class="w-full px-6 py-4 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">How is the project secured?</span>
+                        <i class="fas fa-chevron-down transition-transform"></i>
+                    </button>
+                    <div class="hidden px-6 pb-4 text-gray-400">
+                        3/5 multi-signature treasury wallets, 12-month liquidity lock via reputable third-party locker, and immutable smart contract enforced vesting schedules.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="glass-card rounded-3xl p-8 md:p-16 text-center reveal relative overflow-hidden">
+                <div class="absolute inset-0 bg-gradient-to-r from-amber-600/20 to-blue-600/20"></div>
+                <div class="relative z-10">
+                    <h2 class="text-4xl md:text-6xl font-bold mb-6">Ready to Participate?</h2>
+                    <p class="text-xl text-gray-300 max-w-2xl mx-auto mb-8">
+                        Join the future of airport commerce infrastructure. Limited presale allocation available.
+                    </p>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <button onclick="openWhitelistModal()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-4 px-10 rounded-full transition transform hover:scale-105 text-lg shadow-lg shadow-amber-500/50">
+                            <i class="fas fa-rocket mr-2"></i>Join Whitelist Now
+                        </button>
+                        <button onclick="openBuyModal()" class="glass text-white font-bold py-4 px-10 rounded-full hover:bg-white/10 transition border border-white/30 text-lg">
+                            <i class="fas fa-shopping-cart mr-2"></i>Buy Token
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/10 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="https://raw.githubusercontent.com/airp-global/airp-website/main/logo.png" alt="AIRP Logo" class="w-12 h-12 mr-3 rounded-full">
+                        <div class="text-3xl font-bold gradient-text">AIRP</div>
+                    </div>
+                    <p class="text-gray-400 text-sm">
+                        Institutional-grade blockchain infrastructure for the global airport economy.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#about" class="hover:text-amber-400 transition">About</a></li>
+                        <li><a href="#tokenomics" class="hover:text-amber-400 transition">Tokenomics</a></li>
+                        <li><a href="#roadmap" class="hover:text-amber-400 transition">Roadmap</a></li>
+                        <li><a href="#presale" class="hover:text-amber-400 transition">Presale</a></li>
+                        <li><a href="#whitepaper" class="hover:text-amber-400 transition">Whitepaper</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Resources</h4>
+                    <ul class="space-y-2 text-sm text-gray-400">
+                        <li><a href="#" class="hover:text-amber-400 transition">Documentation</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Audit Report</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Brand Kit</a></li>
+                        <li><a href="#" class="hover:text-amber-400 transition">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold mb-4">Community</h4>
+                    <div class="flex space-x-4">
+                        <a href="https://twitter.com/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-amber-400">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="https://t.me/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-amber-400">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://www.instagram.com/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-amber-400">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                    <div class="mt-4 text-sm text-gray-500">
+                        <i class="fas fa-envelope mr-2"></i>contact@airpglobal.com
+                    </div>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-sm text-gray-500">© 2026 AIRP Global. All rights reserved.</p>
+                <div class="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-500">
+                    <a href="#" class="hover:text-white transition">Privacy Policy</a>
+                    <a href="#" class="hover:text-white transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Whitelist Modal -->
+    <div id="whitelistModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeWhitelistModal()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4">
+            <div class="glass-card rounded-2xl p-8 relative">
+                <button onclick="closeWhitelistModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <h3 class="text-2xl font-bold mb-4 gradient-text">Join Whitelist</h3>
+                <p class="text-gray-400 mb-6 text-sm">Get early access to the presale and exclusive bonuses.</p>
+                <form onsubmit="submitWhitelist(event)" class="space-y-4">
+                    <input type="email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500">
+                    <input type="text" placeholder="BSC Wallet Address" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500">
+                    <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-3 rounded-lg hover:from-amber-400 hover:to-amber-500 transition">
+                        Submit Application
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Buy Modal -->
+    <div id="buyModal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeBuyModal()"></div>
+        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4">
+            <div class="glass-card rounded-2xl p-8 relative">
+                <button onclick="closeBuyModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
+                <h3 class="text-2xl font-bold mb-4 gradient-text">Buy $AIRP</h3>
+                <div class="bg-amber-500/20 border border-amber-500/50 rounded-lg p-4 mb-6">
+                    <p class="text-sm text-amber-400 text-center">Presale starts in <span id="modalCountdown">30 days</span></p>
+                </div>
+                <div class="space-y-4">
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Price:</span>
+                        <span class="text-white font-bold">$0.005 per AIRP</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Min Buy:</span>
+                        <span class="text-white font-bold">$50</span>
+                    </div>
+                    <div class="flex justify-between text-sm">
+                        <span class="text-gray-400">Max Buy:</span>
+                        <span class="text-white font-bold">$5.000</span>
+                    </div>
+                    <button onclick="connectWallet()" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-3 rounded-lg hover:from-amber-400 hover:to-amber-500 transition">
+                        <i class="fas fa-wallet mr-2"></i>Connect Wallet to Buy
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Particle Background
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const particles = [];
+        const particleCount = 100;
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+
+            draw() {
+                ctx.fillStyle = `rgba(245, 158, 11, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < particleCount; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+            }
+            
+            // Connect particles
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x;
+                    const dy = particles[i].y - particles[j].y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < 100) {
+                        ctx.beginPath();
+                        ctx.strokeStyle = `rgba(245, 158, 11, ${0.1 * (1 - distance/100)})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+            
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        // Countdown Timer
+        function updateCountdown() {
+            const launchDate = new Date();
+            launchDate.setDate(launchDate.getDate() + 30); // 30 days from now
+            
+            const now = new Date();
+            const diff = launchDate - now;
+            
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            
+            document.getElementById('days').textContent = String(days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+
+        // Presale Countdown Timer - April 15, 2026
+        function initPresaleCountdown() {
+            // Presale starts on April 15, 2026
+            const presaleStartDate = new Date('2026-04-15T00:00:00').getTime();
+            
+            function updatePresaleCountdown() {
+                const now = new Date().getTime();
+                const distance = presaleStartDate - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                const daysEl = document.getElementById('presaleDays');
+                const hoursEl = document.getElementById('presaleHours');
+                const minutesEl = document.getElementById('presaleMinutes');
+                const secondsEl = document.getElementById('presaleSeconds');
+                
+                if (daysEl) daysEl.textContent = String(Math.max(0, days)).padStart(2, '0');
+                if (hoursEl) hoursEl.textContent = String(Math.max(0, hours)).padStart(2, '0');
+                if (minutesEl) minutesEl.textContent = String(Math.max(0, minutes)).padStart(2, '0');
+                if (secondsEl) secondsEl.textContent = String(Math.max(0, seconds)).padStart(2, '0');
+            }
+            
+            updatePresaleCountdown();
+            setInterval(updatePresaleCountdown, 1000);
+        }
+
+        // Animate presale numbers
+        function animatePresaleValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = value.toLocaleString();
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Initialize presale animations
+        function initPresaleAnimations() {
+            setTimeout(() => {
+                const progressBar = document.getElementById('progressBar');
+                if (progressBar) {
+                    progressBar.style.width = '0%';
+                }
+            }, 500);
+        }
+
+        // Copy contract address
+        function copyContract() {
+            const contract = 'TGE Soon';
+            navigator.clipboard.writeText(contract).then(() => {
+                showToast('Contract address copied!');
+            });
+        }
+
+        // Toast notification
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-4 right-4 glass-card px-6 py-3 rounded-xl border border-amber-500/30 text-white z-50';
+            toast.style.animation = 'fadeIn 0.3s ease';
+            toast.innerHTML = `<i class="fas fa-check-circle text-green-400 mr-2"></i>${message}`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'fadeOut 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Initialize presale features
+        initPresaleCountdown();
+        initPresaleAnimations();
+
+        // ============================================
+        // WEB3 WALLET CONNECTION - SIMPLE & RELIABLE
+        // ============================================
+        
+        let connectedWallet = null;
+        
+        // BSC Chain Configuration
+        const BSC_CHAIN = {
+            chainId: '0x38', // 56 in hex
+            chainName: 'BNB Smart Chain',
+            nativeCurrency: {
+                name: 'BNB',
+                symbol: 'BNB',
+                decimals: 18
+            },
+            rpcUrls: ['https://bsc-dataseed.binance.org/'],
+            blockExplorerUrls: ['https://bscscan.com']
+        };
+        
+        // Main Connect Wallet Function
+        async function connectWallet() {
+            try {
+                // Check if already connected
+                if (connectedWallet) {
+                    showWalletOptionsModal();
+                    return;
+                }
+                
+                // Check if mobile
+                const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+                
+                if (isMobile) {
+                    showMobileWalletModal();
+                } else {
+                    // Desktop - try direct connection
+                    await connectMetaMaskDirect();
+                }
+            } catch (error) {
+                console.error('Wallet connection error:', error);
+                showToast('Connection failed: ' + (error.message || 'Please try again'));
+            }
+        }
+        
+        // Direct MetaMask Connection (Desktop)
+        async function connectMetaMaskDirect() {
+            if (typeof window.ethereum === 'undefined') {
+                showWalletInstallModal();
+                return;
+            }
+            
+            try {
+                // Request accounts
+                const accounts = await window.ethereum.request({ 
+                    method: 'eth_requestAccounts' 
+                });
+                
+                if (accounts && accounts.length > 0) {
+                    connectedWallet = accounts[0];
+                    
+                    // Try to switch to BSC
+                    try {
+                        await window.ethereum.request({
+                            method: 'wallet_switchEthereumChain',
+                            params: [{ chainId: BSC_CHAIN.chainId }]
+                        });
+                    } catch (switchError) {
+                        // Chain not added, try to add it
+                        if (switchError.code === 4902) {
+                            try {
+                                await window.ethereum.request({
+                                    method: 'wallet_addEthereumChain',
+                                    params: [BSC_CHAIN]
+                                });
+                            } catch (addError) {
+                                console.log('Could not add BSC chain');
+                            }
+                        }
+                    }
+                    
+                    updateWalletUI(connectedWallet);
+                    showToast('Wallet connected successfully!');
+                }
+            } catch (error) {
+                if (error.code === 4001) {
+                    showToast('Connection rejected by user');
+                } else {
+                    throw error;
+                }
+            }
+        }
+        
+        // Mobile Wallet Selection Modal
+        function showMobileWalletModal() {
+            const modal = document.createElement('div');
+            modal.id = 'mobileWalletModal';
+            modal.className = 'fixed inset-0 z-50 flex items-center justify-center';
+            modal.innerHTML = `
+                <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeMobileWalletModal()"></div>
+                <div class="glass-card rounded-2xl p-6 relative max-w-sm w-full mx-4 border border-amber-500/30">
+                    <button onclick="closeMobileWalletModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                    <h3 class="text-xl font-bold mb-2 gradient-text">Connect Wallet</h3>
+                    <p class="text-gray-400 text-sm mb-6">Select your preferred wallet</p>
+                    
+                    <div class="space-y-3">
+                        <button onclick="connectTrustWallet()" class="w-full glass hover:bg-white/10 hover:border-amber-500/50 p-4 rounded-xl flex items-center space-x-4 transition border border-white/10">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white text-lg"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-semibold">Trust Wallet</div>
+                                <div class="text-xs text-gray-400">Mobile wallet</div>
+                            </div>
+                            <i class="fas fa-chevron-right ml-auto text-gray-400"></i>
+                        </button>
+                        
+                        <button onclick="connectMetaMaskMobile()" class="w-full glass hover:bg-white/10 hover:border-orange-500/50 p-4 rounded-xl flex items-center space-x-4 transition border border-white/10">
+                            <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-fox text-white text-lg"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-semibold">MetaMask</div>
+                                <div class="text-xs text-gray-400">Mobile wallet</div>
+                            </div>
+                            <i class="fas fa-chevron-right ml-auto text-gray-400"></i>
+                        </button>
+                        
+                        <button onclick="connectMetaMaskDirect()" class="w-full glass hover:bg-white/10 hover:border-amber-500/50 p-4 rounded-xl flex items-center space-x-4 transition border border-white/10">
+                            <div class="w-10 h-10 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-wallet text-black text-lg"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-semibold">Browser Wallet</div>
+                                <div class="text-xs text-gray-400">MetaMask, etc.</div>
+                            </div>
+                            <i class="fas fa-chevron-right ml-auto text-gray-400"></i>
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileWalletModal() {
+            const modal = document.getElementById('mobileWalletModal');
+            if (modal) {
+                modal.remove();
+                document.body.style.overflow = 'auto';
+            }
+        }
+        
+        // Connect Trust Wallet (Mobile)
+        function connectTrustWallet() {
+            const currentUrl = window.location.href.replace(/^https?:\/\//, '');
+            const trustUrl = `https://link.trustwallet.com/open_url?url=${encodeURIComponent(window.location.href)}`;
+            window.location.href = trustUrl;
+            closeMobileWalletModal();
+        }
+        
+        // Connect MetaMask (Mobile)
+        function connectMetaMaskMobile() {
+            const metamaskUrl = `https://metamask.app.link/dapp/${window.location.host}${window.location.pathname}`;
+            window.location.href = metamaskUrl;
+            closeMobileWalletModal();
+        }
+        
+        // Show Wallet Install Modal
+        function showWalletInstallModal() {
+            const modal = document.createElement('div');
+            modal.id = 'walletInstallModal';
+            modal.className = 'fixed inset-0 z-50 flex items-center justify-center';
+            modal.innerHTML = `
+                <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeWalletInstallModal()"></div>
+                <div class="glass-card rounded-2xl p-6 relative max-w-sm w-full mx-4 border border-amber-500/30">
+                    <button onclick="closeWalletInstallModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                    <div class="text-center mb-6">
+                        <i class="fas fa-wallet text-5xl text-amber-400 mb-4"></i>
+                        <h3 class="text-xl font-bold gradient-text">No Wallet Detected</h3>
+                        <p class="text-gray-400 text-sm mt-2">Install a wallet to connect</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <a href="https://metamask.io/download/" target="_blank" class="w-full glass hover:bg-white/10 p-4 rounded-xl flex items-center space-x-4 transition block border border-orange-500/30">
+                            <div class="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-fox text-white"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-semibold">MetaMask</div>
+                                <div class="text-xs text-gray-400">Most popular wallet</div>
+                            </div>
+                            <i class="fas fa-external-link-alt ml-auto text-gray-400"></i>
+                        </a>
+                        
+                        <a href="https://trustwallet.com/download" target="_blank" class="w-full glass hover:bg-white/10 p-4 rounded-xl flex items-center space-x-4 transition block border border-blue-500/30">
+                            <div class="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center">
+                                <i class="fas fa-shield-alt text-white"></i>
+                            </div>
+                            <div class="text-left">
+                                <div class="font-semibold">Trust Wallet</div>
+                                <div class="text-xs text-gray-400">Binance official</div>
+                            </div>
+                            <i class="fas fa-external-link-alt ml-auto text-gray-400"></i>
+                        </a>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function closeWalletInstallModal() {
+            const modal = document.getElementById('walletInstallModal');
+            if (modal) modal.remove();
+        }
+        
+        // Show Wallet Options (when already connected)
+        function showWalletOptionsModal() {
+            const modal = document.createElement('div');
+            modal.id = 'walletOptionsModal';
+            modal.className = 'fixed inset-0 z-50 flex items-center justify-center';
+            modal.innerHTML = `
+                <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeWalletOptionsModal()"></div>
+                <div class="glass-card rounded-2xl p-6 relative max-w-sm w-full mx-4 border border-amber-500/30">
+                    <button onclick="closeWalletOptionsModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                    <div class="text-center mb-6">
+                        <i class="fas fa-check-circle text-5xl text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold gradient-text">Wallet Connected</h3>
+                        <p class="font-mono text-amber-400 text-sm mt-2">${connectedWallet.slice(0, 6)}...${connectedWallet.slice(-4)}</p>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <button onclick="copyWalletAddress()" class="w-full glass hover:bg-white/10 p-4 rounded-xl flex items-center space-x-4 transition border border-white/10">
+                            <i class="fas fa-copy text-amber-400 text-xl"></i>
+                            <div class="text-left">
+                                <div class="font-semibold">Copy Address</div>
+                            </div>
+                        </button>
+                        
+                        <a href="https://bscscan.com/address/${connectedWallet}" target="_blank" class="w-full glass hover:bg-white/10 p-4 rounded-xl flex items-center space-x-4 transition block border border-white/10">
+                            <i class="fas fa-external-link-alt text-blue-400 text-xl"></i>
+                            <div class="text-left">
+                                <div class="font-semibold">View on BscScan</div>
+                            </div>
+                        </a>
+                        
+                        <button onclick="disconnectWallet()" class="w-full glass hover:bg-red-500/20 p-4 rounded-xl flex items-center space-x-4 transition border border-red-500/30">
+                            <i class="fas fa-sign-out-alt text-red-400 text-xl"></i>
+                            <div class="text-left">
+                                <div class="font-semibold text-red-400">Disconnect</div>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function closeWalletOptionsModal() {
+            const modal = document.getElementById('walletOptionsModal');
+            if (modal) modal.remove();
+        }
+        
+        function copyWalletAddress() {
+            if (connectedWallet) {
+                navigator.clipboard.writeText(connectedWallet);
+                showToast('Address copied!');
+                closeWalletOptionsModal();
+            }
+        }
+        
+        function disconnectWallet() {
+            connectedWallet = null;
+            localStorage.removeItem('connectedWallet');
+            
+            // Reset UI
+            const connectBtn = document.querySelector('button[onclick="connectWallet()"]');
+            if (connectBtn) {
+                connectBtn.innerHTML = '<i class="fas fa-wallet mr-2"></i>Connect';
+                connectBtn.classList.remove('bg-gradient-to-r', 'from-amber-500', 'to-amber-600', 'text-black');
+                connectBtn.classList.add('glass', 'text-white');
+            }
+            
+            showToast('Wallet disconnected');
+            closeWalletOptionsModal();
+        }
+        
+        // Update Wallet UI after connection
+        function updateWalletUI(address) {
+            const connectBtns = document.querySelectorAll('button[onclick="connectWallet()"]');
+            connectBtns.forEach(btn => {
+                const shortAddress = address.slice(0, 6) + '...' + address.slice(-4);
+                btn.innerHTML = `<i class="fas fa-wallet mr-2"></i>${shortAddress}`;
+                btn.classList.remove('glass', 'text-white');
+                btn.classList.add('bg-gradient-to-r', 'from-amber-500', 'to-amber-600', 'text-black');
+            });
+            
+            localStorage.setItem('connectedWallet', address);
+        }
+        
+        // Check for existing connection on page load
+        async function checkExistingConnection() {
+            const savedWallet = localStorage.getItem('connectedWallet');
+            if (savedWallet && typeof window.ethereum !== 'undefined') {
+                try {
+                    const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+                    if (accounts.length > 0 && accounts[0].toLowerCase() === savedWallet.toLowerCase()) {
+                        connectedWallet = accounts[0];
+                        updateWalletUI(connectedWallet);
+                    } else {
+                        localStorage.removeItem('connectedWallet');
+                    }
+                } catch (error) {
+                    console.error('Error checking connection:', error);
+                    localStorage.removeItem('connectedWallet');
+                }
+            }
+        }
+        
+        // Listen for account changes
+        if (typeof window.ethereum !== 'undefined') {
+            window.ethereum.on('accountsChanged', (accounts) => {
+                if (accounts.length === 0) {
+                    connectedWallet = null;
+                    localStorage.removeItem('connectedWallet');
+                    const connectBtns = document.querySelectorAll('button[onclick="connectWallet()"]');
+                    connectBtns.forEach(btn => {
+                        btn.innerHTML = '<i class="fas fa-wallet mr-2"></i>Connect';
+                        btn.classList.remove('bg-gradient-to-r', 'from-amber-500', 'to-amber-600', 'text-black');
+                        btn.classList.add('glass', 'text-white');
+                    });
+                } else {
+                    connectedWallet = accounts[0];
+                    updateWalletUI(connectedWallet);
+                }
+            });
+            
+            window.ethereum.on('chainChanged', () => {
+                window.location.reload();
+            });
+        }
+        
+        // Initialize on page load
+        checkExistingConnection();
+
+        // Scroll Reveal
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+        // Modal Functions
+        function openWhitelistModal() {
+            document.getElementById('whitelistModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeWhitelistModal() {
+            document.getElementById('whitelistModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function openBuyModal() {
+            document.getElementById('buyModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeBuyModal() {
+            document.getElementById('buyModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitWhitelist(e) {
+            e.preventDefault();
+            alert('Application submitted! Check your email for confirmation.');
+            closeWhitelistModal();
+        }
+
+        function connectWallet() {
+            alert('Wallet connection coming soon! Please use MetaMask or Trust Wallet.');
+        }
+
+        function copyAddress() {
+            navigator.clipboard.writeText('0x1234567890123456789012345678901234567890');
+            alert('Address copied to clipboard!');
+        }
+
+        function toggleFaq(button) {
+            const content = button.nextElementSibling;
+            const icon = button.querySelector('i');
+            
+            if (content.classList.contains('hidden')) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0)';
+            }
+        }
+
+        function openChartModal() {
+            alert('Full chart view coming soon with TradingView integration!');
+        }
+
+        function openWhitepaperModal() {
+            alert('Interactive whitepaper viewer coming soon!');
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
