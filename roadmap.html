@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roadmap — AIRP Global</title>
+    <meta name="description" content="AIRP Global development roadmap: Foundation Q2 2026, Launch Q3 2026, Expansion Q4 2026, Global 2027.">
+    <link rel="canonical" href="https://www.airpglobal.com/roadmap.html">
+    <meta property="og:title" content="Roadmap — AIRP Global">
+    <meta property="og:url" content="https://www.airpglobal.com/roadmap.html">
+    <meta property="og:image" content="https://www.airpglobal.com/og-image.png">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared.css">
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Space Grotesk','sans-serif']}}}}</script>
+</head>
+<body class="text-white relative">
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav class="fixed w-full z-50 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <a href="/index.html" target="_self" class="flex items-center"><img src="/logo.png" alt="AIRP Logo" class="w-10 h-10 mr-3 rounded-full"><div class="text-3xl font-bold gradient-text">AIRP</div><span class="ml-2 text-sm text-gray-400">Global</span></a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/index.html"        target="_self" class="hover:text-amber-400 transition">Home</a>
+                <a href="/tokenomics.html"   target="_self" class="hover:text-amber-400 transition">Tokenomics</a>
+                <a href="/roadmap.html"      target="_self" class="nav-active hover:text-amber-400 transition">Roadmap</a>
+                <a href="/presale.html"      target="_self" class="hover:text-amber-400 transition">Presale</a>
+                <a href="/whitepaper.html"   target="_self" class="hover:text-amber-400 transition">Whitepaper</a>
+                <a href="/faq.html"          target="_self" class="hover:text-amber-400 transition">FAQ</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://x.com/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://t.me/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-discord"></i></a>
+                <button data-wallet-btn onclick="connectWallet()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                    <i class="fas fa-wallet mr-2"></i>Connect
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full border border-amber-500/30 mb-6">
+            <i class="fas fa-map-marked-alt text-amber-400 text-sm"></i>
+            <span class="text-sm text-amber-400">Q2 2026 → 2027+</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text">Development Roadmap</h1>
+        <p class="text-xl text-gray-400 max-w-2xl">Our transparent journey from smart contract foundation to global airport commerce infrastructure.</p>
+    </div>
+</div>
+
+<!-- ROADMAP TIMELINE -->
+<section class="py-12 relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="relative">
+            <!-- Center line -->
+            <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-amber-500 via-amber-400 to-blue-500 hidden md:block rounded-full opacity-40"></div>
+
+            <div class="space-y-16">
+
+                <!-- Phase 1 -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right mb-6 md:mb-0 md:pr-10">
+                            <div class="glass-card p-8 rounded-2xl inline-block text-left md:text-right w-full border border-amber-500/20">
+                                <div class="inline-flex items-center space-x-2 bg-amber-500/20 px-3 py-1 rounded-full mb-3">
+                                    <span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                                    <span class="text-amber-400 font-bold text-sm">Q2 2026 — In Progress</span>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">Phase 1: Foundation</h3>
+                                <ul class="text-sm text-gray-400 space-y-2 text-left md:text-right">
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="fas fa-check-circle text-green-400"></i>Smart contract finalization</li>
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="fas fa-spinner text-amber-400 animate-spin"></i>Security audit completion</li>
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="fas fa-spinner text-amber-400 animate-spin"></i>Community building & whitelist</li>
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="far fa-circle text-gray-600"></i>Website & documentation launch</li>
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="far fa-circle text-gray-600"></i>Strategic partnerships initiation</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- Dot -->
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-amber-500 rounded-full border-4 border-slate-900 hidden md:flex items-center justify-center z-10 shadow-lg shadow-amber-500/50">
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                        <div class="md:w-5/12 md:pl-10 hidden md:block">
+                            <div class="text-amber-400 text-6xl opacity-20 font-bold">01</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:pr-10 hidden md:block">
+                            <div class="text-amber-400 text-6xl opacity-20 font-bold text-right">02</div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-amber-500 rounded-full border-4 border-slate-900 hidden md:flex items-center justify-center z-10 shadow-lg shadow-amber-500/50">
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                        <div class="md:w-5/12 md:pl-10 mb-6 md:mb-0">
+                            <div class="glass-card p-8 rounded-2xl inline-block w-full border border-amber-500/20">
+                                <div class="inline-flex items-center space-x-2 bg-amber-500/20 px-3 py-1 rounded-full mb-3">
+                                    <span class="w-2 h-2 bg-amber-400 rounded-full"></span>
+                                    <span class="text-amber-400 font-bold text-sm">Q3 2026 — Upcoming</span>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">Phase 2: Launch</h3>
+                                <ul class="text-sm text-gray-400 space-y-2">
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>Public presale event — July 15, 2026</li>
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>Token Generation Event (TGE)</li>
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>PancakeSwap listing</li>
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>Staking platform launch</li>
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>First airport pilot program</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:text-right mb-6 md:mb-0 md:pr-10">
+                            <div class="glass-card p-8 rounded-2xl inline-block text-left md:text-right w-full border border-blue-500/20">
+                                <div class="inline-flex items-center space-x-2 bg-blue-500/20 px-3 py-1 rounded-full mb-3">
+                                    <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+                                    <span class="text-blue-400 font-bold text-sm">Q4 2026 — Planned</span>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">Phase 3: Expansion</h3>
+                                <ul class="text-sm text-gray-400 space-y-2 text-left md:text-right">
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="far fa-circle text-gray-600"></i>Live airport operations launch</li>
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="far fa-circle text-gray-600"></i>Tier-2 CEX listing applications</li>
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="far fa-circle text-gray-600"></i>Performance & UX optimization</li>
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="far fa-circle text-gray-600"></i>B2B airport partnership expansion</li>
+                                    <li class="flex md:flex-row-reverse items-center gap-2"><i class="far fa-circle text-gray-600"></i>Mobile app beta release</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-slate-900 hidden md:flex items-center justify-center z-10 shadow-lg shadow-blue-500/50">
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                        <div class="md:w-5/12 md:pl-10 hidden md:block">
+                            <div class="text-blue-400 text-6xl opacity-20 font-bold">03</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phase 4 -->
+                <div class="relative reveal">
+                    <div class="md:flex items-center justify-between">
+                        <div class="md:w-5/12 md:pr-10 hidden md:block">
+                            <div class="text-blue-400 text-6xl opacity-20 font-bold text-right">04</div>
+                        </div>
+                        <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-blue-500 rounded-full border-4 border-slate-900 hidden md:flex items-center justify-center z-10 shadow-lg shadow-blue-500/50">
+                            <div class="w-2 h-2 bg-white rounded-full"></div>
+                        </div>
+                        <div class="md:w-5/12 md:pl-10">
+                            <div class="glass-card p-8 rounded-2xl inline-block w-full border border-blue-500/20">
+                                <div class="inline-flex items-center space-x-2 bg-blue-500/20 px-3 py-1 rounded-full mb-3">
+                                    <span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+                                    <span class="text-blue-400 font-bold text-sm">2027 H1 — Vision</span>
+                                </div>
+                                <h3 class="text-2xl font-bold mb-4">Phase 4: Global</h3>
+                                <ul class="text-sm text-gray-400 space-y-2">
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>Second location pilot (international)</li>
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>Tier-1 CEX listing preparation</li>
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>Governance decentralization (DAO)</li>
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>Cross-chain bridge deployment</li>
+                                    <li class="flex items-center gap-2"><i class="far fa-circle text-gray-600"></i>50+ airport network target</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- LEGEND -->
+<section class="py-8 pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-2xl p-6 reveal flex flex-wrap justify-center gap-6">
+            <div class="flex items-center gap-2 text-sm"><i class="fas fa-check-circle text-green-400"></i><span class="text-gray-400">Completed</span></div>
+            <div class="flex items-center gap-2 text-sm"><i class="fas fa-spinner text-amber-400"></i><span class="text-gray-400">In Progress</span></div>
+            <div class="flex items-center gap-2 text-sm"><i class="far fa-circle text-gray-600"></i><span class="text-gray-400">Planned</span></div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <div><a href="/index.html" target="_self" class="flex items-center mb-4"><img src="/logo.png" alt="AIRP Logo" class="w-12 h-12 mr-3 rounded-full"><div class="text-3xl font-bold gradient-text">AIRP</div></a><p class="text-gray-400 text-sm">Institutional-grade blockchain infrastructure for the global airport economy.</p></div>
+            <div><h4 class="font-bold mb-4">Pages</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="/index.html" target="_self" class="hover:text-amber-400 transition">Home</a></li><li><a href="/tokenomics.html" target="_self" class="hover:text-amber-400 transition">Tokenomics</a></li><li><a href="/roadmap.html" target="_self" class="hover:text-amber-400 transition">Roadmap</a></li><li><a href="/presale.html" target="_self" class="hover:text-amber-400 transition">Presale</a></li><li><a href="/whitepaper.html" target="_self" class="hover:text-amber-400 transition">Whitepaper</a></li><li><a href="/faq.html" target="_self" class="hover:text-amber-400 transition">FAQ</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Resources</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="#" class="hover:text-amber-400 transition">Documentation</a></li><li><a href="#" class="hover:text-amber-400 transition">Audit Report</a></li><li><a href="#" class="hover:text-amber-400 transition">Brand Kit</a></li><li><a href="#" class="hover:text-amber-400 transition">Contact</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Community</h4><div class="flex space-x-4 mb-4"><a href="https://x.com/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-amber-400"><i class="fab fa-x-twitter"></i></a><a href="https://t.me/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-blue-400"><i class="fab fa-telegram"></i></a><a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-indigo-400"><i class="fab fa-discord"></i></a></div><div class="text-sm text-gray-500"><i class="fas fa-envelope mr-2"></i>contact@airpglobal.com</div></div>
+        </div>
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center"><p class="text-sm text-gray-500">© 2026 AIRP Global. All rights reserved.</p><div class="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-500"><a href="#" class="hover:text-white transition">Privacy Policy</a><a href="#" class="hover:text-white transition">Terms of Service</a></div></div>
+    </div>
+</footer>
+
+<script src="/shared.js"></script>
+</body>
+</html>
