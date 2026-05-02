@@ -1,0 +1,204 @@
+/* ═══════════════════════════════════════════════════
+   AIRP GLOBAL — Shared Stylesheet
+   Used by: index.html, tokenomics.html, presale.html,
+            roadmap.html, whitepaper.html, faq.html
+═══════════════════════════════════════════════════ */
+
+/* Fonts loaded via Google Fonts in each page */
+
+body {
+    font-family: 'Space Grotesk', sans-serif;
+    background-color: #0f172a;
+    overflow-x: hidden;
+    color: white;
+}
+
+/* ── Particle Canvas ── */
+#particles-canvas {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* ── Gradient Text ── */
+.gradient-text {
+    background: linear-gradient(135deg, #f59e0b 0%, #fbbf24 50%, #00d4ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+.gradient-text-gold {
+    background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #b45309 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Glassmorphism ── */
+.glass {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.glass-card {
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.2);
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.37);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #f59e0b; border-radius: 5px; }
+
+/* ── Active Nav Link ── */
+.nav-active {
+    color: #f59e0b !important;
+    position: relative;
+}
+.nav-active::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0; right: 0;
+    height: 2px;
+    background: #f59e0b;
+    border-radius: 2px;
+}
+
+/* ── Reveal on Scroll ── */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ── Gradient Border Card ── */
+.gradient-border {
+    position: relative;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+    border-radius: 16px;
+}
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(135deg, #f59e0b, #00d4ff, #f59e0b);
+    border-radius: 16px;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.gradient-border:hover::before { opacity: 1; }
+
+/* ── Countdown Box ── */
+.countdown-box {
+    background: linear-gradient(135deg, rgba(245,158,11,0.2) 0%, rgba(0,212,255,0.2) 100%);
+    border: 1px solid rgba(245,158,11,0.5);
+    transition: all 0.3s ease;
+}
+.countdown-box:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(245,158,11,0.2); }
+
+/* ── Social Icons ── */
+.social-icon { transition: all 0.3s ease; }
+.social-icon:hover {
+    transform: translateY(-5px);
+    color: #f59e0b;
+    filter: drop-shadow(0 0 10px rgba(245,158,11,0.5));
+}
+
+/* ── Button Glow ── */
+.btn-glow { position: relative; overflow: hidden; }
+.btn-glow::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transition: left 0.5s;
+}
+.btn-glow:hover::before { left: 100%; }
+
+/* ── Floating Cards ── */
+.floating-card { animation: float 6s ease-in-out infinite; }
+.floating-card-delayed { animation: float 6s ease-in-out 3s infinite; }
+
+/* ── Shimmer ── */
+.animate-shimmer { animation: shimmer-move 2s linear infinite; }
+@keyframes shimmer-move { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+
+/* ── Progress Bar ── */
+#progressBar { box-shadow: 0 0 20px rgba(245,158,11,0.5); }
+
+/* ── Typing Effect ── */
+.typing-container {
+    overflow: hidden;
+    border-right: 3px solid #f59e0b;
+    white-space: nowrap;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+/* ── Team Card ── */
+.team-card { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.team-card:hover { transform: translateY(-6px); box-shadow: 0 20px 40px rgba(245,158,11,0.15); }
+
+/* ── Globe ── */
+#globe-container { animation: globeFloat 8s ease-in-out infinite; }
+#network-globe { animation: globeRotate 60s linear infinite; transform-origin: center; }
+.airport-node { cursor: pointer; transition: all 0.3s ease; }
+.airport-node:hover text { opacity: 1 !important; fill: #fbbf24 !important; }
+.airport-node:hover circle:first-child { fill: #fbbf24 !important; }
+
+/* ── Page Header (inner pages) ── */
+.page-header {
+    padding-top: 120px;
+    padding-bottom: 60px;
+    text-align: center;
+    position: relative;
+}
+.page-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(245,158,11,0.08) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* ── Keyframes ── */
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+}
+@keyframes globeFloat {
+    0%, 100% { transform: translateY(0px) rotateY(0deg); }
+    25% { transform: translateY(-15px) rotateY(2deg); }
+    50% { transform: translateY(0px) rotateY(0deg); }
+    75% { transform: translateY(15px) rotateY(-2deg); }
+}
+@keyframes globeRotate {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent; }
+    50% { border-color: #f59e0b; }
+}
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeOut {
+    from { opacity: 1; transform: translateY(0); }
+    to { opacity: 0; transform: translateY(10px); }
+}
