@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presale — AIRP Global</title>
+    <meta name="description" content="Join the $AIRP presale on July 15, 2026. Buy at $0.005 — 60% below listing price. Limited to 150,000,000 AIRP.">
+    <link rel="canonical" href="https://www.airpglobal.com/presale.html">
+    <meta property="og:title" content="Presale — AIRP Global">
+    <meta property="og:url" content="https://www.airpglobal.com/presale.html">
+    <meta property="og:image" content="https://www.airpglobal.com/og-image.png">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared.css">
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Space Grotesk','sans-serif']}}}}</script>
+</head>
+<body class="text-white relative">
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav class="fixed w-full z-50 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <a href="/index.html" target="_self" class="flex items-center"><img src="/logo.png" alt="AIRP Logo" class="w-10 h-10 mr-3 rounded-full"><div class="text-3xl font-bold gradient-text">AIRP</div><span class="ml-2 text-sm text-gray-400">Global</span></a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/index.html"        target="_self" class="hover:text-amber-400 transition">Home</a>
+                <a href="/tokenomics.html"   target="_self" class="hover:text-amber-400 transition">Tokenomics</a>
+                <a href="/roadmap.html"      target="_self" class="hover:text-amber-400 transition">Roadmap</a>
+                <a href="/presale.html"      target="_self" class="nav-active hover:text-amber-400 transition">Presale</a>
+                <a href="/whitepaper.html"   target="_self" class="hover:text-amber-400 transition">Whitepaper</a>
+                <a href="/faq.html"          target="_self" class="hover:text-amber-400 transition">FAQ</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://x.com/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://t.me/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-discord"></i></a>
+                <button data-wallet-btn onclick="connectWallet()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                    <i class="fas fa-wallet mr-2"></i>Connect
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full border border-amber-500/30 mb-6">
+            <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+            <span class="text-sm text-amber-400 font-semibold">Launching July 15, 2026</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text">$AIRP Presale</h1>
+        <p class="text-xl text-gray-400 max-w-2xl">Get in early at $0.005 per token — 60% below the $0.008 listing price. Limited to 15% of total supply.</p>
+    </div>
+</div>
+
+<!-- MAIN PRESALE CONTENT -->
+<section class="py-8 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-10 items-start">
+
+            <!-- Left – Info -->
+            <div class="space-y-6">
+                <!-- Price cards -->
+                <div class="grid grid-cols-2 gap-4 reveal">
+                    <div class="glass-card p-6 rounded-2xl border border-amber-500/30">
+                        <div class="text-sm text-gray-400 mb-1">Presale Price</div>
+                        <div class="text-4xl font-bold text-white">$0.005</div>
+                        <div class="text-xs text-green-400 mt-1 font-semibold">↑ 60% Discount</div>
+                    </div>
+                    <div class="glass-card p-6 rounded-2xl border border-blue-500/30">
+                        <div class="text-sm text-gray-400 mb-1">Listing Price</div>
+                        <div class="text-4xl font-bold text-white">$0.008</div>
+                        <div class="text-xs text-blue-400 mt-1 font-semibold">Launch Target</div>
+                    </div>
+                </div>
+
+                <!-- Buy limits -->
+                <div class="glass-card rounded-2xl p-6 reveal border border-white/10">
+                    <h3 class="font-bold text-lg mb-4">Purchase Limits</h3>
+                    <div class="flex justify-between items-center py-3 border-b border-white/10">
+                        <span class="text-gray-400">Minimum Buy</span>
+                        <span class="text-xl font-bold text-amber-400">$50</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-white/10">
+                        <span class="text-gray-400">Maximum Buy</span>
+                        <span class="text-xl font-bold text-amber-400">$5,000</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3 border-b border-white/10">
+                        <span class="text-gray-400">Total Allocation</span>
+                        <span class="text-lg font-bold text-white">150,000,000 AIRP</span>
+                    </div>
+                    <div class="flex justify-between items-center py-3">
+                        <span class="text-gray-400">Target Raise</span>
+                        <span class="text-lg font-bold text-white">$750,000</span>
+                    </div>
+                </div>
+
+                <!-- Vesting -->
+                <div class="glass-card rounded-2xl p-6 reveal border border-white/10">
+                    <h3 class="font-bold text-lg mb-4"><i class="fas fa-lock text-amber-400 mr-2"></i>Vesting Schedule</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 rounded-full bg-green-500/20 flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-green-400 text-xs"></i></div>
+                            <div><div class="text-sm font-semibold text-white">At TGE</div><div class="text-xs text-gray-400">25% unlocked immediately</div></div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-8 h-8 rounded-full bg-blue-500/20 flex items-center justify-center flex-shrink-0"><i class="fas fa-stream text-blue-400 text-xs"></i></div>
+                            <div><div class="text-sm font-semibold text-white">4 Months Linear</div><div class="text-xs text-gray-400">75% vested over 4 months (~18.75%/month)</div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accepted -->
+                <div class="glass-card rounded-2xl p-6 reveal border border-white/10">
+                    <h3 class="font-bold text-lg mb-4"><i class="fas fa-credit-card text-amber-400 mr-2"></i>Accepted Currencies</h3>
+                    <div class="flex flex-wrap gap-3">
+                        <span class="glass px-4 py-2 rounded-full text-sm font-semibold text-yellow-400 border border-yellow-400/30"><i class="fab fa-bitcoin mr-2"></i>BNB</span>
+                        <span class="glass px-4 py-2 rounded-full text-sm font-semibold text-green-400 border border-green-400/30">USDT (BSC)</span>
+                        <span class="glass px-4 py-2 rounded-full text-sm font-semibold text-blue-400 border border-blue-400/30">USDC (BSC)</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap gap-4 reveal">
+                    <button onclick="openWhitelistModal()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-4 px-8 rounded-full transition transform hover:scale-105 shadow-lg shadow-amber-500/50 text-lg">
+                        <i class="fas fa-rocket mr-2"></i>Join Whitelist
+                    </button>
+                    <button onclick="connectWallet()" class="glass text-white font-bold py-4 px-8 rounded-full hover:bg-white/10 transition border border-white/30 text-lg">
+                        <i class="fas fa-wallet mr-2"></i>Connect Wallet
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right – Countdown Dashboard -->
+            <div class="glass-card rounded-3xl p-8 reveal border border-blue-500/20 relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl -z-10"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-amber-500/10 rounded-full blur-3xl -z-10"></div>
+
+                <div class="text-center mb-8">
+                    <h3 class="text-xl font-bold mb-1 text-gray-300">Presale Starts In</h3>
+                    <p class="text-xs text-blue-400 mb-6"><i class="far fa-calendar-alt mr-2"></i>July 15, 2026 · 00:00 UTC</p>
+                    <div class="grid grid-cols-4 gap-3">
+                        <div class="countdown-box rounded-xl p-3 bg-gradient-to-b from-blue-500/20 to-blue-600/10 border border-blue-500/30"><div id="presaleDays" class="text-3xl md:text-4xl font-bold text-white">00</div><div class="text-xs text-gray-400 mt-1">Days</div></div>
+                        <div class="countdown-box rounded-xl p-3 bg-gradient-to-b from-blue-500/20 to-blue-600/10 border border-blue-500/30"><div id="presaleHours" class="text-3xl md:text-4xl font-bold text-white">00</div><div class="text-xs text-gray-400 mt-1">Hours</div></div>
+                        <div class="countdown-box rounded-xl p-3 bg-gradient-to-b from-blue-500/20 to-blue-600/10 border border-blue-500/30"><div id="presaleMinutes" class="text-3xl md:text-4xl font-bold text-white">00</div><div class="text-xs text-gray-400 mt-1">Minutes</div></div>
+                        <div class="countdown-box rounded-xl p-3 bg-gradient-to-b from-blue-500/20 to-blue-600/10 border border-blue-500/30"><div id="presaleSeconds" class="text-3xl md:text-4xl font-bold text-blue-400">00</div><div class="text-xs text-gray-400 mt-1">Seconds</div></div>
+                    </div>
+                </div>
+
+                <!-- Progress -->
+                <div class="mb-6">
+                    <div class="flex justify-between items-end mb-3">
+                        <div><div class="text-sm text-gray-400">Allocation</div><div class="text-2xl font-bold gradient-text">150,000,000 AIRP</div></div>
+                        <div class="text-right"><div class="text-sm text-gray-400">Raise Target</div><div class="text-xl font-bold text-white">$750,000</div></div>
+                    </div>
+                    <div class="relative h-4 bg-white/10 rounded-full overflow-hidden">
+                        <div id="progressBar" class="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 via-blue-400 to-blue-500 rounded-full" style="width:0%;">
+                            <div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-shimmer"></div>
+                        </div>
+                    </div>
+                    <div class="flex justify-between mt-2">
+                        <span class="text-sm text-blue-400 font-semibold"><span id="progressPercent">0</span>% Sold</span>
+                        <span class="text-sm text-gray-400">150,000,000 available</span>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="glass rounded-xl p-4 border border-white/10"><div class="text-xs text-gray-400 mb-1"><i class="fas fa-coins text-blue-400 mr-2"></i>Tokens Sold</div><div class="text-xl font-bold">0</div><div class="text-xs text-gray-500">AIRP</div></div>
+                    <div class="glass rounded-xl p-4 border border-white/10"><div class="text-xs text-gray-400 mb-1"><i class="fas fa-wallet text-blue-400 mr-2"></i>Available</div><div class="text-xl font-bold">150,000,000</div><div class="text-xs text-gray-500">AIRP</div></div>
+                    <div class="glass rounded-xl p-4 border border-white/10"><div class="text-xs text-gray-400 mb-1"><i class="fas fa-users text-blue-400 mr-2"></i>Participants</div><div class="text-xl font-bold">0</div><div class="text-xs text-gray-500">waiting</div></div>
+                    <div class="glass rounded-xl p-4 border border-white/10"><div class="text-xs text-gray-400 mb-1"><i class="fas fa-chart-line text-blue-400 mr-2"></i>Status</div><div class="text-xl font-bold text-blue-400">Upcoming</div><div class="text-xs text-gray-500">presale</div></div>
+                </div>
+
+                <!-- Contract -->
+                <div class="glass rounded-xl p-3 border border-amber-500/20">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2"><i class="fas fa-file-contract text-amber-400"></i><span class="text-xs text-gray-400">Contract:</span><span class="font-mono text-xs text-amber-400">TGE Soon</span></div>
+                        <button onclick="copyContract()" class="text-xs text-gray-400 hover:text-amber-400 transition"><i class="fas fa-copy"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- HOW TO BUY -->
+<section class="py-20 relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 reveal">
+            <h2 class="text-4xl font-bold mb-4 gradient-text">How to Participate</h2>
+            <p class="text-gray-400">Three simple steps to join the $AIRP presale</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+            <div class="glass-card rounded-2xl p-6 text-center reveal">
+                <div class="w-16 h-16 bg-gradient-to-br from-amber-400 to-amber-600 rounded-full flex items-center justify-center mx-auto mb-4 text-black text-2xl font-bold shadow-lg shadow-amber-500/30">1</div>
+                <h3 class="text-xl font-bold mb-2">Get a Wallet</h3>
+                <p class="text-gray-400 text-sm">Install MetaMask or Trust Wallet and switch to BNB Smart Chain (BSC) network.</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center reveal">
+                <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-lg shadow-blue-500/30">2</div>
+                <h3 class="text-xl font-bold mb-2">Join Whitelist</h3>
+                <p class="text-gray-400 text-sm">Register your email and wallet address to secure your allocation before July 15, 2026.</p>
+            </div>
+            <div class="glass-card rounded-2xl p-6 text-center reveal">
+                <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold shadow-lg shadow-green-500/30">3</div>
+                <h3 class="text-xl font-bold mb-2">Buy $AIRP</h3>
+                <p class="text-gray-400 text-sm">Connect wallet on launch day, send BNB/USDT/USDC, and receive your AIRP tokens.</p>
+            </div>
+        </div>
+        <div class="mt-10 text-center reveal">
+            <button onclick="openWhitelistModal()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-4 px-10 rounded-full transition transform hover:scale-105 text-lg shadow-lg shadow-amber-500/50">
+                <i class="fas fa-rocket mr-2"></i>Secure Your Spot Now
+            </button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <div><a href="/index.html" target="_self" class="flex items-center mb-4"><img src="/logo.png" alt="AIRP Logo" class="w-12 h-12 mr-3 rounded-full"><div class="text-3xl font-bold gradient-text">AIRP</div></a><p class="text-gray-400 text-sm">Institutional-grade blockchain infrastructure for the global airport economy.</p></div>
+            <div><h4 class="font-bold mb-4">Pages</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="/index.html" target="_self" class="hover:text-amber-400 transition">Home</a></li><li><a href="/tokenomics.html" target="_self" class="hover:text-amber-400 transition">Tokenomics</a></li><li><a href="/roadmap.html" target="_self" class="hover:text-amber-400 transition">Roadmap</a></li><li><a href="/presale.html" target="_self" class="hover:text-amber-400 transition">Presale</a></li><li><a href="/whitepaper.html" target="_self" class="hover:text-amber-400 transition">Whitepaper</a></li><li><a href="/faq.html" target="_self" class="hover:text-amber-400 transition">FAQ</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Resources</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="#" class="hover:text-amber-400 transition">Documentation</a></li><li><a href="#" class="hover:text-amber-400 transition">Audit Report</a></li><li><a href="#" class="hover:text-amber-400 transition">Brand Kit</a></li><li><a href="#" class="hover:text-amber-400 transition">Contact</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Community</h4><div class="flex space-x-4 mb-4"><a href="https://x.com/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-amber-400"><i class="fab fa-x-twitter"></i></a><a href="https://t.me/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-blue-400"><i class="fab fa-telegram"></i></a><a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-indigo-400"><i class="fab fa-discord"></i></a></div><div class="text-sm text-gray-500"><i class="fas fa-envelope mr-2"></i>contact@airpglobal.com</div></div>
+        </div>
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center"><p class="text-sm text-gray-500">© 2026 AIRP Global. All rights reserved.</p><div class="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-500"><a href="#" class="hover:text-white transition">Privacy Policy</a><a href="#" class="hover:text-white transition">Terms of Service</a></div></div>
+    </div>
+</footer>
+
+<!-- WHITELIST MODAL -->
+<div id="whitelistModal" class="fixed inset-0 z-50 hidden">
+    <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="closeWhitelistModal()"></div>
+    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-md p-4">
+        <div class="glass-card rounded-2xl p-8 relative">
+            <button onclick="closeWhitelistModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white"><i class="fas fa-times text-xl"></i></button>
+            <h3 class="text-2xl font-bold mb-4 gradient-text">Join Whitelist</h3>
+            <p class="text-gray-400 mb-6 text-sm">Get early access to the presale and exclusive bonuses.</p>
+            <form onsubmit="submitWhitelist(event)" class="space-y-4">
+                <input type="email" placeholder="Email Address" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500">
+                <input type="text" placeholder="BSC Wallet Address" required class="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-amber-500">
+                <button type="submit" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-3 rounded-lg hover:from-amber-400 hover:to-amber-500 transition">Submit Application</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="/shared.js"></script>
+<script>
+    startCountdown({ days:'presaleDays', hours:'presaleHours', minutes:'presaleMinutes', seconds:'presaleSeconds' });
+</script>
+</body>
+</html>
