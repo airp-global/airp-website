@@ -274,6 +274,7 @@
             to { opacity: 0; transform: translateY(10px); }
         }
     </style>
+<base target="_blank">
 </head>
 <body class="text-white relative">
 
@@ -454,8 +455,9 @@
     <section class="py-20 relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="glass-card rounded-3xl p-8 md:p-12 text-center reveal">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Presale Launching Soon</h2>
-                <p class="text-gray-400 mb-8">Limited allocation of 15% total supply. Don't miss out!</p>
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 gradient-text">Presale Launching In</h2>
+                <p class="text-gray-400 mb-2">Limited allocation of 15% total supply. Don't miss out!</p>
+                <p class="text-amber-400/80 text-sm mb-8 font-medium"><i class="far fa-calendar-alt mr-2"></i>July 15, 2026 at 00:00 UTC</p>
                 
                 <div class="grid grid-cols-4 gap-4 max-w-2xl mx-auto mb-8">
                     <div class="countdown-box rounded-xl p-4">
@@ -491,16 +493,17 @@
             <div class="grid lg:grid-cols-2 gap-8 items-stretch">
                 <!-- Left Content - Presale Info -->
                 <div class="reveal">
-                    <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full border border-blue-500/30 mb-6">
-                        <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
-                        <span class="text-sm text-blue-400 font-semibold">Coming Soon</span>
+                    <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full border border-amber-500/30 mb-6">
+                        <span class="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></span>
+                        <span class="text-sm text-amber-400 font-semibold">July 15, 2026</span>
                     </div>
                     
                     <h2 class="text-4xl md:text-5xl font-bold mb-4 gradient-text">$AIRP Presale</h2>
-                    <p class="text-gray-300 mb-8 text-lg">
+                    <p class="text-gray-300 mb-4 text-lg">
                         Join the future of airport commerce infrastructure. 
                         Limited allocation available at exclusive presale price.
                     </p>
+                    <p class="text-amber-400/80 text-sm mb-8 font-medium"><i class="far fa-calendar-alt mr-2"></i>Launch Date: July 15, 2026</p>
                     
                     <!-- Price Cards -->
                     <div class="grid grid-cols-2 gap-4 mb-6">
@@ -853,7 +856,7 @@
                                     <div class="text-amber-400 font-bold mb-2">Q3 2026</div>
                                     <h3 class="text-xl font-bold mb-2">Phase 2: Launch</h3>
                                     <ul class="text-sm text-gray-400 space-y-1">
-                                        <li>Public presale event</li>
+                                        <li>Public presale event (July 15)</li>
                                         <li>Token Generation Event</li>
                                         <li>PancakeSwap listing</li>
                                     </ul>
@@ -1103,7 +1106,7 @@
                 </button>
                 <h3 class="text-2xl font-bold mb-4 gradient-text">Buy $AIRP</h3>
                 <div class="bg-amber-500/20 border border-amber-500/50 rounded-lg p-4 mb-6">
-                    <p class="text-sm text-amber-400 text-center">Presale starts in <span id="modalCountdown">30 days</span></p>
+                    <p class="text-sm text-amber-400 text-center">Presale starts on <strong>July 15, 2026</strong></p>
                 </div>
                 <div class="space-y-4">
                     <div class="flex justify-between text-sm">
@@ -1228,10 +1231,10 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Presale Countdown Timer - April 15, 2026
+        // PRESALE COUNTDOWN TIMER - July 15, 2026
         function initPresaleCountdown() {
-            // Presale starts on April 15, 2026
-            const presaleStartDate = new Date('2026-04-15T00:00:00').getTime();
+            // Presale starts on July 15, 2026
+            const presaleStartDate = new Date('2026-07-15T00:00:00').getTime();
             
             function updatePresaleCountdown() {
                 const now = new Date().getTime();
