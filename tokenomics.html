@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tokenomics — AIRP Global</title>
+    <meta name="description" content="AIRP Global token distribution: 1 billion fixed supply. Presale, ecosystem, liquidity, marketing, team, staking, and reserve allocations explained.">
+    <link rel="canonical" href="https://www.airpglobal.com/tokenomics.html">
+    <meta property="og:title" content="Tokenomics — AIRP Global">
+    <meta property="og:url" content="https://www.airpglobal.com/tokenomics.html">
+    <meta property="og:image" content="https://www.airpglobal.com/og-image.png">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared.css">
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Space Grotesk','sans-serif']}}}}</script>
+</head>
+<body class="text-white relative">
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav class="fixed w-full z-50 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <a href="/index.html" target="_self" class="flex items-center">
+                <img src="/logo.png" alt="AIRP Logo" class="w-10 h-10 mr-3 rounded-full">
+                <div class="text-3xl font-bold gradient-text">AIRP</div>
+                <span class="ml-2 text-sm text-gray-400">Global</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/index.html"        target="_self" class="hover:text-amber-400 transition">Home</a>
+                <a href="/tokenomics.html"   target="_self" class="nav-active hover:text-amber-400 transition">Tokenomics</a>
+                <a href="/roadmap.html"      target="_self" class="hover:text-amber-400 transition">Roadmap</a>
+                <a href="/presale.html"      target="_self" class="hover:text-amber-400 transition">Presale</a>
+                <a href="/whitepaper.html"   target="_self" class="hover:text-amber-400 transition">Whitepaper</a>
+                <a href="/faq.html"          target="_self" class="hover:text-amber-400 transition">FAQ</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://x.com/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://t.me/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-discord"></i></a>
+                <button data-wallet-btn onclick="connectWallet()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                    <i class="fas fa-wallet mr-2"></i>Connect
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full border border-amber-500/30 mb-6">
+            <i class="fas fa-coins text-amber-400 text-sm"></i>
+            <span class="text-sm text-amber-400">Fixed Supply · No Minting</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text">Token Economics</h1>
+        <p class="text-xl text-gray-400 max-w-2xl">1 billion $AIRP — permanently fixed. Smart contract enforced allocation with transparent vesting schedules.</p>
+    </div>
+</div>
+
+<!-- TOTAL SUPPLY BANNER -->
+<section class="py-8 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-3xl p-8 text-center reveal">
+            <div class="text-sm text-gray-400 uppercase tracking-widest mb-2">Total Supply — Hard Cap</div>
+            <div class="text-5xl md:text-7xl font-bold gradient-text mb-3">1,000,000,000</div>
+            <div class="text-2xl font-bold text-white mb-4">$AIRP Tokens</div>
+            <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+                <span><i class="fas fa-check-circle text-green-400 mr-2"></i>No additional minting ever</span>
+                <span><i class="fas fa-check-circle text-green-400 mr-2"></i>Smart contract enforced</span>
+                <span><i class="fas fa-check-circle text-green-400 mr-2"></i>BNB Smart Chain (BSC)</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ALLOCATION GRID -->
+<section class="py-16 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+            <div class="gradient-border p-1 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-amber-400 to-amber-600 rounded-xl flex items-center justify-center"><i class="fas fa-coins text-black text-xl"></i></div>
+                        <span class="text-4xl font-bold gradient-text">15%</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Presale</h3>
+                    <div class="text-amber-400 text-sm font-mono mb-3">150,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400 mb-4">Early investor allocation at $0.005/token. Vesting: 25% at TGE, 75% linear over 4 months.</p>
+                    <div class="w-full bg-white/10 rounded-full h-2"><div class="h-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-600" style="width:15%"></div></div>
+                </div>
+            </div>
+
+            <div class="gradient-border p-1 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-blue-400 to-blue-600 rounded-xl flex items-center justify-center"><i class="fas fa-network-wired text-white text-xl"></i></div>
+                        <span class="text-4xl font-bold gradient-text">20%</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Ecosystem</h3>
+                    <div class="text-blue-400 text-sm font-mono mb-3">200,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400 mb-4">Platform development, partnerships, and ecosystem growth initiatives. 24-month vesting.</p>
+                    <div class="w-full bg-white/10 rounded-full h-2"><div class="h-2 rounded-full bg-gradient-to-r from-blue-400 to-blue-600" style="width:20%"></div></div>
+                </div>
+            </div>
+
+            <div class="gradient-border p-1 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-green-400 to-green-600 rounded-xl flex items-center justify-center"><i class="fas fa-water text-white text-xl"></i></div>
+                        <span class="text-4xl font-bold gradient-text">20%</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Liquidity</h3>
+                    <div class="text-green-400 text-sm font-mono mb-3">200,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400 mb-4">DEX and CEX liquidity pools. 12-month lock via third-party locker at TGE.</p>
+                    <div class="w-full bg-white/10 rounded-full h-2"><div class="h-2 rounded-full bg-gradient-to-r from-green-400 to-green-600" style="width:20%"></div></div>
+                </div>
+            </div>
+
+            <div class="gradient-border p-1 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-600 rounded-xl flex items-center justify-center"><i class="fas fa-bullhorn text-white text-xl"></i></div>
+                        <span class="text-4xl font-bold gradient-text">15%</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Marketing</h3>
+                    <div class="text-pink-400 text-sm font-mono mb-3">150,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400 mb-4">Brand awareness, influencer partnerships, exchange listings, and community campaigns.</p>
+                    <div class="w-full bg-white/10 rounded-full h-2"><div class="h-2 rounded-full bg-gradient-to-r from-pink-400 to-pink-600" style="width:15%"></div></div>
+                </div>
+            </div>
+
+            <div class="gradient-border p-1 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-600 rounded-xl flex items-center justify-center"><i class="fas fa-users text-white text-xl"></i></div>
+                        <span class="text-4xl font-bold gradient-text">15%</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Team</h3>
+                    <div class="text-purple-400 text-sm font-mono mb-3">150,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400 mb-4">Core team and advisors. 6-month cliff, then 18-month linear vesting.</p>
+                    <div class="w-full bg-white/10 rounded-full h-2"><div class="h-2 rounded-full bg-gradient-to-r from-purple-400 to-purple-600" style="width:15%"></div></div>
+                </div>
+            </div>
+
+            <div class="gradient-border p-1 rounded-2xl reveal">
+                <div class="glass-card h-full p-6 rounded-xl">
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 bg-gradient-to-br from-indigo-400 to-indigo-600 rounded-xl flex items-center justify-center"><i class="fas fa-lock text-white text-xl"></i></div>
+                        <span class="text-4xl font-bold gradient-text">10%</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-1">Staking</h3>
+                    <div class="text-indigo-400 text-sm font-mono mb-3">100,000,000 AIRP</div>
+                    <p class="text-sm text-gray-400 mb-4">Staking rewards and incentives released over 36 months to reward long-term holders.</p>
+                    <div class="w-full bg-white/10 rounded-full h-2"><div class="h-2 rounded-full bg-gradient-to-r from-indigo-400 to-indigo-600" style="width:10%"></div></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Reserve — full width -->
+        <div class="mt-6 gradient-border p-1 rounded-2xl reveal max-w-lg mx-auto">
+            <div class="glass-card p-6 rounded-xl">
+                <div class="flex items-center justify-between mb-4">
+                    <div class="w-12 h-12 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-xl flex items-center justify-center"><i class="fas fa-shield-alt text-black text-xl"></i></div>
+                    <span class="text-4xl font-bold gradient-text">5%</span>
+                </div>
+                <h3 class="text-xl font-bold mb-1">Reserve</h3>
+                <div class="text-yellow-400 text-sm font-mono mb-3">50,000,000 AIRP</div>
+                <p class="text-sm text-gray-400 mb-4">Emergency fund and future developments. Multi-sig controlled, community governance vote required to unlock.</p>
+                <div class="w-full bg-white/10 rounded-full h-2"><div class="h-2 rounded-full bg-gradient-to-r from-yellow-400 to-yellow-600" style="width:5%"></div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTRACT ADDRESS -->
+<section class="py-8 pb-20 relative">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-2xl p-6 reveal">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                <div>
+                    <div class="text-sm text-gray-400 mb-1">Smart Contract Address</div>
+                    <div class="font-mono text-amber-400 text-sm md:text-base">TGE Soon <span class="text-gray-500">(Available at Token Generation Event)</span></div>
+                </div>
+                <div class="flex space-x-2">
+                    <button onclick="copyAddress()" class="glass px-4 py-2 rounded-lg hover:bg-white/10 transition text-sm"><i class="fas fa-copy mr-2"></i>Copy</button>
+                    <a href="https://bscscan.com" target="_blank" class="glass px-4 py-2 rounded-lg hover:bg-white/10 transition text-sm text-amber-400"><i class="fas fa-external-link-alt mr-2"></i>BscScan</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <div>
+                <a href="/index.html" target="_self" class="flex items-center mb-4"><img src="/logo.png" alt="AIRP Logo" class="w-12 h-12 mr-3 rounded-full"><div class="text-3xl font-bold gradient-text">AIRP</div></a>
+                <p class="text-gray-400 text-sm">Institutional-grade blockchain infrastructure for the global airport economy.</p>
+            </div>
+            <div><h4 class="font-bold mb-4">Pages</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="/index.html" target="_self" class="hover:text-amber-400 transition">Home</a></li><li><a href="/tokenomics.html" target="_self" class="hover:text-amber-400 transition">Tokenomics</a></li><li><a href="/roadmap.html" target="_self" class="hover:text-amber-400 transition">Roadmap</a></li><li><a href="/presale.html" target="_self" class="hover:text-amber-400 transition">Presale</a></li><li><a href="/whitepaper.html" target="_self" class="hover:text-amber-400 transition">Whitepaper</a></li><li><a href="/faq.html" target="_self" class="hover:text-amber-400 transition">FAQ</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Resources</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="#" class="hover:text-amber-400 transition">Documentation</a></li><li><a href="#" class="hover:text-amber-400 transition">Audit Report</a></li><li><a href="#" class="hover:text-amber-400 transition">Brand Kit</a></li><li><a href="#" class="hover:text-amber-400 transition">Contact</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Community</h4><div class="flex space-x-4 mb-4"><a href="https://x.com/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-amber-400"><i class="fab fa-x-twitter"></i></a><a href="https://t.me/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-blue-400"><i class="fab fa-telegram"></i></a><a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-indigo-400"><i class="fab fa-discord"></i></a></div><div class="text-sm text-gray-500"><i class="fas fa-envelope mr-2"></i>contact@airpglobal.com</div></div>
+        </div>
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center">
+            <p class="text-sm text-gray-500">© 2026 AIRP Global. All rights reserved.</p>
+            <div class="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-500"><a href="#" class="hover:text-white transition">Privacy Policy</a><a href="#" class="hover:text-white transition">Terms of Service</a></div>
+        </div>
+    </div>
+</footer>
+
+<script src="/shared.js"></script>
+</body>
+</html>
