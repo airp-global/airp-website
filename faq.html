@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ — AIRP Global</title>
+    <meta name="description" content="Frequently asked questions about AIRP Global: presale, wallets, vesting, security, and how to participate.">
+    <link rel="canonical" href="https://www.airpglobal.com/faq.html">
+    <meta property="og:title" content="FAQ — AIRP Global">
+    <meta property="og:url" content="https://www.airpglobal.com/faq.html">
+    <meta property="og:image" content="https://www.airpglobal.com/og-image.png">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared.css">
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Space Grotesk','sans-serif']}}}}</script>
+</head>
+<body class="text-white relative">
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav class="fixed w-full z-50 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <a href="/index.html" target="_self" class="flex items-center"><img src="/logo.png" alt="AIRP Logo" class="w-10 h-10 mr-3 rounded-full"><div class="text-3xl font-bold gradient-text">AIRP</div><span class="ml-2 text-sm text-gray-400">Global</span></a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/index.html"        target="_self" class="hover:text-amber-400 transition">Home</a>
+                <a href="/tokenomics.html"   target="_self" class="hover:text-amber-400 transition">Tokenomics</a>
+                <a href="/roadmap.html"      target="_self" class="hover:text-amber-400 transition">Roadmap</a>
+                <a href="/presale.html"      target="_self" class="hover:text-amber-400 transition">Presale</a>
+                <a href="/whitepaper.html"   target="_self" class="hover:text-amber-400 transition">Whitepaper</a>
+                <a href="/faq.html"          target="_self" class="nav-active hover:text-amber-400 transition">FAQ</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://x.com/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://t.me/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-discord"></i></a>
+                <button data-wallet-btn onclick="connectWallet()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                    <i class="fas fa-wallet mr-2"></i>Connect
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full border border-amber-500/30 mb-6">
+            <i class="fas fa-question-circle text-amber-400 text-sm"></i>
+            <span class="text-sm text-amber-400">Got questions? We've got answers.</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text">Frequently Asked Questions</h1>
+        <p class="text-xl text-gray-400 max-w-2xl">Everything you need to know before participating in the AIRP Global ecosystem.</p>
+    </div>
+</div>
+
+<!-- FAQ SECTIONS -->
+<section class="py-12 pb-24 relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+
+        <!-- General -->
+        <div class="reveal">
+            <h2 class="text-2xl font-bold mb-6 text-amber-400"><i class="fas fa-info-circle mr-3"></i>General</h2>
+            <div class="space-y-3">
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">What is AIRP Global?</span>
+                        <i class="fas fa-chevron-down text-amber-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">AIRP Global is a BSC-based utility token building blockchain payment and rewards infrastructure for the global airport commerce sector. We unify fragmented airport payment systems — duty-free, F&B, retail, and loyalty — through a single on-chain settlement layer that benefits airports, merchants, and travelers alike.</div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">What problem does AIRP solve?</span>
+                        <i class="fas fa-chevron-down text-amber-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">Airports run dozens of disconnected payment systems. Travelers carry multiple loyalty cards, face high FX conversion fees, and merchants lose revenue to settlement delays. AIRP replaces this fragmentation with a single token that enables instant cross-merchant payments, unified loyalty points, and transparent on-chain settlement at under 3 seconds per transaction.</div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">Which blockchain is AIRP built on?</span>
+                        <i class="fas fa-chevron-down text-amber-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">AIRP is a BEP-20 token on BNB Smart Chain (BSC). We chose BSC for its sub-3-second finality, negligible transaction fees (under $0.01), widespread wallet support, and the large existing DeFi/DEX ecosystem — particularly PancakeSwap for initial liquidity.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Presale -->
+        <div class="reveal">
+            <h2 class="text-2xl font-bold mb-6 text-blue-400"><i class="fas fa-rocket mr-3"></i>Presale</h2>
+            <div class="space-y-3">
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">When does the presale start?</span>
+                        <i class="fas fa-chevron-down text-blue-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">The public presale opens on <strong class="text-white">July 15, 2026 at 00:00 UTC</strong>. Whitelist registration is open now to guarantee your allocation before public access.</div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">How does the presale work?</span>
+                        <i class="fas fa-chevron-down text-blue-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">15% of total supply (150,000,000 AIRP) is allocated to early investors at $0.005/token — a 60% discount to the $0.008 listing price. Minimum buy is $50, maximum is $5,000. Accepted currencies: BNB, USDT, USDC on BSC. Vesting: 25% at TGE, remaining 75% released linearly over 4 months.</div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">What is vesting and how does it apply?</span>
+                        <i class="fas fa-chevron-down text-blue-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">Vesting prevents sudden sell pressure after launch. Presale buyers receive 25% of their tokens immediately at TGE (Token Generation Event). The remaining 75% unlocks linearly — roughly 18.75% per month over 4 months. This protects all holders by ensuring a stable post-launch token price.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallets & Technical -->
+        <div class="reveal">
+            <h2 class="text-2xl font-bold mb-6 text-green-400"><i class="fas fa-wallet mr-3"></i>Wallets & Technical</h2>
+            <div class="space-y-3">
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">What wallets are supported?</span>
+                        <i class="fas fa-chevron-down text-green-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">MetaMask, Trust Wallet, Binance Chain Wallet, and any WalletConnect v2 compatible wallet. Make sure your wallet is set to the BNB Smart Chain network (Chain ID: 56) before connecting.</div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">How do I add BSC to MetaMask?</span>
+                        <i class="fas fa-chevron-down text-green-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">Our website automatically prompts MetaMask to add BSC when you connect. Alternatively: Network Name: BNB Smart Chain · RPC URL: https://bsc-dataseed.binance.org · Chain ID: 56 · Symbol: BNB · Explorer: https://bscscan.com</div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">When will the contract address be published?</span>
+                        <i class="fas fa-chevron-down text-green-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">The official contract address will be published at TGE (Token Generation Event) alongside the audit report. Always verify the address through our official website and social channels to avoid scam tokens. We will NEVER DM you a contract address.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security -->
+        <div class="reveal">
+            <h2 class="text-2xl font-bold mb-6 text-purple-400"><i class="fas fa-shield-alt mr-3"></i>Security</h2>
+            <div class="space-y-3">
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">How is the project secured?</span>
+                        <i class="fas fa-chevron-down text-purple-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">3-of-5 multi-signature treasury wallets, 12-month liquidity lock via a reputable third-party locker at TGE, immutable vesting contracts, and a full smart contract security audit before launch. The audit report will be publicly available on our website.</div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">Is the liquidity locked?</span>
+                        <i class="fas fa-chevron-down text-purple-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">Yes. 20% of total supply is allocated for liquidity. The DEX liquidity will be locked for a minimum of 12 months via a third-party locker (PinkLock or Team.Finance) at the time of the Token Generation Event. Lock proof will be published publicly.</div>
+                </div>
+                <div class="glass-card rounded-xl overflow-hidden">
+                    <button class="w-full px-6 py-5 text-left flex justify-between items-center hover:bg-white/5 transition" onclick="toggleFaq(this)">
+                        <span class="font-semibold">How do I avoid scams?</span>
+                        <i class="fas fa-chevron-down text-purple-400 transition-transform flex-shrink-0 ml-4"></i>
+                    </button>
+                    <div class="hidden px-6 pb-5 text-gray-400 leading-relaxed">Only trust information from <strong class="text-white">airpglobal.com</strong> and our official social channels (@airpglobal on X, t.me/airpglobal, discord.gg/airpglobal). We will NEVER ask for your private key, seed phrase, or send you unsolicited DMs with investment offers or contract addresses.</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-3xl p-8 text-center reveal relative overflow-hidden border border-amber-500/20">
+            <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-blue-500/10"></div>
+            <div class="relative z-10">
+                <i class="fas fa-comments text-4xl text-amber-400 mb-4"></i>
+                <h3 class="text-2xl font-bold mb-3">Still have questions?</h3>
+                <p class="text-gray-400 mb-6">Join our community — our team answers questions daily.</p>
+                <div class="flex flex-wrap justify-center gap-4">
+                    <a href="https://discord.gg/airpglobal" target="_blank" class="btn-glow bg-gradient-to-r from-indigo-500 to-indigo-600 text-white font-bold py-3 px-6 rounded-full transition transform hover:scale-105 inline-flex items-center">
+                        <i class="fab fa-discord mr-2"></i>Ask on Discord
+                    </a>
+                    <a href="https://t.me/airpglobal" target="_blank" class="glass text-white font-bold py-3 px-6 rounded-full hover:bg-white/10 transition border border-white/30 inline-flex items-center">
+                        <i class="fab fa-telegram mr-2"></i>Telegram Community
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <div><a href="/index.html" target="_self" class="flex items-center mb-4"><img src="/logo.png" alt="AIRP Logo" class="w-12 h-12 mr-3 rounded-full"><div class="text-3xl font-bold gradient-text">AIRP</div></a><p class="text-gray-400 text-sm">Institutional-grade blockchain infrastructure for the global airport economy.</p></div>
+            <div><h4 class="font-bold mb-4">Pages</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="/index.html" target="_self" class="hover:text-amber-400 transition">Home</a></li><li><a href="/tokenomics.html" target="_self" class="hover:text-amber-400 transition">Tokenomics</a></li><li><a href="/roadmap.html" target="_self" class="hover:text-amber-400 transition">Roadmap</a></li><li><a href="/presale.html" target="_self" class="hover:text-amber-400 transition">Presale</a></li><li><a href="/whitepaper.html" target="_self" class="hover:text-amber-400 transition">Whitepaper</a></li><li><a href="/faq.html" target="_self" class="hover:text-amber-400 transition">FAQ</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Resources</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="#" class="hover:text-amber-400 transition">Documentation</a></li><li><a href="#" class="hover:text-amber-400 transition">Audit Report</a></li><li><a href="#" class="hover:text-amber-400 transition">Brand Kit</a></li><li><a href="#" class="hover:text-amber-400 transition">Contact</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Community</h4><div class="flex space-x-4 mb-4"><a href="https://x.com/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-amber-400"><i class="fab fa-x-twitter"></i></a><a href="https://t.me/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-blue-400"><i class="fab fa-telegram"></i></a><a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-indigo-400"><i class="fab fa-discord"></i></a></div><div class="text-sm text-gray-500"><i class="fas fa-envelope mr-2"></i>contact@airpglobal.com</div></div>
+        </div>
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center"><p class="text-sm text-gray-500">© 2026 AIRP Global. All rights reserved.</p><div class="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-500"><a href="#" class="hover:text-white transition">Privacy Policy</a><a href="#" class="hover:text-white transition">Terms of Service</a></div></div>
+    </div>
+</footer>
+
+<script src="/shared.js"></script>
+</body>
+</html>
