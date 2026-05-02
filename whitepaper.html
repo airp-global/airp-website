@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Whitepaper — AIRP Global</title>
+    <meta name="description" content="Read the AIRP Global whitepaper. Full technical documentation of vision, architecture, tokenomics, and use cases.">
+    <link rel="canonical" href="https://www.airpglobal.com/whitepaper.html">
+    <meta property="og:title" content="Whitepaper — AIRP Global">
+    <meta property="og:url" content="https://www.airpglobal.com/whitepaper.html">
+    <meta property="og:image" content="https://www.airpglobal.com/og-image.png">
+    <link rel="icon" type="image/png" href="/logo.png">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/shared.css">
+    <script>tailwind.config={theme:{extend:{fontFamily:{sans:['Space Grotesk','sans-serif']}}}}</script>
+</head>
+<body class="text-white relative">
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAVBAR -->
+<nav class="fixed w-full z-50 glass border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <a href="/index.html" target="_self" class="flex items-center"><img src="/logo.png" alt="AIRP Logo" class="w-10 h-10 mr-3 rounded-full"><div class="text-3xl font-bold gradient-text">AIRP</div><span class="ml-2 text-sm text-gray-400">Global</span></a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="/index.html"        target="_self" class="hover:text-amber-400 transition">Home</a>
+                <a href="/tokenomics.html"   target="_self" class="hover:text-amber-400 transition">Tokenomics</a>
+                <a href="/roadmap.html"      target="_self" class="hover:text-amber-400 transition">Roadmap</a>
+                <a href="/presale.html"      target="_self" class="hover:text-amber-400 transition">Presale</a>
+                <a href="/whitepaper.html"   target="_self" class="nav-active hover:text-amber-400 transition">Whitepaper</a>
+                <a href="/faq.html"          target="_self" class="hover:text-amber-400 transition">FAQ</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="https://x.com/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-x-twitter"></i></a>
+                <a href="https://t.me/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-telegram"></i></a>
+                <a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-xl"><i class="fab fa-discord"></i></a>
+                <button data-wallet-btn onclick="connectWallet()" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105 shadow-lg shadow-amber-500/30">
+                    <i class="fas fa-wallet mr-2"></i>Connect
+                </button>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HEADER -->
+<div class="page-header pt-32 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="inline-flex items-center space-x-2 glass px-4 py-2 rounded-full border border-amber-500/30 mb-6">
+            <i class="fas fa-file-alt text-amber-400 text-sm"></i>
+            <span class="text-sm text-amber-400">Updated Q1 2026 · Audited</span>
+        </div>
+        <h1 class="text-5xl md:text-6xl font-bold mb-4 gradient-text">Whitepaper</h1>
+        <p class="text-xl text-gray-400 max-w-2xl">Comprehensive technical documentation of AIRP Global's vision, blockchain architecture, tokenomics, and real-world use cases.</p>
+    </div>
+</div>
+
+<!-- DOWNLOAD SECTION -->
+<section class="py-8 relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="glass-card rounded-3xl p-8 md:p-12 text-center reveal relative overflow-hidden border border-amber-500/20">
+            <div class="absolute inset-0 bg-gradient-to-r from-amber-500/10 to-blue-500/10"></div>
+            <div class="relative z-10">
+                <div class="w-24 h-24 bg-gradient-to-br from-amber-400 to-amber-600 rounded-3xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-amber-500/30">
+                    <i class="fas fa-file-pdf text-black text-4xl"></i>
+                </div>
+                <h2 class="text-3xl font-bold mb-2">AIRP Global Whitepaper v1.0</h2>
+                <p class="text-gray-400 mb-6">Available in English. Multi-language versions coming soon.</p>
+                <div class="flex flex-wrap justify-center gap-4 mb-8">
+                    <a href="/whitepaper.pdf" class="btn-glow bg-gradient-to-r from-amber-500 to-amber-600 text-black font-bold py-4 px-8 rounded-full transition transform hover:scale-105 inline-flex items-center text-lg shadow-lg shadow-amber-500/40">
+                        <i class="fas fa-download mr-2"></i>Download PDF
+                    </a>
+                    <button onclick="showToast('Interactive viewer coming soon!')" class="glass text-white font-bold py-4 px-8 rounded-full hover:bg-white/10 transition border border-white/30 inline-flex items-center text-lg">
+                        <i class="fas fa-eye mr-2"></i>View Online
+                    </button>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
+                    <span><i class="fas fa-check-circle text-green-400 mr-2"></i>Security Audited</span>
+                    <span><i class="fas fa-check-circle text-green-400 mr-2"></i>Third-Party Verified</span>
+                    <span><i class="fas fa-check-circle text-green-400 mr-2"></i>Updated Q1 2026</span>
+                    <span><i class="fas fa-check-circle text-green-400 mr-2"></i>Smart Contract Reviewed</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TABLE OF CONTENTS -->
+<section class="py-16 relative">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl font-bold mb-10 text-center gradient-text reveal">What's Inside</h2>
+        <div class="grid md:grid-cols-2 gap-4">
+            <div class="glass-card rounded-2xl p-6 reveal hover:border-amber-500/40 border border-white/10 transition cursor-default">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-amber-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-amber-400 font-bold text-sm">01</span></div>
+                    <div><h3 class="font-bold mb-1">Executive Summary</h3><p class="text-sm text-gray-400">Overview of the airport commerce problem and AIRP's blockchain solution.</p></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 reveal hover:border-amber-500/40 border border-white/10 transition cursor-default">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-blue-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-blue-400 font-bold text-sm">02</span></div>
+                    <div><h3 class="font-bold mb-1">Market Opportunity</h3><p class="text-sm text-gray-400">$220B+ global airport retail market analysis and blockchain adoption potential.</p></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 reveal hover:border-amber-500/40 border border-white/10 transition cursor-default">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-green-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-green-400 font-bold text-sm">03</span></div>
+                    <div><h3 class="font-bold mb-1">Technical Architecture</h3><p class="text-sm text-gray-400">BSC smart contract design, payment settlement layer, and API integration specs.</p></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 reveal hover:border-amber-500/40 border border-white/10 transition cursor-default">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-purple-400 font-bold text-sm">04</span></div>
+                    <div><h3 class="font-bold mb-1">Token Economics</h3><p class="text-sm text-gray-400">Full tokenomics breakdown, vesting schedules, and utility within the ecosystem.</p></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 reveal hover:border-amber-500/40 border border-white/10 transition cursor-default">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-pink-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-pink-400 font-bold text-sm">05</span></div>
+                    <div><h3 class="font-bold mb-1">Use Cases</h3><p class="text-sm text-gray-400">Duty-free payments, loyalty programs, merchant settlement, and cross-border transfers.</p></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 reveal hover:border-amber-500/40 border border-white/10 transition cursor-default">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-indigo-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-indigo-400 font-bold text-sm">06</span></div>
+                    <div><h3 class="font-bold mb-1">Security & Compliance</h3><p class="text-sm text-gray-400">Multi-sig treasury, audit results, KYC/AML framework, and regulatory approach.</p></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 reveal hover:border-amber-500/40 border border-white/10 transition cursor-default">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-yellow-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-yellow-400 font-bold text-sm">07</span></div>
+                    <div><h3 class="font-bold mb-1">Go-to-Market Strategy</h3><p class="text-sm text-gray-400">Airport acquisition strategy, B2B sales process, and regional expansion plan.</p></div>
+                </div>
+            </div>
+            <div class="glass-card rounded-2xl p-6 reveal hover:border-amber-500/40 border border-white/10 transition cursor-default">
+                <div class="flex items-start space-x-4">
+                    <div class="w-10 h-10 bg-orange-500/20 rounded-xl flex items-center justify-center flex-shrink-0"><span class="text-orange-400 font-bold text-sm">08</span></div>
+                    <div><h3 class="font-bold mb-1">Roadmap & Milestones</h3><p class="text-sm text-gray-400">Detailed quarterly targets from Q2 2026 through 2027 and beyond.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-white/10 pt-16 pb-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-8 mb-12">
+            <div><a href="/index.html" target="_self" class="flex items-center mb-4"><img src="/logo.png" alt="AIRP Logo" class="w-12 h-12 mr-3 rounded-full"><div class="text-3xl font-bold gradient-text">AIRP</div></a><p class="text-gray-400 text-sm">Institutional-grade blockchain infrastructure for the global airport economy.</p></div>
+            <div><h4 class="font-bold mb-4">Pages</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="/index.html" target="_self" class="hover:text-amber-400 transition">Home</a></li><li><a href="/tokenomics.html" target="_self" class="hover:text-amber-400 transition">Tokenomics</a></li><li><a href="/roadmap.html" target="_self" class="hover:text-amber-400 transition">Roadmap</a></li><li><a href="/presale.html" target="_self" class="hover:text-amber-400 transition">Presale</a></li><li><a href="/whitepaper.html" target="_self" class="hover:text-amber-400 transition">Whitepaper</a></li><li><a href="/faq.html" target="_self" class="hover:text-amber-400 transition">FAQ</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Resources</h4><ul class="space-y-2 text-sm text-gray-400"><li><a href="#" class="hover:text-amber-400 transition">Documentation</a></li><li><a href="#" class="hover:text-amber-400 transition">Audit Report</a></li><li><a href="#" class="hover:text-amber-400 transition">Brand Kit</a></li><li><a href="#" class="hover:text-amber-400 transition">Contact</a></li></ul></div>
+            <div><h4 class="font-bold mb-4">Community</h4><div class="flex space-x-4 mb-4"><a href="https://x.com/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-amber-400"><i class="fab fa-x-twitter"></i></a><a href="https://t.me/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-blue-400"><i class="fab fa-telegram"></i></a><a href="https://discord.gg/airpglobal" target="_blank" class="social-icon text-2xl text-gray-400 hover:text-indigo-400"><i class="fab fa-discord"></i></a></div><div class="text-sm text-gray-500"><i class="fas fa-envelope mr-2"></i>contact@airpglobal.com</div></div>
+        </div>
+        <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center"><p class="text-sm text-gray-500">© 2026 AIRP Global. All rights reserved.</p><div class="flex space-x-6 mt-4 md:mt-0 text-sm text-gray-500"><a href="#" class="hover:text-white transition">Privacy Policy</a><a href="#" class="hover:text-white transition">Terms of Service</a></div></div>
+    </div>
+</footer>
+
+<script src="/shared.js"></script>
+</body>
+</html>
