@@ -1,3 +1,18 @@
+
+// Nav Connect Wallet — presale sayfasına git ve wallet bağlantısını aç
+function navConnectWallet(e) {
+  e.preventDefault();
+  if (window.location.pathname === '/presale/' || 
+      window.location.pathname.includes('presale')) {
+    // Zaten presale sayfasındayız — direkt MetaMask aç
+    if (typeof connectMetaMask === 'function') {
+      connectMetaMask();
+    }
+  } else {
+    // Presale sayfasına git
+    window.location.href = '/presale/';
+  }
+}
 (function(){
   // Nav scroll effect
   const nav = document.querySelector('.nav');
