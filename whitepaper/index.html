@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Whitepaper — AIRP Global</title>
+<meta name="description" content="Full technical documentation of AIRP Global vision, architecture, tokenomics, and governance.">
+<meta property="og:title" content="Whitepaper — AIRP Global">
+<meta property="og:image" content="https://www.airpglobal.com/og-image.png">
+<link rel="stylesheet" href="../shared.css">
+<style>
+.wp-grid{display:grid;grid-template-columns:1fr 2fr;gap:32px;align-items:start}
+.wp-toc{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:28px;position:sticky;top:88px}
+.wp-toc h4{font-family:var(--font-d);font-size:.82rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.wp-toc ul li a{display:block;padding:8px 12px;border-radius:8px;font-size:.85rem;color:var(--muted);transition:all .2s}
+.wp-toc ul li a:hover{color:var(--white);background:rgba(255,255,255,.05)}
+.wp-toc ul li span{font-family:var(--font-m);font-size:.72rem;color:var(--muted2);margin-right:8px}
+.download-box{text-align:center;padding:48px 32px;background:linear-gradient(135deg,rgba(201,162,39,.07),rgba(0,207,255,.04));border:1px solid var(--gold-b);border-radius:var(--r-lg);margin-bottom:32px}
+.download-box h3{font-family:var(--font-d);font-size:1.5rem;font-weight:700;margin-bottom:8px}
+.download-box p{color:var(--muted);margin-bottom:24px;font-size:.95rem}
+.section-list{display:grid;gap:12px}
+.section-item{display:flex;gap:16px;align-items:flex-start;padding:16px 20px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);transition:all .25s}
+.section-item:hover{border-color:var(--gold-b);background:var(--card-h)}
+.section-num{font-family:var(--font-m);font-size:.8rem;color:var(--gold);font-weight:600;flex-shrink:0;padding-top:2px}
+.section-item h4{font-size:.95rem;font-weight:600;margin-bottom:3px}
+.section-item p{font-size:.82rem;color:var(--muted);line-height:1.55}
+@media(max-width:900px){.wp-grid{grid-template-columns:1fr}.wp-toc{position:static}}
+</style>
+</head><body>
+<div class="page-bg"></div><div class="grid-overlay"></div>
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="../logo.png" alt="AIRP">
+    <span>AIRP Global</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/tokenomics/">Tokenomics</a></li>
+    <li><a href="/roadmap/">Roadmap</a></li>
+    <li><a href="/presale/">Presale</a></li>
+    <li><a href="/whitepaper/">Whitepaper</a></li>
+    <li><a href="/faq/">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://x.com/airpglobal" target="_blank">&#120143;</a>
+      <a href="https://t.me/airpglobal" target="_blank">&#9992;</a>
+    </div>
+    <a href="/presale/" class="nav-cta">Join Presale</a>
+  </div>
+  <div class="nav-toggle"><span></span><span></span><span></span></div>
+</nav>
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-badge">Technical Documentation</div>
+    <h1>AIRP Global <span>Whitepaper</span></h1>
+    <p>Full technical documentation of vision, architecture, token mechanics, and governance framework.</p>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px">
+      <span class="badge badge-gold">v2.0</span>
+      <span class="badge badge-muted">2026</span>
+      <span class="badge badge-cyan">18 Pages</span>
+    </div>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0">
+<div class="container">
+<div class="wp-grid">
+
+  <div class="wp-toc anim-up">
+    <h4>Table of Contents</h4>
+    <ul>
+      <li><a href="#"><span>01</span>Executive Summary</a></li>
+      <li><a href="#"><span>02</span>Market Opportunity</a></li>
+      <li><a href="#"><span>03</span>Solution Architecture</a></li>
+      <li><a href="#"><span>04</span>Token Utility</a></li>
+      <li><a href="#"><span>05</span>Tokenomics</a></li>
+      <li><a href="#"><span>06</span>Presale Structure</a></li>
+      <li><a href="#"><span>07</span>Vesting Schedule</a></li>
+      <li><a href="#"><span>08</span>Treasury Policy</a></li>
+      <li><a href="#"><span>09</span>Technical Architecture</a></li>
+      <li><a href="#"><span>10</span>Deployment Strategy</a></li>
+      <li><a href="#"><span>11</span>Roadmap</a></li>
+      <li><a href="#"><span>12</span>Governance</a></li>
+      <li><a href="#"><span>13</span>Security &amp; Risks</a></li>
+      <li><a href="#"><span>14</span>Legal Disclaimer</a></li>
+    </ul>
+  </div>
+
+  <div>
+    <div class="download-box anim-up">
+      <h3>Whitepaper v2.0</h3>
+      <p>Download the full technical documentation &mdash; 18 pages, BSC (BEP-20)</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="/whitepaper.pdf" class="btn btn-primary btn-lg" download>Download PDF &darr;</a>
+        <a href="/whitepaper.pdf" class="btn btn-secondary btn-lg" target="_blank">View Online &rarr;</a>
+      </div>
+    </div>
+
+    <div class="section-list anim-up d2">
+      <div class="section-item"><span class="section-num">01</span><div><h4>Executive Summary</h4><p>AIRP Global overview, key metrics, and project snapshot.</p></div></div>
+      <div class="section-item"><span class="section-num">02</span><div><h4>Market Opportunity</h4><p>$220B+ global airport retail market. 4.8B annual passengers. Problem statement.</p></div></div>
+      <div class="section-item"><span class="section-num">03</span><div><h4>Solution Architecture</h4><p>Four-layer infrastructure: Payment Rail, Rewards, Settlement, User Wallet.</p></div></div>
+      <div class="section-item"><span class="section-num">04–05</span><div><h4>Token Utility &amp; Tokenomics</h4><p>AIRP token mechanics, 1B fixed supply, allocation breakdown with vesting.</p></div></div>
+      <div class="section-item"><span class="section-num">06–07</span><div><h4>Presale &amp; Vesting</h4><p>Structure, pricing, participation requirements, and full vesting schedules.</p></div></div>
+      <div class="section-item"><span class="section-num">08–09</span><div><h4>Treasury &amp; Technical Architecture</h4><p>Multi-sig governance, fund allocation, smart contract framework.</p></div></div>
+      <div class="section-item"><span class="section-num">10–13</span><div><h4>Roadmap, Governance &amp; Security</h4><p>Deployment phases, DAO framework, risk matrix, and security checklist.</p></div></div>
+    </div>
+  </div>
+
+</div>
+</div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <img src="../logo.png" alt="AIRP" style="width:28px;height:28px;border-radius:50%">
+          <span style="font-family:var(--font-d);font-weight:700;font-size:1.05rem;background:linear-gradient(135deg,var(--gold-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AIRP Global</span>
+        </a>
+        <p>Institutional-grade blockchain infrastructure for the global airport economy.</p>
+        <div class="footer-social">
+          <a href="https://x.com/airpglobal" target="_blank">&#120143;</a>
+          <a href="https://t.me/airpglobal" target="_blank">&#9992;</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/tokenomics/">Tokenomics</a></li>
+          <li><a href="/roadmap/">Roadmap</a></li>
+          <li><a href="/presale/">Presale</a></li>
+          <li><a href="/whitepaper/">Whitepaper</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/whitepaper/">Documentation</a></li>
+          <li><a href="#">Audit Report</a></li>
+          <li><a href="#">Brand Kit</a></li>
+          <li><a href="mailto:contact@airpglobal.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AIRP Global. All rights reserved.</span>
+      <span>contact@airpglobal.com</span>
+    </div>
+  </div>
+</footer><script src="../shared.js"></script>
+</body>
+</html>

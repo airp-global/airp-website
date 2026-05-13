@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Tokenomics — AIRP Global</title>
+<meta name="description" content="1B fixed supply. Presale, ecosystem, liquidity, team and staking allocations explained.">
+<meta property="og:title" content="Tokenomics — AIRP Global">
+<meta property="og:image" content="https://www.airpglobal.com/og-image.png">
+<link rel="stylesheet" href="../shared.css">
+<style>
+.alloc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.alloc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r-lg);padding:24px;transition:all .3s;position:relative;overflow:hidden}
+.alloc-card:hover{border-color:var(--gold-b);background:var(--card-h);transform:translateY(-3px)}
+.alloc-pct{font-family:var(--font-m);font-size:2.2rem;font-weight:700;color:var(--gold-l);line-height:1;margin-bottom:4px}
+.alloc-name{font-family:var(--font-d);font-size:1.05rem;font-weight:700;margin-bottom:6px}
+.alloc-amt{font-family:var(--font-m);font-size:.8rem;color:var(--gold);margin-bottom:10px}
+.alloc-desc{font-size:.85rem;color:var(--muted);line-height:1.6}
+.alloc-bar{height:3px;border-radius:3px;margin-top:16px;background:var(--gold-d)}
+.alloc-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--gold-l),var(--gold))}
+.supply-hero{text-align:center;padding:56px 32px;background:linear-gradient(135deg,rgba(201,162,39,.06),rgba(0,207,255,.03));border:1px solid var(--gold-b);border-radius:24px;margin-bottom:56px;position:relative;overflow:hidden}
+.supply-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.supply-num{font-family:var(--font-m);font-size:clamp(2rem,5vw,3.5rem);font-weight:700;color:var(--gold-l);display:block;margin-bottom:8px;line-height:1}
+</style>
+</head><body>
+<div class="page-bg"></div><div class="grid-overlay"></div>
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="../logo.png" alt="AIRP">
+    <span>AIRP Global</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/tokenomics/">Tokenomics</a></li>
+    <li><a href="/roadmap/">Roadmap</a></li>
+    <li><a href="/presale/">Presale</a></li>
+    <li><a href="/whitepaper/">Whitepaper</a></li>
+    <li><a href="/faq/">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://x.com/airpglobal" target="_blank">&#120143;</a>
+      <a href="https://t.me/airpglobal" target="_blank">&#9992;</a>
+    </div>
+    <a href="/presale/" class="nav-cta">Join Presale</a>
+  </div>
+  <div class="nav-toggle"><span></span><span></span><span></span></div>
+</nav>
+<div class="page-hero">
+  <div class="container">
+    <div class="page-hero-badge">Fixed Supply &middot; No Minting</div>
+    <h1>Token <span>Economics</span></h1>
+    <p>1 billion $AIRP — permanently fixed. Smart contract enforced allocation with transparent vesting schedules.</p>
+  </div>
+</div>
+
+<section class="section" style="padding-top:0">
+<div class="container">
+
+  <div class="supply-hero anim-up">
+    <div class="section-label" style="justify-content:center;margin-bottom:20px">Total Supply — Hard Cap</div>
+    <span class="supply-num">1,000,000,000</span>
+    <span style="font-family:var(--font-d);font-size:1.4rem;font-weight:700;color:var(--gold)">$AIRP Tokens</span>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:20px">
+      <span class="badge badge-muted">No additional minting ever</span>
+      <span class="badge badge-gold">Smart contract enforced</span>
+      <span class="badge badge-cyan">BNB Smart Chain (BSC)</span>
+    </div>
+  </div>
+
+  <div class="alloc-grid">
+    <div class="alloc-card anim-up d1">
+      <div class="alloc-pct">15%</div>
+      <div class="alloc-name">Presale</div>
+      <div class="alloc-amt">150,000,000 AIRP</div>
+      <div class="alloc-desc">Early investor allocation at $0.005/token. Vesting: 25% at TGE, 75% linear over 4 months.</div>
+      <div class="alloc-bar"><div class="alloc-bar-fill" style="width:15%"></div></div>
+    </div>
+    <div class="alloc-card anim-up d2">
+      <div class="alloc-pct">20%</div>
+      <div class="alloc-name">Ecosystem</div>
+      <div class="alloc-amt">200,000,000 AIRP</div>
+      <div class="alloc-desc">Platform development, partnerships, and ecosystem growth initiatives. 24-month vesting.</div>
+      <div class="alloc-bar"><div class="alloc-bar-fill" style="width:20%"></div></div>
+    </div>
+    <div class="alloc-card anim-up d3">
+      <div class="alloc-pct">20%</div>
+      <div class="alloc-name">Liquidity</div>
+      <div class="alloc-amt">200,000,000 AIRP</div>
+      <div class="alloc-desc">DEX and CEX liquidity pools. 12-month lock via third-party locker at TGE.</div>
+      <div class="alloc-bar"><div class="alloc-bar-fill" style="width:20%"></div></div>
+    </div>
+    <div class="alloc-card anim-up d1">
+      <div class="alloc-pct">15%</div>
+      <div class="alloc-name">Marketing</div>
+      <div class="alloc-amt">150,000,000 AIRP</div>
+      <div class="alloc-desc">Brand awareness, influencer partnerships, exchange listings, and community campaigns.</div>
+      <div class="alloc-bar"><div class="alloc-bar-fill" style="width:15%"></div></div>
+    </div>
+    <div class="alloc-card anim-up d2">
+      <div class="alloc-pct">15%</div>
+      <div class="alloc-name">Team</div>
+      <div class="alloc-amt">150,000,000 AIRP</div>
+      <div class="alloc-desc">Core team and advisors. 6-month cliff, then 18-month linear vesting.</div>
+      <div class="alloc-bar"><div class="alloc-bar-fill" style="width:15%"></div></div>
+    </div>
+    <div class="alloc-card anim-up d3">
+      <div class="alloc-pct">10%</div>
+      <div class="alloc-name">Staking</div>
+      <div class="alloc-amt">100,000,000 AIRP</div>
+      <div class="alloc-desc">Staking rewards released over 36 months to reward long-term holders.</div>
+      <div class="alloc-bar"><div class="alloc-bar-fill" style="width:10%"></div></div>
+    </div>
+    <div class="alloc-card anim-up d1">
+      <div class="alloc-pct">5%</div>
+      <div class="alloc-name">Reserve</div>
+      <div class="alloc-amt">50,000,000 AIRP</div>
+      <div class="alloc-desc">Emergency fund. Multi-sig controlled; community governance vote required to unlock.</div>
+      <div class="alloc-bar"><div class="alloc-bar-fill" style="width:5%"></div></div>
+    </div>
+  </div>
+
+  <div style="margin-top:56px" class="anim-up">
+    <h3 style="font-family:var(--font-d);font-size:1.4rem;font-weight:700;margin-bottom:20px;letter-spacing:-.01em">Full Allocation Table</h3>
+    <div style="overflow-x:auto">
+    <table class="data-table">
+      <thead><tr><th>Category</th><th>%</th><th>Amount</th><th>Vesting</th></tr></thead>
+      <tbody>
+        <tr><td>Presale</td><td style="color:var(--gold)">15%</td><td style="font-family:var(--font-m)">150,000,000 AIRP</td><td>25% TGE + 75% over 4 months</td></tr>
+        <tr><td>Ecosystem Development</td><td style="color:var(--gold)">20%</td><td style="font-family:var(--font-m)">200,000,000 AIRP</td><td>24-month linear vesting</td></tr>
+        <tr><td>Liquidity</td><td style="color:var(--gold)">20%</td><td style="font-family:var(--font-m)">200,000,000 AIRP</td><td>12-month lock, then gradual release</td></tr>
+        <tr><td>Marketing &amp; Partnerships</td><td style="color:var(--gold)">15%</td><td style="font-family:var(--font-m)">150,000,000 AIRP</td><td>12-month linear vesting</td></tr>
+        <tr><td>Team (Vested)</td><td style="color:var(--gold)">15%</td><td style="font-family:var(--font-m)">150,000,000 AIRP</td><td>6-month cliff + 18-month linear</td></tr>
+        <tr><td>Staking Rewards</td><td style="color:var(--gold)">10%</td><td style="font-family:var(--font-m)">100,000,000 AIRP</td><td>36-month linear distribution</td></tr>
+        <tr><td>Strategic Reserve</td><td style="color:var(--gold)">5%</td><td style="font-family:var(--font-m)">50,000,000 AIRP</td><td>Multi-sig governance unlock</td></tr>
+        <tr style="font-weight:600"><td><strong>TOTAL</strong></td><td style="color:var(--gold-l)"><strong>100%</strong></td><td style="font-family:var(--font-m)"><strong>1,000,000,000 AIRP</strong></td><td>Fixed supply — no minting</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+  <div style="margin-top:24px;padding:20px 24px;background:rgba(201,162,39,.06);border:1px solid var(--gold-b);border-radius:var(--r);display:flex;align-items:flex-start;gap:12px" class="anim-up">
+    <span style="color:var(--gold);font-size:1.2rem;flex-shrink:0;margin-top:2px">&#9888;</span>
+    <div>
+      <p style="font-size:.875rem;color:var(--muted);line-height:1.65">
+        <strong style="color:var(--white)">Smart Contract Address:</strong> 
+        Will be published at Token Generation Event (TGE) exclusively via 
+        <a href="https://www.airpglobal.com" style="color:var(--gold-l)">airpglobal.com</a> and verified social channels.
+      </p>
+    </div>
+  </div>
+
+</div>
+</section>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <img src="../logo.png" alt="AIRP" style="width:28px;height:28px;border-radius:50%">
+          <span style="font-family:var(--font-d);font-weight:700;font-size:1.05rem;background:linear-gradient(135deg,var(--gold-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AIRP Global</span>
+        </a>
+        <p>Institutional-grade blockchain infrastructure for the global airport economy.</p>
+        <div class="footer-social">
+          <a href="https://x.com/airpglobal" target="_blank">&#120143;</a>
+          <a href="https://t.me/airpglobal" target="_blank">&#9992;</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/tokenomics/">Tokenomics</a></li>
+          <li><a href="/roadmap/">Roadmap</a></li>
+          <li><a href="/presale/">Presale</a></li>
+          <li><a href="/whitepaper/">Whitepaper</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/whitepaper/">Documentation</a></li>
+          <li><a href="#">Audit Report</a></li>
+          <li><a href="#">Brand Kit</a></li>
+          <li><a href="mailto:contact@airpglobal.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AIRP Global. All rights reserved.</span>
+      <span>contact@airpglobal.com</span>
+    </div>
+  </div>
+</footer><script src="../shared.js"></script>
+</body>
+</html>
