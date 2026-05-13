@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AIRP Global | Airport Economy Infrastructure Token</title>
+<meta name="description" content="AIRP Global — Institutional-grade blockchain infrastructure for the global airport economy. BSC-based utility token for seamless payments, unified loyalty, and on-chain settlement.">
+<meta property="og:title" content="AIRP Global | Airport Economy Infrastructure Token">
+<meta property="og:description" content="Institutional-grade blockchain infrastructure for the global airport economy. Join the $AIRP presale on July 15, 2026.">
+<meta property="og:image" content="https://www.airpglobal.com/og-image.png">
+<meta property="og:url" content="https://www.airpglobal.com/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="shared.css">
+<style>
+
+/* ═══════════════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════════════ */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 120px 0 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Particle canvas */
+#particles-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Runway perspective grid */
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-grid::before {
+  content: '';
+  position: absolute;
+  bottom: -10%;
+  left: 50%;
+  width: 220%;
+  height: 110%;
+  background-image:
+    linear-gradient(rgba(201,162,39,0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,162,39,0.06) 1px, transparent 1px);
+  background-size: 90px 90px;
+  transform-origin: 50% 100%;
+  transform: translateX(-50%) perspective(700px) rotateX(62deg);
+}
+.hero-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom,
+    var(--bg) 0%, transparent 30%,
+    transparent 60%, var(--bg) 100%);
+}
+
+/* Center runway light strip */
+.runway-strip {
+  position: absolute;
+  bottom: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 55%;
+  z-index: 1;
+  background: linear-gradient(to top,
+    rgba(201,162,39,0.9) 0%,
+    rgba(201,162,39,0.2) 70%,
+    transparent 100%);
+  pointer-events: none;
+}
+.runway-strip::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 8px;
+  height: 100%;
+  background: inherit;
+  filter: blur(6px);
+  opacity: 0.6;
+}
+
+/* Glow orbs */
+.hero-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.hero-orb-1 {
+  width: 700px; height: 700px;
+  top: -100px; left: 50%;
+  transform: translateX(-50%);
+  background: radial-gradient(circle, rgba(201,162,39,0.07) 0%, transparent 65%);
+}
+.hero-orb-2 {
+  width: 450px; height: 450px;
+  bottom: 10%; right: -50px;
+  background: radial-gradient(circle, rgba(0,207,255,0.07) 0%, transparent 65%);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 16px;
+  border-radius: 100px;
+  background: rgba(0,207,255,0.1);
+  border: 1px solid rgba(0,207,255,0.22);
+  font-family: var(--font-m);
+  font-size: clamp(.62rem, .9vw, .72rem);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 28px;
+  white-space: nowrap;
+}
+.hero-badge::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
+  flex-shrink: 0;
+  animation: pulse-dot 1.5s infinite;
+}
+
+.hero h1 {
+  font-family: var(--font-d);
+  font-size: clamp(2.6rem, 6vw, 5.2rem);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -.025em;
+  margin-bottom: 24px;
+  max-width: 800px;
+}
+.hero h1 .gold {
+  display: block;
+  background: linear-gradient(135deg, var(--gold-l) 0%, var(--gold) 60%, #b8891f 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--muted);
+  max-width: 500px;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 56px;
+}
+
+/* Hero stats strip */
+.hero-stats {
+  display: inline-flex;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: blur(12px);
+}
+.hero-stat {
+  padding: 18px 28px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.hero-stat:last-child { border-right: none; }
+.hero-stat-val {
+  font-family: var(--font-m);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--gold-l);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hero-stat-lbl {
+  font-size: .72rem;
+  color: var(--muted);
+  letter-spacing: .07em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════
+   TICKER
+═══════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════
+   TRUST BADGES
+═══════════════════════════════════════════════════ */
+.trust-bar {
+  padding: 28px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: rgba(255,255,255,0.015);
+}
+.trust-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.trust-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  border-radius: 10px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  font-size: .82rem;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+  transition: border-color .2s, color .2s;
+}
+.trust-badge:hover { border-color: var(--gold-b); color: var(--white); }
+.trust-badge .ico { font-size: 1rem; }
+.trust-badge.verified { border-color: rgba(74,222,128,.2); color: #4ade80; }
+.trust-badge.audit { border-color: var(--gold-b); color: var(--gold-l); }
+.trust-sep { width: 1px; height: 28px; background: var(--border); }
+
+/* ═══════════════════════════════════════════════════
+   LIVE STATS
+═══════════════════════════════════════════════════ */
+.live-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+.live-stat-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  text-align: center;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+.live-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  opacity: 0;
+  transition: opacity .3s;
+}
+.live-stat-card:hover { border-color: var(--gold-b); transform: translateY(-3px); }
+.live-stat-card:hover::before { opacity: 1; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+.live-stat-card .icon {
+  font-size: 1.8rem;
+  margin-bottom: 12px;
+  display: block;
+}
+.live-stat-val {
+  font-family: var(--font-m);
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--gold-l);
+  display: block;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.live-stat-lbl {
+  font-size: .78rem;
+  color: var(--muted);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.live-stat-sub {
+  font-size: .75rem;
+  color: var(--muted2);
+  margin-top: 4px;
+}
+
+/* ═══════════════════════════════════════════════════
+   WHY AIRP — comparison
+═══════════════════════════════════════════════════ */
+.compare-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.compare-table th {
+  padding: 16px 24px;
+  font-family: var(--font-m);
+  font-size: .75rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid var(--border);
+}
+.compare-table th:first-child { text-align: left; }
+.compare-table th:nth-child(2) {
+  background: rgba(201,162,39,.08);
+  color: var(--gold-l);
+  border-left: 1px solid var(--gold-b);
+  border-right: 1px solid var(--gold-b);
+}
+.compare-table th:last-child { color: var(--muted); }
+.compare-table td {
+  padding: 14px 24px;
+  font-size: .9rem;
+  border-bottom: 1px solid rgba(255,255,255,.04);
+  text-align: center;
+}
+.compare-table td:first-child {
+  text-align: left;
+  color: var(--muted);
+  font-size: .85rem;
+}
+.compare-table td:nth-child(2) {
+  background: rgba(201,162,39,.04);
+  border-left: 1px solid rgba(201,162,39,.1);
+  border-right: 1px solid rgba(201,162,39,.1);
+  color: var(--gold-l);
+  font-weight: 600;
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table tr:hover td { background: rgba(255,255,255,.02); }
+.compare-table tr:hover td:nth-child(2) { background: rgba(201,162,39,.06); }
+.check { color: #4ade80; font-size: 1rem; }
+.cross { color: #f87171; font-size: 1rem; }
+
+/* ═══════════════════════════════════════════════════
+   FEATURES GRID
+═══════════════════════════════════════════════════ */
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.feature-card {
+  padding: 32px 28px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+.feature-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0;
+  transition: opacity .3s;
+}
+.feature-card:hover {
+  background: var(--card-h);
+  border-color: var(--gold-b);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,0,0,.3), 0 0 0 1px var(--gold-b);
+}
+.feature-card:hover::after { opacity: 1; }
+.feature-icon {
+  width: 48px; height: 48px;
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 20px;
+}
+.feature-icon.gold { background: var(--gold-d); border: 1px solid var(--gold-b); }
+.feature-icon.cyan { background: var(--cyan-d); border: 1px solid var(--cyan-b); }
+.feature-icon.blue { background: rgba(99,102,241,.15); border: 1px solid rgba(99,102,241,.25); }
+.feature-card h3 { font-family: var(--font-d); font-size: 1.1rem; font-weight: 700; margin-bottom: 10px; letter-spacing: -.01em; }
+.feature-card p { font-size: .9rem; color: var(--muted); line-height: 1.65; }
+.feature-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; font-size: .85rem; font-weight: 600; color: var(--gold-l); transition: gap .2s; }
+.feature-link:hover { gap: 10px; }
+
+/* ═══════════════════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════════════════ */
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  position: relative;
+}
+.how-grid::before {
+  content: '';
+  position: absolute;
+  top: 32px; left: 12%; right: 12%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-b), var(--gold-b), var(--gold-b), transparent);
+}
+.how-step { padding: 0 16px; text-align: center; position: relative; z-index: 1; }
+.how-num {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--bg3);
+  border: 2px solid var(--gold-b);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-m);
+  font-size: 1.1rem; font-weight: 600;
+  color: var(--gold-l);
+  margin: 0 auto 20px;
+  transition: all .3s;
+  position: relative;
+}
+.how-num::before {
+  content: '';
+  position: absolute; inset: -6px;
+  border-radius: 50%;
+  border: 1px solid var(--gold-d);
+}
+.how-step:hover .how-num {
+  background: var(--gold-d);
+  border-color: var(--gold);
+  box-shadow: 0 0 24px rgba(201,162,39,.25);
+}
+.how-step h4 { font-family: var(--font-d); font-size: .95rem; font-weight: 700; margin-bottom: 8px; }
+.how-step p { font-size: .85rem; color: var(--muted); line-height: 1.6; }
+
+/* ═══════════════════════════════════════════════════
+   SECURITY SECTION
+═══════════════════════════════════════════════════ */
+.security-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+.sec-item {
+  display: flex;
+  gap: 14px;
+  padding: 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  transition: border-color .25s;
+}
+.sec-item:hover { border-color: var(--gold-b); }
+.sec-icon {
+  width: 36px; height: 36px;
+  border-radius: 9px;
+  background: var(--gold-d);
+  border: 1px solid var(--gold-b);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+.sec-item h4 { font-size: .9rem; font-weight: 600; margin-bottom: 4px; }
+.sec-item p { font-size: .8rem; color: var(--muted); line-height: 1.55; }
+
+/* ═══════════════════════════════════════════════════
+   PRESALE CTA
+═══════════════════════════════════════════════════ */
+.presale-cta {
+  background: linear-gradient(135deg, rgba(201,162,39,.08), rgba(0,207,255,.04));
+  border: 1px solid var(--gold-b);
+  border-radius: 24px;
+  padding: 72px 48px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.presale-cta::before {
+  content: '';
+  position: absolute;
+  top: -60%; left: -20%;
+  width: 140%; height: 140%;
+  background: radial-gradient(ellipse at center, rgba(201,162,39,.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.presale-cta h2 {
+  font-family: var(--font-d);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  letter-spacing: -.02em;
+  margin-bottom: 12px;
+  position: relative;
+}
+.presale-cta p {
+  color: var(--muted);
+  font-size: 1.05rem;
+  margin-bottom: 36px;
+  position: relative;
+}
+.presale-cta .countdown {
+  justify-content: center;
+  margin-bottom: 36px;
+  position: relative;
+}
+
+/* Infinite scroll marquee */
+.marquee-wrap {
+  overflow: hidden;
+  padding: 14px 0;
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: ticker 32s linear infinite;
+}
+.marquee-track.reverse {
+  animation-direction: reverse;
+  animation-duration: 38s;
+}
+.marquee-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 32px;
+  font-family: var(--font-m);
+  font-size: .75rem;
+  color: var(--muted);
+  white-space: nowrap;
+  letter-spacing: .05em;
+}
+.marquee-item strong { color: var(--gold); }
+.marquee-item .dot { color: var(--muted2); font-size: .5rem; }
+
+/* ═══════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════ */
+@media(max-width:1024px){
+  .live-stats-grid { grid-template-columns: repeat(2,1fr); }
+  .features-grid { grid-template-columns: repeat(2,1fr); }
+  .how-grid { grid-template-columns: repeat(2,1fr); gap: 36px; }
+  .how-grid::before { display: none; }
+  .security-grid { grid-template-columns: repeat(2,1fr); }
+}
+@media(max-width:768px){
+  .hero { padding: 110px 0 72px; }
+  .hero-stats { flex-direction: column; width: 100%; }
+  .hero-stat { border-right: none; border-bottom: 1px solid var(--border); }
+  .hero-stat:last-child { border-bottom: none; }
+  .features-grid { grid-template-columns: 1fr; }
+  .live-stats-grid { grid-template-columns: repeat(2,1fr); }
+  .security-grid { grid-template-columns: 1fr; }
+  .presale-cta { padding: 48px 24px; }
+  .trust-sep { display: none; }
+  .compare-table { font-size: .8rem; }
+  .compare-table td, .compare-table th { padding: 12px 14px; }
+  .hero-stat-val { font-size: 1.2rem; }
+}
+@media(max-width:480px){
+  .how-grid { grid-template-columns: 1fr; }
+  .live-stats-grid { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+<div class="page-bg"></div>
+<div class="grid-overlay"></div>
+
+<!-- Particles canvas -->
+<canvas id="particles-canvas"></canvas>
+
+<!-- NAV -->
+<nav class="nav">
+  <a href="/" class="nav-logo">
+    <img src="logo.png" alt="AIRP">
+    <span>AIRP Global</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="/">Home</a></li>
+    <li><a href="/tokenomics/">Tokenomics</a></li>
+    <li><a href="/roadmap/">Roadmap</a></li>
+    <li><a href="/presale/">Presale</a></li>
+    <li><a href="/whitepaper/">Whitepaper</a></li>
+    <li><a href="/faq/">FAQ</a></li>
+  </ul>
+  <div class="nav-right">
+    <div class="nav-social">
+      <a href="https://x.com/airpglobal" target="_blank" aria-label="X">&#120143;</a>
+      <a href="https://t.me/airpglobal" target="_blank" aria-label="Telegram">&#9992;</a>
+    </div>
+    <a href="/presale/" class="nav-cta">Join Presale</a>
+  </div>
+  <div class="nav-toggle" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="runway-strip"></div>
+  <div class="hero-orb hero-orb-1"></div>
+  <div class="hero-orb hero-orb-2"></div>
+
+  <div class="container hero-content">
+    <div class="hero-badge">BSC Network &nbsp;&#8226;&nbsp; BEP-20 &nbsp;&#8226;&nbsp; Live Infrastructure</div>
+
+    <h1 class="anim-up">
+      Powering the
+      <span class="gold">Global Airport<br>Economy</span>
+    </h1>
+
+    <p class="hero-sub anim-up d2">
+      Institutional-grade blockchain infrastructure for airport commerce.
+      Seamless payments, unified loyalty, and on-chain settlement.
+    </p>
+
+    <div class="hero-actions anim-up d3">
+      <a href="/presale/" class="btn btn-primary btn-lg">Join Presale &rarr;</a>
+      <a href="/whitepaper/" class="btn btn-secondary btn-lg">Read Whitepaper</a>
+    </div>
+
+    <div class="hero-stats anim-up d4">
+      <div class="hero-stat">
+        <span class="hero-stat-val">50+</span>
+        <span class="hero-stat-lbl">Airports Targeted</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">&lt;3s</span>
+        <span class="hero-stat-lbl">Tx Speed</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">1B</span>
+        <span class="hero-stat-lbl">Fixed Supply</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-val">$0.005</span>
+        <span class="hero-stat-lbl">Presale Price</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ AIRPORT TICKER ═══ -->
+<div style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:rgba(255,255,255,.012);overflow:hidden;padding:0">
+  <div class="marquee-wrap" style="border:none;padding:12px 0">
+    <div class="marquee-track">
+      <div class="marquee-item">ISTANBUL <strong>IST</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">DUBAI <strong>DXB</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">SINGAPORE <strong>SIN</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">TOKYO <strong>NRT</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">LONDON <strong>LHR</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">NEW YORK <strong>JFK</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">SYDNEY <strong>SYD</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">FRANKFURT <strong>FRA</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">PARIS <strong>CDG</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">HONG KONG <strong>HKG</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">DUBAI <strong>DXB</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">AIRP <strong>$0.005</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">BSC <strong>Live</strong> <span class="dot">&#9679;</span></div>
+      <!-- duplicate -->
+      <div class="marquee-item">ISTANBUL <strong>IST</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">DUBAI <strong>DXB</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">SINGAPORE <strong>SIN</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">TOKYO <strong>NRT</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">LONDON <strong>LHR</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">NEW YORK <strong>JFK</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">SYDNEY <strong>SYD</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">FRANKFURT <strong>FRA</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">PARIS <strong>CDG</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">HONG KONG <strong>HKG</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">AIRP <strong>$0.005</strong> <span class="dot">&#9679;</span></div>
+      <div class="marquee-item">BSC <strong>Live</strong> <span class="dot">&#9679;</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ TRUST BADGES ═══ -->
+<div class="trust-bar">
+  <div class="container">
+    <div class="trust-inner">
+      <div class="trust-badge audit">
+        <span class="ico">&#128737;</span>
+        Audit In Progress
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge verified">
+        <span class="ico">&#10003;</span>
+        BSC (BEP-20) Verified
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge">
+        <span class="ico">&#128274;</span>
+        3/5 Multi-Sig Treasury
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge">
+        <span class="ico">&#128293;</span>
+        Liquidity Locked 12mo
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge">
+        <span class="ico">&#128165;</span>
+        OpenZeppelin Contracts
+      </div>
+      <div class="trust-sep"></div>
+      <div class="trust-badge">
+        <span class="ico">&#9654;</span>
+        No Mint Function
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ LIVE STATS ═══ -->
+<section class="section">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:48px" class="anim-up">
+      <div class="section-label" style="justify-content:center">By The Numbers</div>
+      <h2 class="section-title" style="text-align:center">Project <span class="accent">At a Glance</span></h2>
+    </div>
+    <div class="live-stats-grid">
+      <div class="live-stat-card anim-up d1">
+        <span class="icon">&#9992;</span>
+        <span class="live-stat-val">$220B+</span>
+        <span class="live-stat-lbl">Airport Retail Market</span>
+        <span class="live-stat-sub">Global annual revenue</span>
+      </div>
+      <div class="live-stat-card anim-up d2">
+        <span class="icon">&#128100;</span>
+        <span class="live-stat-val">4.8B</span>
+        <span class="live-stat-lbl">Annual Passengers</span>
+        <span class="live-stat-sub">Global air travelers</span>
+      </div>
+      <div class="live-stat-card anim-up d3">
+        <span class="icon">&#128176;</span>
+        <span class="live-stat-val">$750K</span>
+        <span class="live-stat-lbl">Presale Target Raise</span>
+        <span class="live-stat-sub">150M AIRP at $0.005</span>
+      </div>
+      <div class="live-stat-card anim-up d4">
+        <span class="icon">&#128197;</span>
+        <span class="live-stat-val">Jul 15</span>
+        <span class="live-stat-lbl">Presale Launch</span>
+        <span class="live-stat-sub">2026 · 00:00 UTC</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURES ═══ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="margin-bottom:48px" class="anim-up">
+      <div class="section-label">What We Build</div>
+      <h2 class="section-title">Explore <span class="accent">AIRP Global</span></h2>
+      <p class="section-sub">Everything you need to know about the project</p>
+    </div>
+    <div class="features-grid">
+      <a href="/tokenomics/" class="feature-card anim-up d1">
+        <div class="feature-icon gold">&#9670;</div>
+        <h3>Tokenomics</h3>
+        <p>1B fixed supply. No minting. Smart contract enforced allocation with transparent vesting.</p>
+        <span class="feature-link">View details &rarr;</span>
+      </a>
+      <a href="/presale/" class="feature-card anim-up d2">
+        <div class="feature-icon cyan">&#128279;</div>
+        <h3>Presale</h3>
+        <p>Join at $0.005/AIRP — 60% below listing price. Limited to 15% of total supply. July 15, 2026.</p>
+        <span class="feature-link">Join whitelist &rarr;</span>
+      </a>
+      <a href="/roadmap/" class="feature-card anim-up d3">
+        <div class="feature-icon gold">&#10148;</div>
+        <h3>Roadmap</h3>
+        <p>Q2 2026 &rarr; Global 2027. Transparent milestones from foundation to decentralized commerce.</p>
+        <span class="feature-link">See milestones &rarr;</span>
+      </a>
+      <a href="/whitepaper/" class="feature-card anim-up d1">
+        <div class="feature-icon blue">&#128196;</div>
+        <h3>Whitepaper</h3>
+        <p>Full technical documentation of vision, architecture, token mechanics, and governance.</p>
+        <span class="feature-link">Read now &rarr;</span>
+      </a>
+      <a href="/faq/" class="feature-card anim-up d2">
+        <div class="feature-icon cyan">&#63;</div>
+        <h3>FAQ</h3>
+        <p>Common questions about wallets, vesting, security, and how to participate in the presale.</p>
+        <span class="feature-link">Get answers &rarr;</span>
+      </a>
+      <div class="feature-card anim-up d3" style="cursor:default;border-color:var(--gold-b);background:linear-gradient(135deg,rgba(201,162,39,.05),rgba(201,162,39,.02))">
+        <div class="feature-icon gold">&#9832;</div>
+        <h3>Integrations</h3>
+        <p>Airport authorities, payment gateways, and merchant SDK. Partner announcements coming soon.</p>
+        <span class="badge badge-muted" style="margin-top:16px">Coming Soon</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section class="section" style="background:rgba(255,255,255,0.012);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div style="text-align:center;margin-bottom:56px" class="anim-up">
+      <div class="section-label" style="justify-content:center">Protocol Architecture</div>
+      <h2 class="section-title" style="text-align:center">Three Layers. <span class="accent">One Protocol.</span></h2>
+      <p class="section-sub" style="margin:0 auto;text-align:center">AIRP unifies payment, loyalty, and settlement into a single on-chain infrastructure</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-step anim-up d1">
+        <div class="how-num">01</div>
+        <h4>Payment Rail</h4>
+        <p>Sub-3s on-chain transactions across airport merchants. AIRP, BNB, USDT, USDC accepted.</p>
+      </div>
+      <div class="how-step anim-up d2">
+        <div class="how-num">02</div>
+        <h4>Rewards Layer</h4>
+        <p>Programmable loyalty rewards distributed instantly at transaction confirmation via smart contract.</p>
+      </div>
+      <div class="how-step anim-up d3">
+        <div class="how-num">03</div>
+        <h4>Settlement Engine</h4>
+        <p>Real-time on-chain merchant settlement. Same-block finality vs 2-5 day bank clearing.</p>
+      </div>
+      <div class="how-step anim-up d4">
+        <div class="how-num">04</div>
+        <h4>User Wallet</h4>
+        <p>Unified dashboard: balances, rewards, and transaction history across all integrated merchants.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ WHY AIRP — COMPARISON ═══ -->
+<section class="section">
+  <div class="container">
+    <div style="margin-bottom:40px" class="anim-up">
+      <div class="section-label">Why AIRP</div>
+      <h2 class="section-title">AIRP vs <span class="accent">Traditional Systems</span></h2>
+      <p class="section-sub">See why on-chain infrastructure outperforms legacy payment rails</p>
+    </div>
+    <div style="overflow-x:auto" class="anim-up d2">
+      <table class="compare-table">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>&#9992; AIRP Global</th>
+            <th>Traditional System</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Settlement Speed</td>
+            <td>&lt; 3 seconds</td>
+            <td><span class="cross">&#10007;</span> 2-5 business days</td>
+          </tr>
+          <tr>
+            <td>Transaction Fees</td>
+            <td>&lt; $0.01 per tx</td>
+            <td><span class="cross">&#10007;</span> 2.5% - 4.5%</td>
+          </tr>
+          <tr>
+            <td>Loyalty Programs</td>
+            <td><span class="check">&#10003;</span> Unified cross-merchant</td>
+            <td><span class="cross">&#10007;</span> Siloed, incompatible</td>
+          </tr>
+          <tr>
+            <td>Transparency</td>
+            <td><span class="check">&#10003;</span> On-chain, public</td>
+            <td><span class="cross">&#10007;</span> Opaque, centralized</td>
+          </tr>
+          <tr>
+            <td>Currencies Accepted</td>
+            <td><span class="check">&#10003;</span> Multi-currency</td>
+            <td><span class="cross">&#10007;</span> Limited, high FX fees</td>
+          </tr>
+          <tr>
+            <td>Merchant Integration</td>
+            <td><span class="check">&#10003;</span> Single API/SDK</td>
+            <td><span class="cross">&#10007;</span> Multiple terminals</td>
+          </tr>
+          <tr>
+            <td>Intermediaries</td>
+            <td><span class="check">&#10003;</span> None (peer-to-contract)</td>
+            <td><span class="cross">&#10007;</span> 3-5 intermediary banks</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SECURITY ═══ -->
+<section class="section" style="padding-top:0">
+  <div class="container">
+    <div style="margin-bottom:40px" class="anim-up">
+      <div class="section-label">Trust &amp; Security</div>
+      <h2 class="section-title">Built for <span class="accent">Institutional Trust</span></h2>
+      <p class="section-sub">Every layer of AIRP is designed with security-first principles</p>
+    </div>
+    <div class="security-grid">
+      <div class="sec-item anim-up d1">
+        <div class="sec-icon">&#128274;</div>
+        <div>
+          <h4>3/5 Multi-Signature</h4>
+          <p>All treasury transactions require 3 of 5 independent signers — no single point of control.</p>
+        </div>
+      </div>
+      <div class="sec-item anim-up d2">
+        <div class="sec-icon">&#9201;</div>
+        <div>
+          <h4>48-Hour Time Lock</h4>
+          <p>Large transfers are subject to 48-hour delay, giving the community time to review.</p>
+        </div>
+      </div>
+      <div class="sec-item anim-up d3">
+        <div class="sec-icon">&#128737;</div>
+        <div>
+          <h4>External Security Audit</h4>
+          <p>Full audit scheduled before CEX listing. Audit report will be published publicly.</p>
+        </div>
+      </div>
+      <div class="sec-item anim-up d1">
+        <div class="sec-icon">&#128165;</div>
+        <div>
+          <h4>OpenZeppelin Libraries</h4>
+          <p>Battle-tested audited contracts. ReentrancyGuard &amp; SafeERC20 on all functions.</p>
+        </div>
+      </div>
+      <div class="sec-item anim-up d2">
+        <div class="sec-icon">&#128293;</div>
+        <div>
+          <h4>Emergency Pause</h4>
+          <p>Non-custodial circuit breaker. Pauses protocol in case of detected vulnerability.</p>
+        </div>
+      </div>
+      <div class="sec-item anim-up d3">
+        <div class="sec-icon">&#128196;</div>
+        <div>
+          <h4>On-Chain Verifiable</h4>
+          <p>All contract functions are publicly verifiable on BscScan in real time.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRESALE CTA ═══ -->
+<section class="section">
+  <div class="container">
+    <div class="presale-cta anim-up">
+      <div class="section-label" style="justify-content:center;margin-bottom:20px">Presale Launching</div>
+      <h2>Ready to <span style="background:linear-gradient(135deg,var(--gold-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Participate?</span></h2>
+      <p>Limited allocation &mdash; 150,000,000 AIRP at $0.005. July 15, 2026 at 00:00 UTC.</p>
+      <div class="countdown">
+        <div class="countdown-unit">
+          <span class="countdown-num" data-countdown="d">00</span>
+          <span class="countdown-label">Days</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" data-countdown="h">00</span>
+          <span class="countdown-label">Hours</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" data-countdown="m">00</span>
+          <span class="countdown-label">Mins</span>
+        </div>
+        <div class="countdown-unit">
+          <span class="countdown-num" data-countdown="s">00</span>
+          <span class="countdown-label">Secs</span>
+        </div>
+      </div>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+        <a href="/presale/" class="btn btn-primary btn-lg">Join Whitelist Now</a>
+        <a href="/whitepaper/" class="btn btn-ghost btn-lg">Read Whitepaper</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" style="display:flex;align-items:center;gap:10px;margin-bottom:4px">
+          <img src="logo.png" alt="AIRP" style="width:28px;height:28px;border-radius:50%">
+          <span style="font-family:var(--font-d);font-weight:700;font-size:1.05rem;background:linear-gradient(135deg,var(--gold-l),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">AIRP Global</span>
+        </a>
+        <p>Institutional-grade blockchain infrastructure for the global airport economy.</p>
+        <div class="footer-social">
+          <a href="https://x.com/airpglobal" target="_blank" aria-label="X">&#120143;</a>
+          <a href="https://t.me/airpglobal" target="_blank" aria-label="Telegram">&#9992;</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/tokenomics/">Tokenomics</a></li>
+          <li><a href="/roadmap/">Roadmap</a></li>
+          <li><a href="/presale/">Presale</a></li>
+          <li><a href="/whitepaper/">Whitepaper</a></li>
+          <li><a href="/faq/">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <ul>
+          <li><a href="/whitepaper/">Documentation</a></li>
+          <li><a href="#">Audit Report</a></li>
+          <li><a href="#">Brand Kit</a></li>
+          <li><a href="mailto:contact@airpglobal.com">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 AIRP Global. All rights reserved.</span>
+      <span>contact@airpglobal.com</span>
+    </div>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+<script>
+// ═══════════════════════════════════════════════════
+//  BLOCKCHAIN NODE PARTICLE NETWORK
+// ═══════════════════════════════════════════════════
+(function(){
+  const canvas = document.getElementById('particles-canvas');
+  const ctx    = canvas.getContext('2d');
+
+  let W, H, nodes = [], mouse = {x:null,y:null};
+  const NODE_COUNT     = 55;
+  const CONNECT_DIST   = 140;
+  const GOLD    = 'rgba(201,162,39,';
+  const CYAN    = 'rgba(0,207,255,';
+
+  function resize(){
+    W = canvas.width  = window.innerWidth;
+    H = canvas.height = window.innerHeight;
+  }
+
+  function Node(){
+    this.x  = Math.random() * W;
+    this.y  = Math.random() * H;
+    this.vx = (Math.random() - .5) * .4;
+    this.vy = (Math.random() - .5) * .4;
+    this.r  = Math.random() * 2 + 1.5;
+    this.gold = Math.random() > .6;
+    this.pulse = Math.random() * Math.PI * 2;
+    this.pulseSpeed = .02 + Math.random() * .02;
+  }
+
+  function initNodes(){
+    nodes = [];
+    for(let i=0;i<NODE_COUNT;i++) nodes.push(new Node());
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+
+    // Update
+    nodes.forEach(n=>{
+      n.x += n.vx;
+      n.y += n.vy;
+      n.pulse += n.pulseSpeed;
+      if(n.x<0||n.x>W) n.vx *= -1;
+      if(n.y<0||n.y>H) n.vy *= -1;
+
+      // Mouse attraction (subtle)
+      if(mouse.x){
+        const dx = mouse.x - n.x, dy = mouse.y - n.y;
+        const d  = Math.sqrt(dx*dx + dy*dy);
+        if(d < 200){
+          n.vx += dx/d * .015;
+          n.vy += dy/d * .015;
+          // Clamp speed
+          const speed = Math.sqrt(n.vx*n.vx + n.vy*n.vy);
+          if(speed > 1.2){ n.vx *= .8; n.vy *= .8; }
+        }
+      }
+    });
+
+    // Draw connections
+    for(let i=0;i<nodes.length;i++){
+      for(let j=i+1;j<nodes.length;j++){
+        const a=nodes[i], b=nodes[j];
+        const dx=a.x-b.x, dy=a.y-b.y;
+        const d=Math.sqrt(dx*dx+dy*dy);
+        if(d<CONNECT_DIST){
+          const alpha = (1-d/CONNECT_DIST) * .35;
+          const color = a.gold && b.gold ? GOLD : CYAN;
+          ctx.beginPath();
+          ctx.strokeStyle = color + alpha + ')';
+          ctx.lineWidth   = .8;
+          ctx.moveTo(a.x, a.y);
+          ctx.lineTo(b.x, b.y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes
+    nodes.forEach(n=>{
+      const pulse = .5 + Math.sin(n.pulse) * .5;
+      const color = n.gold ? GOLD : CYAN;
+
+      // Glow
+      const grad = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 5);
+      grad.addColorStop(0, color + (.2 * pulse) + ')');
+      grad.addColorStop(1, color + '0)');
+      ctx.beginPath();
+      ctx.fillStyle = grad;
+      ctx.arc(n.x, n.y, n.r * 5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Core dot
+      ctx.beginPath();
+      ctx.fillStyle = color + (.7 + pulse * .3) + ')';
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', ()=>{ resize(); initNodes(); });
+  window.addEventListener('mousemove', e=>{ mouse.x = e.clientX; mouse.y = e.clientY; });
+  window.addEventListener('touchmove', e=>{
+    if(e.touches[0]){ mouse.x = e.touches[0].clientX; mouse.y = e.touches[0].clientY; }
+  }, {passive:true});
+  window.addEventListener('mouseleave', ()=>{ mouse.x=null; mouse.y=null; });
+
+  resize();
+  initNodes();
+  draw();
+})();
+</script>
+</body>
+</html>
