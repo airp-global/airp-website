@@ -5,31 +5,64 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Presale — AIRP Global</title>
 <meta name="description" content="Join the $AIRP presale on July 15, 2026. Buy at $0.005 — 60% below listing price.">
-<meta property="og:title" content="Presale — AIRP Global">
-<meta property="og:image" content="https://www.airpglobal.com/og-image.png">
 <link rel="stylesheet" href="../shared.css">
 <style>
 .presale-layout{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start}
-.presale-main{}
-.presale-widget{background:var(--card);border:1px solid var(--gold-b);border-radius:var(--r-lg);padding:32px;position:sticky;top:88px}
-.presale-widget::before{content:'';display:block;height:2px;border-radius:2px 2px 0 0;background:linear-gradient(90deg,var(--gold-l),var(--gold));margin:-32px -32px 28px;border-radius:var(--r-lg) var(--r-lg) 0 0}
-.price-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px}
-.price-box{padding:20px;background:var(--bg3);border-radius:var(--r);border:1px solid var(--border);text-align:center}
-.price-val{font-family:var(--font-m);font-size:1.6rem;font-weight:700;color:var(--gold-l);display:block;margin-bottom:4px}
-.price-lbl{font-size:.75rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
-.progress-wrap{margin:24px 0}
+.presale-widget{background:var(--card);border:1px solid var(--gold-b);border-radius:var(--r-lg);padding:32px;position:sticky;top:88px;overflow:hidden}
+.presale-widget::before{content:\'\';display:block;height:2px;background:linear-gradient(90deg,var(--gold-l),var(--gold));margin:-32px -32px 28px;border-radius:var(--r-lg) var(--r-lg) 0 0}
+.price-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+.price-box{padding:16px;background:var(--bg3);border-radius:var(--r);border:1px solid var(--border);text-align:center}
+.price-val{font-family:var(--font-m);font-size:1.5rem;font-weight:700;color:var(--gold-l);display:block;margin-bottom:4px}
+.price-lbl{font-size:.72rem;color:var(--muted);letter-spacing:.07em;text-transform:uppercase}
+.progress-wrap{margin:16px 0}
 .progress-bar{height:8px;background:var(--bg3);border-radius:4px;overflow:hidden;margin:8px 0}
-.progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold-l))}
+.progress-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--gold),var(--gold-l));transition:width .5s ease}
 .steps-list{counter-reset:steps;list-style:none}
-.steps-list li{counter-increment:steps;display:flex;gap:16px;padding:20px 0;border-bottom:1px solid var(--border)}
+.steps-list li{counter-increment:steps;display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--border)}
 .steps-list li:last-child{border-bottom:none}
-.steps-list li::before{content:counter(steps,'0' decimal-leading-zero);flex-shrink:0;width:40px;height:40px;border-radius:50%;background:var(--gold-d);border:1px solid var(--gold-b);display:flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:.85rem;font-weight:700;color:var(--gold-l)}
-.steps-list li h4{font-family:var(--font-d);font-size:.95rem;font-weight:700;margin-bottom:4px}
-.steps-list li p{font-size:.85rem;color:var(--muted);line-height:1.6}
+.steps-list li::before{content:counter(steps,"0" decimal-leading-zero);flex-shrink:0;width:38px;height:38px;border-radius:50%;background:var(--gold-d);border:1px solid var(--gold-b);display:flex;align-items:center;justify-content:center;font-family:var(--font-m);font-size:.82rem;font-weight:700;color:var(--gold-l)}
+.steps-list li h4{font-family:var(--font-d);font-size:.92rem;font-weight:700;margin-bottom:3px}
+.steps-list li p{font-size:.82rem;color:var(--muted);line-height:1.6}
+
+/* Wallet UI */
+.wallet-section{margin-top:4px}
+.wallet-address{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 14px;background:var(--bg3);border:1px solid var(--gold-b);border-radius:var(--r);margin-bottom:12px;font-family:var(--font-m);font-size:.78rem;color:var(--gold-l)}
+.wallet-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;flex-shrink:0;box-shadow:0 0 6px #4ade80}
+.network-badge{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;border-radius:100px;font-family:var(--font-m);font-size:.68rem;background:rgba(34,197,94,.1);color:#4ade80;border:1px solid rgba(34,197,94,.2);margin-bottom:12px}
+.buy-tabs{display:flex;gap:8px;margin-bottom:16px}
+.buy-tab{flex:1;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--muted);font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;text-align:center}
+.buy-tab.active{background:var(--gold-d);border-color:var(--gold-b);color:var(--gold-l)}
+.amount-input{width:100%;padding:12px 16px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);color:var(--white);font-family:var(--font-m);font-size:1rem;outline:none;transition:border-color .2s;margin-bottom:8px;box-sizing:border-box}
+.amount-input:focus{border-color:var(--gold-b)}
+.amount-input::placeholder{color:var(--muted2)}
+.amount-preview{display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted);margin-bottom:16px;padding:0 2px}
+.amount-preview span{color:var(--gold-l);font-family:var(--font-m)}
+.warning-box{padding:12px 14px;background:rgba(201,162,39,.06);border:1px solid var(--gold-b);border-radius:var(--r);font-size:.78rem;color:var(--muted);line-height:1.6;margin-top:12px}
+.wallet-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.wallet-opt{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);cursor:pointer;transition:all .2s;font-size:.85rem;font-weight:600}
+.wallet-opt:hover{border-color:var(--gold-b);background:var(--gold-d)}
+.wallet-opt img,.wallet-opt .wicon{width:24px;height:24px;border-radius:6px;flex-shrink:0}
+.wicon{display:flex;align-items:center;justify-content:center;font-size:1.1rem;background:var(--border);border-radius:6px}
+
+#not-connected{display:block}
+#connected{display:none}
+#tx-pending{display:none}
+#tx-success{display:none}
+
+.spinner{display:inline-block;width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:var(--white);border-radius:50%;animation:spin .7s linear infinite;vertical-align:middle;margin-right:6px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.success-box{text-align:center;padding:24px}
+.success-icon{font-size:3rem;display:block;margin-bottom:12px}
+
 @media(max-width:900px){.presale-layout{grid-template-columns:1fr}.presale-widget{position:static}}
+@media(max-width:480px){.wallet-options{grid-template-columns:1fr}}
 </style>
-</head><body>
-<div class="page-bg"></div><div class="grid-overlay"></div>
+</head>
+<body>
+<div class="page-bg"></div>
+<div class="grid-overlay"></div>
+
 <nav class="nav">
   <a href="/" class="nav-logo">
     <img src="../logo.png" alt="AIRP">
@@ -52,6 +85,7 @@
   </div>
   <div class="nav-toggle"><span></span><span></span><span></span></div>
 </nav>
+
 <div class="page-hero">
   <div class="container">
     <div class="page-hero-badge">Launching July 15, 2026</div>
@@ -63,15 +97,16 @@
 <section class="section" style="padding-top:0">
 <div class="container">
 <div class="presale-layout">
-  <div class="presale-main">
 
+  <!-- LEFT: Details -->
+  <div>
     <div class="card card-gold anim-up" style="margin-bottom:24px">
-      <h3 style="font-family:var(--font-d);font-size:1.1rem;font-weight:700;margin-bottom:16px;letter-spacing:-.01em">Presale Details</h3>
+      <h3 style="font-family:var(--font-d);font-size:1.1rem;font-weight:700;margin-bottom:16px">Presale Details</h3>
       <table class="data-table">
         <tbody>
           <tr><td style="color:var(--muted)">Network</td><td>BSC (BEP-20)</td></tr>
           <tr><td style="color:var(--muted)">Allocation</td><td style="font-family:var(--font-m)">150,000,000 AIRP (15% of supply)</td></tr>
-          <tr><td style="color:var(--muted)">Duration</td><td>30 Days</td></tr>
+          <tr><td style="color:var(--muted)">Duration</td><td>30 Days from July 15, 2026</td></tr>
           <tr><td style="color:var(--muted)">Min Purchase</td><td style="font-family:var(--font-m)">$50</td></tr>
           <tr><td style="color:var(--muted)">Max Purchase</td><td style="font-family:var(--font-m)">$5,000</td></tr>
           <tr><td style="color:var(--muted)">Accepted</td><td>BNB &middot; USDT (BSC) &middot; USDC (BSC)</td></tr>
@@ -84,37 +119,25 @@
     </div>
 
     <div class="anim-up d2" style="margin-bottom:24px">
-      <h3 style="font-family:var(--font-d);font-size:1.3rem;font-weight:700;margin-bottom:24px;letter-spacing:-.01em">How to Participate</h3>
+      <h3 style="font-family:var(--font-d);font-size:1.2rem;font-weight:700;margin-bottom:20px">How to Participate</h3>
       <ol class="steps-list">
-        <li>
-          <div>
-            <h4>Get a Wallet</h4>
-            <p>Install MetaMask or Trust Wallet and switch to BNB Smart Chain (BSC) network.</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h4>Join the Whitelist</h4>
-            <p>Register your wallet address to secure your allocation before July 15, 2026.</p>
-          </div>
-        </li>
-        <li>
-          <div>
-            <h4>Buy $AIRP</h4>
-            <p>Connect wallet on launch day, send BNB/USDT/USDC, and receive your AIRP tokens.</p>
-          </div>
-        </li>
+        <li><div><h4>Connect Your Wallet</h4><p>Use MetaMask or Trust Wallet on BNB Smart Chain network.</p></div></li>
+        <li><div><h4>Choose Payment</h4><p>Select BNB, USDT, or USDC. Enter amount ($50 min — $5,000 max).</p></div></li>
+        <li><div><h4>Confirm Transaction</h4><p>Approve in your wallet. Tokens are locked in vesting contract automatically.</p></div></li>
+        <li><div><h4>Claim at TGE</h4><p>25% unlocks at TGE. Remaining 75% vests monthly over 4 months.</p></div></li>
       </ol>
     </div>
 
-    <div style="padding:20px 24px;background:rgba(201,162,39,.06);border:1px solid var(--gold-b);border-radius:var(--r);display:flex;gap:12px" class="anim-up d3">
-      <span style="color:var(--gold);font-size:1.1rem;flex-shrink:0;margin-top:2px">&#9888;</span>
-      <p style="font-size:.85rem;color:var(--muted);line-height:1.65">Participants should review the vesting schedule before committing funds. AIRP tokens are subject to market risk and price volatility. Only invest what you can afford to lose.</p>
+    <div style="padding:16px 20px;background:rgba(201,162,39,.06);border:1px solid var(--gold-b);border-radius:var(--r);display:flex;gap:12px" class="anim-up d3">
+      <span style="color:var(--gold);font-size:1.1rem;flex-shrink:0">&#9888;</span>
+      <p style="font-size:.82rem;color:var(--muted);line-height:1.65">Only invest what you can afford to lose. AIRP tokens are subject to market risk and price volatility. Always verify the contract address on airpglobal.com before sending funds.</p>
     </div>
-
   </div>
 
+  <!-- RIGHT: Widget -->
   <div class="presale-widget anim-up d1">
+
+    <!-- Price row -->
     <div class="price-row">
       <div class="price-box">
         <span class="price-val">$0.005</span>
@@ -126,49 +149,105 @@
       </div>
     </div>
 
-    <div class="countdown" style="margin-bottom:24px">
-      <div class="countdown-unit">
-        <span class="countdown-num" data-countdown="d">00</span>
-        <span class="countdown-label">Days</span>
-      </div>
-      <div class="countdown-unit">
-        <span class="countdown-num" data-countdown="h">00</span>
-        <span class="countdown-label">Hrs</span>
-      </div>
-      <div class="countdown-unit">
-        <span class="countdown-num" data-countdown="m">00</span>
-        <span class="countdown-label">Min</span>
-      </div>
-      <div class="countdown-unit">
-        <span class="countdown-num" data-countdown="s">00</span>
-        <span class="countdown-label">Sec</span>
-      </div>
+    <!-- Countdown -->
+    <div class="countdown" style="margin-bottom:20px">
+      <div class="countdown-unit"><span class="countdown-num" data-countdown="d">00</span><span class="countdown-label">Days</span></div>
+      <div class="countdown-unit"><span class="countdown-num" data-countdown="h">00</span><span class="countdown-label">Hrs</span></div>
+      <div class="countdown-unit"><span class="countdown-num" data-countdown="m">00</span><span class="countdown-label">Min</span></div>
+      <div class="countdown-unit"><span class="countdown-num" data-countdown="s">00</span><span class="countdown-label">Sec</span></div>
     </div>
 
+    <!-- Progress -->
     <div class="progress-wrap">
-      <div style="display:flex;justify-content:space-between;font-size:.8rem;margin-bottom:6px">
-        <span style="color:var(--muted)">Allocation</span>
-        <span style="color:var(--gold-l);font-family:var(--font-m)">150,000,000 AIRP</span>
+      <div style="display:flex;justify-content:space-between;font-size:.78rem;margin-bottom:4px">
+        <span style="color:var(--muted)">Sold</span>
+        <span style="color:var(--gold-l);font-family:var(--font-m)" id="progress-text">0 / 150,000,000 AIRP</span>
       </div>
-      <div class="progress-bar">
-        <div class="progress-fill" style="width:0%"></div>
-      </div>
-      <div style="display:flex;justify-content:space-between;font-size:.78rem;color:var(--muted)">
-        <span>Status: <span style="color:#4ade80">Upcoming</span></span>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+      <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--muted)">
+        <span>Status: <span style="color:#4ade80" id="presale-status">Upcoming</span></span>
         <span>Target: $750,000</span>
       </div>
     </div>
 
-    <a href="#" class="btn btn-primary" style="width:100%;margin-bottom:12px;font-size:.95rem;padding:14px">Join Whitelist Now</a>
-    <a href="#" class="btn btn-ghost" style="width:100%;font-size:.9rem">Connect Wallet</a>
+    <!-- ── NOT CONNECTED ── -->
+    <div id="not-connected" class="wallet-section">
+      <p style="font-size:.82rem;color:var(--muted);text-align:center;margin-bottom:14px">Connect your wallet to participate</p>
+      <div class="wallet-options">
+        <div class="wallet-opt" onclick="connectMetaMask()">
+          <div class="wicon">🦊</div>
+          <span>MetaMask</span>
+        </div>
+        <div class="wallet-opt" onclick="connectTrustWallet()">
+          <div class="wicon">🛡️</div>
+          <span>Trust Wallet</span>
+        </div>
+      </div>
+      <p style="text-align:center;font-size:.72rem;color:var(--muted2);margin-top:10px">Make sure you are on <strong style="color:var(--gold)">BNB Smart Chain</strong> network</p>
+    </div>
 
-    <p style="text-align:center;font-size:.75rem;color:var(--muted2);margin-top:16px">
-      Contract: Published at TGE via airpglobal.com
+    <!-- ── CONNECTED ── -->
+    <div id="connected" class="wallet-section">
+      <div class="network-badge">&#9679; BNB Smart Chain</div>
+      <div class="wallet-address">
+        <div style="display:flex;align-items:center;gap:8px">
+          <div class="wallet-dot"></div>
+          <span id="wallet-addr">0x0000...0000</span>
+        </div>
+        <span style="cursor:pointer;color:var(--muted);font-size:.75rem" onclick="disconnectWallet()">Disconnect</span>
+      </div>
+
+      <div class="buy-tabs">
+        <div class="buy-tab active" onclick="setTab(this,\'BNB\')">BNB</div>
+        <div class="buy-tab" onclick="setTab(this,\'USDT\')">USDT</div>
+        <div class="buy-tab" onclick="setTab(this,\'USDC\')">USDC</div>
+      </div>
+
+      <input class="amount-input" type="number" id="buy-amount" placeholder="0.00" min="0" step="any" oninput="updatePreview()">
+      <div class="amount-preview">
+        <span>You pay</span>
+        <span id="preview-pay">—</span>
+      </div>
+      <div class="amount-preview" style="margin-top:-4px">
+        <span>You receive</span>
+        <span id="preview-receive">—</span>
+      </div>
+
+      <button class="btn btn-primary" style="width:100%;margin-top:12px;padding:14px;font-size:.95rem" onclick="buyTokens()" id="buy-btn">
+        Buy $AIRP
+      </button>
+
+      <div class="warning-box" style="margin-top:12px">
+        &#9888; Presale contract address will be published at launch via airpglobal.com only. Do not send funds before July 15, 2026.
+      </div>
+    </div>
+
+    <!-- ── TX PENDING ── -->
+    <div id="tx-pending" class="wallet-section" style="text-align:center;padding:20px 0">
+      <div class="spinner"></div>
+      <p style="margin-top:12px;font-size:.9rem;color:var(--muted)">Transaction pending...<br>Please confirm in your wallet</p>
+    </div>
+
+    <!-- ── TX SUCCESS ── -->
+    <div id="tx-success" class="wallet-section">
+      <div class="success-box">
+        <span class="success-icon">✅</span>
+        <h4 style="font-family:var(--font-d);font-size:1.1rem;margin-bottom:8px">Purchase Successful!</h4>
+        <p style="font-size:.85rem;color:var(--muted);margin-bottom:16px">Your AIRP tokens are locked in the vesting contract. 25% will be claimable at TGE.</p>
+        <p style="font-family:var(--font-m);font-size:.8rem;color:var(--gold-l)" id="tx-hash"></p>
+        <button class="btn btn-secondary" style="margin-top:16px;width:100%" onclick="resetWidget()">Buy More</button>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:.72rem;color:var(--muted2);margin-top:16px">
+      Contract published at TGE &bull; airpglobal.com
     </p>
   </div>
+
 </div>
 </div>
 </section>
+
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
@@ -199,7 +278,6 @@
         <ul>
           <li><a href="/whitepaper/">Documentation</a></li>
           <li><a href="#">Audit Report</a></li>
-          <li><a href="#">Brand Kit</a></li>
           <li><a href="mailto:contact@airpglobal.com">Contact</a></li>
         </ul>
       </div>
@@ -209,6 +287,240 @@
       <span>contact@airpglobal.com</span>
     </div>
   </div>
-</footer><script src="../shared.js"></script>
+</footer>
+
+<script src="../shared.js"></script>
+<script>
+// ═══════════════════════════════════════════════════════
+//  WALLET CONNECTION & PRESALE LOGIC
+// ═══════════════════════════════════════════════════════
+
+const BSC_CHAIN_ID     = '0x38';   // 56 decimal
+const BSC_CHAIN_ID_DEC = 56;
+const BNB_PRICE_USD    = 600;      // Fallback price — replace with Chainlink at TGE
+const AIRP_PRICE_USD   = 0.005;    // $0.005 per AIRP
+
+// Contract addresses — UPDATE THESE AFTER DEPLOY
+const PRESALE_CONTRACT = '0x0000000000000000000000000000000000000000';
+
+let walletAddress  = null;
+let currentToken   = 'BNB';
+let provider       = null;
+
+// ── BSC Network config ────────────────────────────────
+const BSC_PARAMS = {
+  chainId: BSC_CHAIN_ID,
+  chainName: 'BNB Smart Chain',
+  nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 },
+  rpcUrls: ['https://bsc-dataseed.binance.org/'],
+  blockExplorerUrls: ['https://bscscan.com/']
+};
+
+// ── Show/hide panels ──────────────────────────────────
+function showPanel(id) {
+  ['not-connected','connected','tx-pending','tx-success'].forEach(p => {
+    document.getElementById(p).style.display = p === id ? 'block' : 'none';
+  });
+}
+
+// ── Format address ────────────────────────────────────
+function shortAddr(addr) {
+  return addr.slice(0,6) + '...' + addr.slice(-4);
+}
+
+// ── Switch to BSC ─────────────────────────────────────
+async function switchToBSC() {
+  try {
+    await window.ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: BSC_CHAIN_ID }]
+    });
+    return true;
+  } catch (err) {
+    if (err.code === 4902) {
+      try {
+        await window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [BSC_PARAMS]
+        });
+        return true;
+      } catch { return false; }
+    }
+    return false;
+  }
+}
+
+// ── Connect MetaMask ──────────────────────────────────
+async function connectMetaMask() {
+  if (typeof window.ethereum === 'undefined') {
+    alert('MetaMask not found.\n\nPlease install MetaMask from metamask.io and try again.');
+    window.open('https://metamask.io/download/', '_blank');
+    return;
+  }
+  try {
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    if (!accounts.length) return;
+
+    // Switch to BSC
+    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    if (chainId !== BSC_CHAIN_ID) {
+      const switched = await switchToBSC();
+      if (!switched) {
+        alert('Please switch to BNB Smart Chain manually in MetaMask.');
+        return;
+      }
+    }
+    walletAddress = accounts[0];
+    onWalletConnected();
+  } catch (err) {
+    if (err.code !== 4001) alert('Connection failed: ' + err.message);
+  }
+}
+
+// ── Connect Trust Wallet (same as MetaMask provider) ─
+async function connectTrustWallet() {
+  // Trust Wallet injects window.ethereum on mobile
+  if (typeof window.ethereum !== 'undefined') {
+    await connectMetaMask();
+  } else {
+    // Deep link for mobile
+    const dappUrl = encodeURIComponent(window.location.href);
+    window.location.href = `https://link.trustwallet.com/open_url?coin_id=20000714&url=${dappUrl}`;
+  }
+}
+
+// ── On wallet connected ───────────────────────────────
+function onWalletConnected() {
+  document.getElementById('wallet-addr').textContent = shortAddr(walletAddress);
+  showPanel('connected');
+
+  // Listen for account / chain changes
+  window.ethereum.on('accountsChanged', accs => {
+    if (!accs.length) { disconnectWallet(); return; }
+    walletAddress = accs[0];
+    document.getElementById('wallet-addr').textContent = shortAddr(walletAddress);
+  });
+  window.ethereum.on('chainChanged', () => window.location.reload());
+}
+
+// ── Disconnect ────────────────────────────────────────
+function disconnectWallet() {
+  walletAddress = null;
+  showPanel('not-connected');
+  document.getElementById('buy-amount').value = '';
+  document.getElementById('preview-pay').textContent = '—';
+  document.getElementById('preview-receive').textContent = '—';
+}
+
+// ── Tab switch ────────────────────────────────────────
+function setTab(el, token) {
+  document.querySelectorAll('.buy-tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  currentToken = token;
+  document.getElementById('buy-amount').placeholder =
+    token === 'BNB' ? '0.00 BNB' : `0.00 ${token}`;
+  updatePreview();
+}
+
+// ── Preview calculation ───────────────────────────────
+function updatePreview() {
+  const amt = parseFloat(document.getElementById('buy-amount').value) || 0;
+  if (!amt) {
+    document.getElementById('preview-pay').textContent     = '—';
+    document.getElementById('preview-receive').textContent = '—';
+    return;
+  }
+  let usdValue;
+  if (currentToken === 'BNB') {
+    usdValue = amt * BNB_PRICE_USD;
+    document.getElementById('preview-pay').textContent = `${amt} BNB ≈ $${usdValue.toFixed(2)}`;
+  } else {
+    usdValue = amt;
+    document.getElementById('preview-pay').textContent = `${amt} ${currentToken}`;
+  }
+  const airpAmt = usdValue / AIRP_PRICE_USD;
+  document.getElementById('preview-receive').textContent =
+    airpAmt.toLocaleString('en-US', {maximumFractionDigits:0}) + ' AIRP';
+}
+
+// ── Buy tokens ────────────────────────────────────────
+async function buyTokens() {
+  const amt = parseFloat(document.getElementById('buy-amount').value);
+  if (!amt || amt <= 0) { alert('Please enter an amount.'); return; }
+
+  // Check presale is live (July 15 2026)
+  const now     = new Date();
+  const launch  = new Date('2026-07-15T00:00:00Z');
+  if (now < launch) {
+    alert('Presale has not started yet.\n\nLaunch: July 15, 2026 at 00:00 UTC');
+    return;
+  }
+
+  // Check contract deployed
+  if (PRESALE_CONTRACT === '0x0000000000000000000000000000000000000000') {
+    alert('Presale contract not yet deployed.\n\nContract address will be published at TGE via airpglobal.com');
+    return;
+  }
+
+  showPanel('tx-pending');
+
+  try {
+    let txHash;
+    if (currentToken === 'BNB') {
+      const bnbWei = BigInt(Math.round(amt * 1e18)).toString(16);
+      txHash = await window.ethereum.request({
+        method: 'eth_sendTransaction',
+        params: [{
+          from:  walletAddress,
+          to:    PRESALE_CONTRACT,
+          value: '0x' + bnbWei,
+          gas:   '0x30D40'  // 200,000 gas
+        }]
+      });
+    } else {
+      // ERC20 approve + buyWithUSDT/USDC
+      // Will be implemented with contract ABI after deploy
+      alert('USDT/USDC purchase will be enabled at TGE with deployed contract.');
+      showPanel('connected');
+      return;
+    }
+
+    // Success
+    document.getElementById('tx-hash').textContent = 'TX: ' + txHash.slice(0,10) + '...' + txHash.slice(-6);
+    showPanel('tx-success');
+
+  } catch (err) {
+    showPanel('connected');
+    if (err.code === 4001) {
+      // User rejected
+    } else {
+      alert('Transaction failed: ' + (err.message || err));
+    }
+  }
+}
+
+// ── Reset widget ──────────────────────────────────────
+function resetWidget() {
+  document.getElementById('buy-amount').value = '';
+  updatePreview();
+  showPanel('connected');
+}
+
+// ── Auto reconnect on page load ───────────────────────
+window.addEventListener('load', async () => {
+  if (typeof window.ethereum !== 'undefined') {
+    try {
+      const accounts = await window.ethereum.request({ method: 'eth_accounts' });
+      if (accounts.length) {
+        const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+        if (chainId === BSC_CHAIN_ID) {
+          walletAddress = accounts[0];
+          onWalletConnected();
+        }
+      }
+    } catch {}
+  }
+});
+</script>
 </body>
 </html>
