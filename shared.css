@@ -148,10 +148,12 @@ ul{list-style:none}
 
 @media(max-width:1024px){.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:768px){
-  .nav-links,.nav-social{display:none}
+  .nav-links{display:none}
   .nav-links.open{display:flex;flex-direction:column;position:fixed;top:68px;left:0;right:0;background:rgba(3,11,24,.98);backdrop-filter:blur(20px);padding:20px 24px;border-bottom:1px solid var(--border);gap:4px;z-index:99}
   .nav-toggle{display:flex}
-  .nav-cta{padding:7px 14px;font-size:.8rem}
+  .nav-cta{padding:7px 12px;font-size:.78rem}
+  .nav-social{display:flex;gap:6px}
+  .nav-social a{width:32px;height:32px;font-size:.9rem}
   .section{padding:72px 0}
   .footer-grid{grid-template-columns:1fr;gap:28px}
   .footer-brand p{max-width:100%}
